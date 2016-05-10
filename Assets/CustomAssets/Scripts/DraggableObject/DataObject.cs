@@ -5,32 +5,36 @@ namespace Assets.CustomAssets.Scripts.DraggableObject {
     public class DataObject : GUIDraggableObject
     // This class just has the capability of being dragged in GUI - it could be any type of generic data class
     {
-        private string m_Name;
-        private int m_Value;
+        private string name;
+        private int value;
 
         public DataObject(string name, int value, Vector2 position) : base(position) {
-            m_Name = name;
-            m_Value = value;
+            this.name = name;
+            this.value = value;
         }
 
-        public void OnGUI() {
-            Rect drawRect = new Rect(m_Position.x, m_Position.y, 100.0f, 100.0f), dragRect;
+        public void draw(float scale) {
+            Rect drawRect = new Rect(position.x, position.y, scale*200.0f, scale*100.0f);
 
             GUILayout.BeginArea(drawRect, GUI.skin.GetStyle("Box"));
-            GUILayout.Label(m_Name, GUI.skin.GetStyle("Box"), GUILayout.ExpandWidth(true));
+            GUILayout.Label(name, GUI.skin.GetStyle("Box"), GUILayout.ExpandWidth(true));
 
-            dragRect = GUILayoutUtility.GetLastRect();
-            dragRect = new Rect(dragRect.x + m_Position.x, dragRect.y + m_Position.y, dragRect.width, dragRect.height);
+            Rect dragRect = GUILayoutUtility.GetLastRect();
+            dragRect = new Rect(dragRect.x + position.x, dragRect.y + position.y, dragRect.width, dragRect.height);
 
-            if (Dragging) {
+            /*
+            if (dragging) {
                 GUILayout.Label("Wooo...");
             }
             else if (GUILayout.Button("Yes!")) {
-                Debug.Log("Yes. It is " + m_Value + "!");
+                Debug.Log("Yes. It is " + value + "!");
             }
+            */
+            GUILayout.TextArea("");
+            //GUILayout.Label("this is a very long text indeed. this is a very long text indeed. this is a very long text indeed. this is a very long text indeed. ");
             GUILayout.EndArea();
 
-            Drag(dragRect);
+            dragHandler(dragRect);
         }
     }
 }

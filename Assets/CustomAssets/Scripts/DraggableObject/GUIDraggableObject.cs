@@ -3,43 +3,53 @@
 namespace Assets.CustomAssets.Scripts.DraggableObject {
 
     public class GUIDraggableObject {
-        protected Vector2 m_Position;
-        private Vector2 m_DragStart;
-        private bool m_Dragging;
+        public Vector2 position;
+        public bool dragging;
+        public bool isFront = false;
+
+        //private static Vector2 worldOffset = Vector2.zero;
+        private bool middleDragging;
+
+        private Vector2 dragStart;
 
         public GUIDraggableObject(Vector2 position) {
-            m_Position = position;
+            this.position = position;
         }
 
-        public bool Dragging {
-            get {
-                return m_Dragging;
+        public void dragHandler(Rect draggingRect) {
+            Event e = Event.current;
+            
+            //drag(draggingRect);
+            if (e.type == EventType.MouseDrag && e.button == 0 && draggingRect.Contains(e.mousePosition)) {
+                dragging = true;
+                position += e.delta;
+            }
+            else if (e.type == EventType.MouseUp && e.button == 0 && dragging) {
+                dragging = false;
+            }
+
+
+            if (EventUtils.mouseDown(1)) {
+                Debug.Log("right mouse pressed");
+            } else if (EventUtils.mouseUp(1)) {
+                Debug.Log("right mouse released");
+            }
+        }
+        
+        private void drag(Rect draggingRect) {
+            Event e = Event.current;
+            if (EventUtils.mouseDown(0) && draggingRect.Contains(e.mousePosition)) {
+                dragging = true;
+                dragStart = e.mousePosition - position;
+                e.Use();
+            }
+            else if (EventUtils.mouseUp(0)) {
+                dragging = false;
+            }
+            if (dragging) {
+                position = e.mousePosition - dragStart;
             }
         }
 
-        public Vector2 Position {
-            get {
-                return m_Position;
-            }
-
-            set {
-                m_Position = value;
-            }
-        }
-
-        public void Drag(Rect draggingRect) {
-            if (Event.current.type == EventType.MouseUp) {
-                m_Dragging = false;
-            }
-            else if (Event.current.type == EventType.MouseDown && draggingRect.Contains(Event.current.mousePosition)) {
-                m_Dragging = true;
-                m_DragStart = Event.current.mousePosition - m_Position;
-                Event.current.Use();
-            }
-
-            if (m_Dragging) {
-                m_Position = Event.current.mousePosition - m_DragStart;
-            }
-        }
     }
 }
