@@ -6,13 +6,18 @@ using UnityEngine.UI;
 namespace Assets.CustomAssets.Scripts.DialogueSystem {
     public class Dialogue : MonoBehaviour {
         public Text text;
+        public GameObject[] buttons;
 
         private DialogueManager dialogueMng;
         private DialogueNode iterator;
         private bool read = false;
 
+        public void Awake() {
+        }
+
         public void Start () {
             TextRender.UIText = text;
+            TextRender.UIButtons = buttons;
             dialogueMng = new DialogueManager();
             iterator = dialogueMng.generate();
         }
@@ -40,6 +45,9 @@ namespace Assets.CustomAssets.Scripts.DialogueSystem {
         }
 
         private DialogueNode selectAnswer(int n) {
+            for (int i = 0; i < buttons.Length; ++i) {
+                buttons[i].SetActive(false);
+            }
             return iterator = dialogueMng.runDialogue(iterator.adjacent[n].next());
         }
     }

@@ -1,7 +1,6 @@
 ﻿
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using Assets.CustomAssets.Scripts.DialogueSystem.Nodes;
 
 namespace Assets.CustomAssets.Scripts.DialogueSystem {
@@ -13,12 +12,11 @@ namespace Assets.CustomAssets.Scripts.DialogueSystem {
             DialogueNode answer1 = new AnswerNode("answer1");
             answer1.addChild(new TextNode("answer1 ANSWERED!"));
             DialogueNode answer2 = new AnswerNode("answer1");
-            answer2.addChild(new TextNode("answer2 ANSWERED!"));
+            answer2.addChild(root);
             question1.addChild(answer1);
             question1.addChild(answer2);
             root.addChild(question1);
 
-            //runDialogue(text1);
             return root;
         }
 
