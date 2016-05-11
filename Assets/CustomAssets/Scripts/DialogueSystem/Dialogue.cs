@@ -23,7 +23,7 @@ namespace Assets.CustomAssets.Scripts.DialogueSystem {
         }
 
         public void Update() {
-            if (!read && Input.GetMouseButtonDown(0)) {
+            if (!read && UnityEngine.Input.GetMouseButtonDown(0)) {
                 if (iterator != null) {
                     iterator = dialogueMng.runDialogue(iterator);
                     

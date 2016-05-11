@@ -1321,6 +1321,7 @@ GameObject:
   - 82: {fileID: 1886560609}
   - 143: {fileID: 1886560608}
   - 114: {fileID: 1886560607}
+  - 114: {fileID: 1886560611}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1515,3 +1516,16 @@ Transform:
   - {fileID: 576151443}
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &1886560611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1886560606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d96fdff10831a8488faebaab3d3d772, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 15
+  terrain: {fileID: 155188694}
