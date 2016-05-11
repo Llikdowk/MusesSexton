@@ -18,7 +18,7 @@ namespace Assets.CustomAssets.Scripts {
                 float[,] heightMap = terrain.terrainData.GetHeights(0, 0, w, h);
                 for (int i = 0; i < w; ++i) {
                     for (int j = 0; j < h; ++j) {
-                        heightMap[i, j] += .25f;
+                        heightMap[j, i] = .25f;
                     }
                 }
                 terrain.terrainData.SetHeights(0, 0, heightMap);
