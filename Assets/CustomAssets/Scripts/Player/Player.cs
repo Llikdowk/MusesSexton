@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Assets.CustomAssets.Scripts.Player {
     public class Player {
         public bool triggerCartBack = false;
+        public bool triggerCartFront = false;
 
         public int coffinsBuried = 0;
 

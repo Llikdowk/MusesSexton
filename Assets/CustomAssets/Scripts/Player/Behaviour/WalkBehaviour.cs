@@ -46,6 +46,8 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                 CoffinDragged cd = coffin.GetComponent<CoffinDragged>();
                 cd.enabled = true;
                 p.behaviour = new CoffinDragBehaviour(character, coffin, cd);
+            } else if (p.triggerCartFront && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
+                p.behaviour = new DriveCartBehaviour(character);
             }
         }
     }
