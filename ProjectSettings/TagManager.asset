@@ -7,6 +7,7 @@ TagManager:
   - terrain
   - groundHeap
   - groundGrave
+  - coffin
   layers:
   - Default
   - TransparentFX

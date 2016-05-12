@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.CustomAssets.Scripts.CustomInput;
+using Assets.CustomAssets.Scripts.Player.Behaviour;
 using UnityEngine;
 
 namespace Assets.CustomAssets.Scripts {
@@ -31,11 +32,11 @@ namespace Assets.CustomAssets.Scripts {
 
         public void Update () {
 
-            if (GameActions.checkAction(Action.USE, Input.GetKey)) {
-
-                ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit, maxDistance)) {
-                    GameObject impacted = hit.collider.gameObject;
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, maxDistance)) {
+                GameObject impacted = hit.collider.gameObject;
+                Debug.DrawRay(this.gameObject.transform.position, hit.point - this.gameObject.transform.position, Color.red);
+                if (GameActions.checkAction(Action.USE, Input.GetKey)) {
                     if (impacted.tag == "terrain") {
                         if (hit.distance < minDistance) return;
                         Debug.DrawRay(this.gameObject.transform.position, hit.point - this.gameObject.transform.position, Color.magenta);
@@ -45,8 +46,6 @@ namespace Assets.CustomAssets.Scripts {
 
                         Vector2 vertex = new Vector2((p.x / terrainData.size.x) * terrainData.heightmapResolution, (p.z / terrainData.size.z) * terrainData.heightmapResolution);
                         //Debug.Log("Res = " + terrainData.heightmapResolution + " width: " + terrainData.size.x + ", " + terrainData.size.z + " pos: " + (int)(p.x) + " " + (int)p.z + " vertex: " + (int)vertex.x + " " + (int) vertex.y);
-
-
 
                         int area_w = 4;
                         int area_h = 4;
@@ -84,8 +83,29 @@ namespace Assets.CustomAssets.Scripts {
                     else if (impacted.tag == "groundHeap") {
                         impacted.transform.localScale -= Vector3.one * .25f;
                         impacted.transform.parent.GetChild(0).transform.localPosition += Vector3.up * .25f;
+                    } else if (impacted.tag == "coffin") {
+                        Player.Player.getInstance().behaviour = new CoffinDragBehaviour(gameObject, impacted);
+                    }
+                    UIUtils.infoInteractive.text = "";
+                }
+                else {
+                    if (impacted.tag == "terrain") {
+                        UIUtils.infoInteractive.text = "dig terrain!";
+                    }
+                    else if (impacted.tag == "groundGrave") {
+                        UIUtils.infoInteractive.text = "dig plane!";
+                    }
+                    else if (impacted.tag == "groundHeap") {
+                        UIUtils.infoInteractive.text = "undig!";
+                    }
+                    else if (impacted.tag == "coffin") {
+                        UIUtils.infoInteractive.text = "drag!";
+                    } else {
+                        UIUtils.infoInteractive.text = "";
                     }
                 }
+            } else {
+                UIUtils.infoInteractive.text = "";
             }
         }
     }

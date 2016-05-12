@@ -5,7 +5,7 @@ using Assets.CustomAssets.Scripts.Player;
 using Assets.CustomAssets.Scripts.Player.Behaviour;
 
 public class trigger_cartBack : MonoBehaviour {
-    
+    /*
 	public void OnTriggerStay(Collider c) {
         if (c.gameObject.tag != "Player") return;
 
@@ -19,4 +19,5 @@ public class trigger_cartBack : MonoBehaviour {
         if (c.gameObject.tag != "Player") return;
         Player.getInstance().triggerCartBack = false;
     }
+    */
 }

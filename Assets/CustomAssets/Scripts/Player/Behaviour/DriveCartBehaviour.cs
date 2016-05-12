@@ -26,7 +26,6 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
         private void checkStateChange() {
             if(GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
-                //Debug.Log("TODO: CHANGE TO WALK MODE");
                 Player.getInstance().behaviour = new WalkBehaviour(character);
             }
         }

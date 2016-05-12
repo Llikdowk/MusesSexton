@@ -1,5 +1,4 @@
 ﻿
-using Assets.CustomAssets.Scripts.Components;
 using Assets.CustomAssets.Scripts.CustomInput;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
@@ -7,7 +6,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 namespace Assets.CustomAssets.Scripts.Player.Behaviour {
     public class WalkBehaviour : CharacterBehaviour {
         private readonly FirstPersonController fps;
-        private static GameObject coffinSet = GameObject.Find("CoffinSet");
+        private static readonly GameObject coffinSet = GameObject.Find("CoffinSet");
 
 
         public WalkBehaviour(GameObject character) : base(character) {
@@ -41,12 +40,12 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
         private void checkStateChange() {
             Player p = Player.getInstance();
+            /*
             if (p.triggerCartBack && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
                 GameObject coffin = coffinSet.transform.GetChild(p.coffinsBuried).gameObject;
-                CoffinDragged cd = coffin.GetComponent<CoffinDragged>();
-                cd.enabled = true;
-                p.behaviour = new CoffinDragBehaviour(character, coffin, cd);
-            } else if (p.triggerCartFront && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
+                p.behaviour = new CoffinDragBehaviour(character, coffin);
+            } else */
+            if (p.triggerCartFront && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
                 p.behaviour = new DriveCartBehaviour(character);
             }
         }

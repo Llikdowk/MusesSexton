@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Assets.CustomAssets.Scripts.Components;
 using Assets.CustomAssets.Scripts.CustomInput;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
@@ -14,16 +13,18 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private float t1 = 0f;
         private const float fastTimeWindow_s = .5f;
         private const float slowTimeWindow_s = .35f;
+        private const float force = 1f;
         private bool fast = false;
         private GameObject coffin;
-        private CoffinDragged coffinDragComponent;
+        private Rigidbody coffinRb;
 
-        public CoffinDragBehaviour(GameObject character, GameObject coffin, CoffinDragged dg) : base(character) {
+        public CoffinDragBehaviour(GameObject character, GameObject coffin) : base(character) {
             fps = Player.getInstance().gameObject.AddComponent<FirstPersonController>();
             configureController();
             Debug.Log("COFFIN MODE");
             this.coffin = coffin;
-            this.coffinDragComponent = dg;
+            this.coffinRb = coffin.GetComponent<Rigidbody>();
+            coffinRb.isKinematic = false;
         }
 
         private void configureController() {
@@ -54,6 +55,14 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         public override void run() {
             if (cinematic) return;
             checkStateChange();
+            handleMovementSpeed();
+
+            Transform playerTransform = Player.getInstance().gameObject.transform;
+            coffinRb.AddForce((playerTransform.position + Vector3.ProjectOnPlane(playerTransform.forward, Vector3.up)*2 - coffin.transform.position).normalized
+                * force * coffinRb.mass, ForceMode.Impulse);
+        }
+
+        private void handleMovementSpeed() {
             t0 = Time.time;
             if (!fast) {
                 if (t0 - t1 > slowTimeWindow_s) {
@@ -61,21 +70,22 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     fastConfiguration();
                     fast = true;
                 }
-            } else {
+            }
+            else {
                 if (t0 - t1 > fastTimeWindow_s) {
                     t1 = Time.time;
                     slowConfiguration();
                     fast = false;
                 }
             }
-            
         }
+
 
         private void checkStateChange() {
             Player p = Player.getInstance();
-            if (!p.triggerCartBack && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
+            if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
+                coffinRb.isKinematic = true;
                 Player.getInstance().behaviour = new WalkBehaviour(character);
-                coffinDragComponent.enabled = false;
             }
         }
     }
