@@ -195,6 +195,92 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1529423138}
   m_RootOrder: 0
+--- !u!1 &330249241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 330249242}
+  - 20: {fileID: 330249246}
+  - 92: {fileID: 330249245}
+  - 124: {fileID: 330249244}
+  - 81: {fileID: 330249243}
+  m_Layer: 0
+  m_Name: Poem Camera
+  m_TagString: camera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &330249242
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 330249241}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 576151443}
+  m_RootOrder: 0
+--- !u!81 &330249243
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 330249241}
+  m_Enabled: 0
+--- !u!124 &330249244
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 330249241}
+  m_Enabled: 0
+--- !u!92 &330249245
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 330249241}
+  m_Enabled: 0
+--- !u!20 &330249246
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 330249241}
+  m_Enabled: 0
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 0.5529412, g: 0.5529412, b: 0.5529412, a: 0.019607844}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 256
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
 --- !u!1 &350888888
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,12 +307,88 @@ Transform:
   m_LocalScale: {x: 1, y: 0.507555, z: 4.1012783}
   m_Children: []
   m_Father: {fileID: 576151443}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!54 &466384345 stripped
 Rigidbody:
   m_PrefabParentObject: {fileID: 5450538, guid: 8831e95cfd8bb2c4791b6c605651abd8,
     type: 2}
   m_PrefabInternal: {fileID: 1797844018}
+--- !u!1 &503275874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 503275875}
+  - 23: {fileID: 503275877}
+  - 102: {fileID: 503275876}
+  m_Layer: 8
+  m_Name: text0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &503275875
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 503275874}
+  m_LocalRotation: {x: 0, y: 0.49999934, z: 0, w: 0.86602587}
+  m_LocalPosition: {x: 19.5, y: 44.41, z: 85.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1985978783}
+  m_RootOrder: 0
+--- !u!102 &503275876
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 503275874}
+  m_Text: Such poem much letters
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_TabSize: 4
+  m_FontSize: 0
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+--- !u!23 &503275877
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 503275874}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!1 &517068253
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +403,7 @@ GameObject:
   - 81: {fileID: 517068255}
   m_Layer: 0
   m_Name: UICamera
-  m_TagString: Untagged
+  m_TagString: camera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -377,7 +539,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967039
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -397,6 +559,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 330249242}
   - {fileID: 350888889}
   m_Father: {fileID: 1886560610}
   m_RootOrder: 0
@@ -1378,7 +1541,7 @@ Transform:
   m_LocalScale: {x: 5.7694564, y: 5.769457, z: 5.769457}
   m_Children: []
   m_Father: {fileID: 1985978783}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!23 &1495436414
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2554,7 +2717,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1886560606}
-  m_LocalRotation: {x: 0, y: -0.6087614, z: 0, w: 0.7933533}
+  m_LocalRotation: {x: 0, y: 0.5284309, z: 0, w: 0.8489764}
   m_LocalPosition: {x: -15, y: 37.850006, z: 67.84999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2614,9 +2777,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 503275875}
   - {fileID: 1495436413}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!1 &1994482476
 GameObject:
   m_ObjectHideFlags: 0

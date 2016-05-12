@@ -8,6 +8,7 @@ TagManager:
   - groundHeap
   - groundGrave
   - coffin
+  - camera
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - PoemLetters
   - 
   - 
   - 

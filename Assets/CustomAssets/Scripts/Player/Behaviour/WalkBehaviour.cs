@@ -34,7 +34,6 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         }
 
         public override void run() {
-            if (cinematic) return;
             checkStateChange();
         }
 
@@ -47,6 +46,10 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             } else */
             if (p.triggerCartFront && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
                 p.behaviour = new DriveCartBehaviour(character);
+            }
+
+            if (GameActions.checkAction(Action.DEBUG, Input.GetKeyDown)) {
+                p.behaviour = new PoemBehaviour(character);
             }
         }
     }
