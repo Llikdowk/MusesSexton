@@ -1,4 +1,4 @@
 ﻿
 public enum Action {
-    LEFT, RIGHT, FORWARD, BACK, QUIT, USE
+    LEFT, RIGHT, FORWARD, BACK, QUIT, USE, DEBUG
 }

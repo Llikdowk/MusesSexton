@@ -22,7 +22,7 @@ namespace Assets.CustomAssets.Scripts {
             //original.gameObject.SetActive(false);
             terrainData = terrain.terrainData;
             heightMap = terrainData.GetHeights(0, 0, terrainData.heightmapWidth, terrainData.heightmapHeight);
-            Debug.Log("HEIGHTMAP DATA: " + "size[0]: " + heightMap.GetLength(0) + " size[1]: " + heightMap.GetLength(1));
+            //Debug.Log("HEIGHTMAP DATA: " + "size[0]: " + heightMap.GetLength(0) + " size[1]: " + heightMap.GetLength(1));
         }
 
         public void Start () { 

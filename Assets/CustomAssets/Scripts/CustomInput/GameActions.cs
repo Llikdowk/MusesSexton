@@ -54,6 +54,7 @@ namespace Assets.CustomAssets.Scripts.CustomInput {
 
             registerAction(Action.USE, KeyCode.Mouse0);
 
+            registerAction(Action.DEBUG, KeyCode.P);
         }
     }
 }
