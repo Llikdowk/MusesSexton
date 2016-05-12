@@ -10,6 +10,7 @@ namespace Assets.CustomAssets.Scripts.Player {
         public int coffinsBuried = 0;
 
         public readonly GameObject gameObject;
+        public readonly Transform eyeSight;
         private static Player instance;
         private CharacterBehaviour _behaviour;
 
@@ -22,6 +23,7 @@ namespace Assets.CustomAssets.Scripts.Player {
 
         private Player() {
             gameObject = GameObject.Find("Player");
+            eyeSight = GameObject.Find("EyeSight").transform;
             _behaviour = new WalkBehaviour(gameObject);
         }
 

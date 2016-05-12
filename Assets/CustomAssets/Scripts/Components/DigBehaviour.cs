@@ -10,7 +10,6 @@ namespace Assets.CustomAssets.Scripts {
         public int minDistance = 2;
         public Material groundGrave;
         public Material groundHeap;
-        public GameObject debugObject;
         public Terrain terrain;
         private TerrainData terrainData;
         private float[,] heightMap;
@@ -35,14 +34,13 @@ namespace Assets.CustomAssets.Scripts {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, maxDistance)) {
                 GameObject impacted = hit.collider.gameObject;
-                Debug.DrawRay(this.gameObject.transform.position, hit.point - this.gameObject.transform.position, Color.red);
+                Debug.DrawRay(Player.Player.getInstance().eyeSight.position, hit.point - this.gameObject.transform.position, Color.red);
                 if (GameActions.checkAction(Action.USE, Input.GetKey)) {
                     if (impacted.tag == "terrain") {
                         if (hit.distance < minDistance) return;
-                        Debug.DrawRay(this.gameObject.transform.position, hit.point - this.gameObject.transform.position, Color.magenta);
+                        Debug.DrawRay(Player.Player.getInstance().eyeSight.position, hit.point - this.gameObject.transform.position, Color.magenta);
                         //Debug.Log(hit.point);
                         Vector3 p = terrain.gameObject.transform.InverseTransformPoint(hit.point);
-                        debugObject.transform.position = p;
 
                         Vector2 vertex = new Vector2((p.x / terrainData.size.x) * terrainData.heightmapResolution, (p.z / terrainData.size.z) * terrainData.heightmapResolution);
                         //Debug.Log("Res = " + terrainData.heightmapResolution + " width: " + terrainData.size.x + ", " + terrainData.size.z + " pos: " + (int)(p.x) + " " + (int)p.z + " vertex: " + (int)vertex.x + " " + (int) vertex.y);

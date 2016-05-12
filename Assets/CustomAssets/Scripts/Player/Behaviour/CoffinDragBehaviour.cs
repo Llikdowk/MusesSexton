@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
 using Assets.CustomAssets.Scripts.CustomInput;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
@@ -15,8 +12,9 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private const float slowTimeWindow_s = .35f;
         private const float force = 1f;
         private bool fast = false;
-        private GameObject coffin;
-        private Rigidbody coffinRb;
+        private readonly GameObject coffin;
+        private readonly Rigidbody coffinRb;
+        private static readonly GameObject chainPrefab = Resources.Load<GameObject>("Prefabs/Chain");
 
         public CoffinDragBehaviour(GameObject character, GameObject coffin) : base(character) {
             fps = Player.getInstance().gameObject.AddComponent<FirstPersonController>();
@@ -25,6 +23,16 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             this.coffin = coffin;
             this.coffinRb = coffin.GetComponent<Rigidbody>();
             coffinRb.isKinematic = false;
+            GameObject chain = UnityEngine.Object.Instantiate(chainPrefab);
+            Transform firstLink = chain.transform.GetChild(0).transform;
+            firstLink.parent = Player.getInstance().eyeSight;
+            firstLink.position = Vector3.zero;
+            //coffin.transform.GetChild(0).transform.parent = 
+            //chain.transform.GetChild(10).GetComponent<SpringJoint>();
+
+            if (chainPrefab == null) {
+                DebugMsg.loadFail();
+            }
         }
 
         private void configureController() {
@@ -57,9 +65,11 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             checkStateChange();
             handleMovementSpeed();
 
+            /*
             Transform playerTransform = Player.getInstance().gameObject.transform;
             coffinRb.AddForce((playerTransform.position + Vector3.ProjectOnPlane(playerTransform.forward, Vector3.up)*2 - coffin.transform.position).normalized
                 * force * coffinRb.mass, ForceMode.Impulse);
+                */
         }
 
         private void handleMovementSpeed() {
@@ -82,7 +92,6 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
 
         private void checkStateChange() {
-            Player p = Player.getInstance();
             if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
                 coffinRb.isKinematic = true;
                 Player.getInstance().behaviour = new WalkBehaviour(character);
