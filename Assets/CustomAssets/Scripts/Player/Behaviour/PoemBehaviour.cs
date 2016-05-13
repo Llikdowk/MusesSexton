@@ -12,6 +12,8 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private readonly Vector3 originalPoemCameraPos;
         private readonly Vector3 originalPoemCameraRotation;
         private readonly Camera poemCamera;
+        private readonly CursorLockMode cursorStateBackup;
+        private readonly Vector3 trackBallCenter;
 
         public PoemBehaviour(GameObject character) : base(character) {
             originalCameraPos = Camera.main.transform.position;
@@ -22,6 +24,9 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             poemCamera.enabled = true;
             Debug.Log("POEM");
             Cursor.visible = true;
+            cursorStateBackup = Cursor.lockState;
+            Cursor.lockState = CursorLockMode.None;
+            trackBallCenter = Camera.main.transform.forward*100 + Camera.main.transform.position;
         }
 
         public override void cinematicMode(bool enabled) {
@@ -34,6 +39,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             poemCamera.transform.position = originalPoemCameraPos;
             poemCamera.transform.eulerAngles = originalPoemCameraRotation;
             poemCamera.enabled = false;
+            Cursor.lockState = cursorStateBackup;
             Cursor.visible = false;
         }
 
@@ -41,13 +47,16 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         public override void run() {
             if (cinematic) return;
             checkStateChange();
-            //Vector3 mouse = Input.mousePosition;    
-            Vector3 p = Input.mousePosition*2-Vector3.one;
-            p0 = new Vector3(p.x/Screen.width, p.y/(2*Screen.height), 0);
+            doMouseMovement();
+        }
+
+        private void doMouseMovement() {
+            Vector3 mouse = Input.mousePosition;
+            p0 = new Vector3(mouse.x / Screen.width * 2 - 1, mouse.y / (2 * Screen.height) * 2 - 1, 0);
             Vector3 dif = p0 - p1;
-            //Camera.main.transform.localPosition += 2*dif;
-            poemCamera.transform.localPosition += 2*dif;
-            Camera.main.transform.Rotate(new Vector3(4*dif.y, 4*dif.x, 0), Space.Self); //5*dif;
+            Camera.main.transform.localPosition += new Vector3(dif.x / 2f, 0, 0);
+            poemCamera.transform.localPosition += new Vector3(dif.x, 0, 0);
+            Camera.main.transform.Rotate(new Vector3(-2 * dif.y, 2 * dif.x, 0), Space.Self);
             p1 = p0;
         }
 
