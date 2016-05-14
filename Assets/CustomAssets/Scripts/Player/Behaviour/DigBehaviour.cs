@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Assets.CustomAssets.Scripts.Anmation;
 using Assets.CustomAssets.Scripts.CustomInput;
 using UnityEngine;
 
@@ -10,19 +11,22 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private readonly Vector3 originalCameraPos;
         private readonly Vector3 originalCameraRotation;
         private readonly CursorLockMode cursorStateBackup;
-        private int hits = 0;
+        private readonly float time_created;
+        private readonly GameObject impacted;
         private const int limitHits = 3;
-        private float time_created;
         private const float delay = .25f;
+        private Vector3 p0, p1;
+        private int hits = 0;
 
-        public DigBehaviour(GameObject character) : base(character) {
+        public DigBehaviour(GameObject character, GameObject impacted) : base(character) {
             originalCameraPos = Camera.main.transform.position;
             originalCameraRotation = Camera.main.transform.eulerAngles;
-            Debug.Log("DIG");
+            Debug.Log("DIG behaviour");
             Cursor.visible = true;
             cursorStateBackup = Cursor.lockState;
             Cursor.lockState = CursorLockMode.None;
             time_created = Time.time;
+            this.impacted = impacted;
         }
 
 
@@ -33,24 +37,25 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             Cursor.visible = false;
         }
 
-        private Vector3 p0, p1;
         public override void run() {
             if (cinematic) return;
             checkStateChange();
             doMouseMovement();
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 10)) {
-                GameObject impacted = hit.collider.gameObject;
-                if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && Time.time - time_created > delay) {
-                    if (impacted.tag == "groundGrave") {
-                        impacted.transform.position -= Vector3.up * .25f;
-                        impacted.transform.parent.GetChild(1).transform.localScale += Vector3.one * .25f;
-                        ++hits;
-                    }
-                }
+            if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && Time.time - time_created > delay) {
+                //if (impacted.tag == "groundGrave") {
+                //AnimationUtils.cameraAnimator.Play("dig");
+                AnimationUtils.launchDig(); // will launch digActionEvent
+                //}
             }
+        }
+        
+
+        public void launchActionEvent() {
+            impacted.transform.position -= Vector3.up * 1.5f;
+            impacted.transform.parent.GetChild(1).transform.localScale += Vector3.one * .25f;
+            ++hits;
+            //impacted = null;
         }
 
         private void doMouseMovement() {

@@ -79,7 +79,7 @@ namespace Assets.CustomAssets.Scripts {
                         //mr.material = groundHeap;
                     }
                     else if (impacted.tag == "groundGrave") {
-                        Player.Player.getInstance().behaviour = new DigBehaviour(gameObject);
+                        Player.Player.getInstance().behaviour = new DigBehaviour(gameObject, impacted);
                     }
                     else if (impacted.tag == "groundHeap") {
                         impacted.transform.localScale -= Vector3.one * .25f;

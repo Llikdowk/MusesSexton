@@ -13,6 +13,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private readonly Vector3 originalPoemCameraRotation;
         private readonly Camera poemCamera;
         private readonly CursorLockMode cursorStateBackup;
+        private Vector3 p0, p1;
 
         public PoemBehaviour(GameObject character) : base(character) {
             originalCameraPos = Camera.main.transform.position;
@@ -38,7 +39,6 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             Cursor.visible = false;
         }
 
-        private Vector3 p0, p1;
         public override void run() {
             if (cinematic) return;
             checkStateChange();
