@@ -8,5 +8,10 @@ namespace Assets.CustomAssets.Scripts.Animation {
             DigBehaviour dig = (DigBehaviour)Player.Player.getInstance().behaviour;
             dig.launchActionEvent();
         }
+
+        public void digEndAction() {
+            DigBehaviour dig = (DigBehaviour)Player.Player.getInstance().behaviour;
+            dig.launchEndActionEvent();
+        }
     }
 }

@@ -10,10 +10,16 @@ public class trigger_throw_coffin : MonoBehaviour {
     private Transform original;
     private Transform coffin;
     private bool coroutineEnd = false;
+    private bool hasCoffinInside = false;
 	
     public void OnTriggerEnter(Collider c) {
         if (c.tag != "Player") return;
         Debug.Log("hasEntered!");
+        Player.getInstance().disableRayExploration = true;
+    }
+
+    public void OnTriggerExit(Collider c) {
+        Player.getInstance().disableRayExploration = false;
     }
 
 	public void OnTriggerStay (Collider c) {
@@ -21,8 +27,13 @@ public class trigger_throw_coffin : MonoBehaviour {
 
         if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
             setup();
-            if (coffin != null) {
+            if (!hasCoffinInside && coffin != null) {
                 StartCoroutine(doAction());
+            }
+
+            if (hasCoffinInside) {
+                Debug.Log("DO UNDIG BEHAVIOUR!");
+                Player.getInstance().behaviour = new PoemBehaviour(Player.getInstance().gameObject);
             }
         }
 
@@ -59,6 +70,7 @@ public class trigger_throw_coffin : MonoBehaviour {
         coffin = null;
         Player.getInstance().cinematic = false;
         Player.getInstance().behaviour = new ExploreWalkBehaviour(Player.getInstance().gameObject);
+        hasCoffinInside = true;
         coroutineEnd = false;
         Debug.LogWarning("CAUTION! THIS BODY IS NO LONGER KINEMATIC!");
     }

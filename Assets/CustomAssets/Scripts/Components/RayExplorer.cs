@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.CustomAssets.Scripts.Anmation;
 using Assets.CustomAssets.Scripts.CustomInput;
 using Assets.CustomAssets.Scripts.Player.Behaviour;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace Assets.CustomAssets.Scripts {
         private Ray ray;
         private float time_created = 0f;
         private const float startDelay = .25f;
+        private int mask;
 
         public void Awake() {
             //terrain = Terrain.activeTerrain;
@@ -27,6 +29,7 @@ namespace Assets.CustomAssets.Scripts {
         public void Start () {
             heightMap = terrainData.GetHeights(0, 0, terrainData.heightmapWidth, terrainData.heightmapHeight);
             time_created = Time.time;
+            mask = ~(1<<9);
         }
         
         public void OnEnable() {
@@ -34,9 +37,10 @@ namespace Assets.CustomAssets.Scripts {
         }
 
         public void Update () {
-            if (Time.time - time_created < startDelay) { return; }
+            if (Player.Player.getInstance().disableRayExploration) { return; }
+            if (Time.time - time_created < startDelay) return;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, maxDistance)) {
+            if (Physics.Raycast(ray, out hit, maxDistance, mask)) {
                 GameObject impacted = hit.collider.gameObject;
                 Debug.DrawRay(Player.Player.getInstance().eyeSight.position, hit.point - this.gameObject.transform.position, Color.red);
                 if (GameActions.checkAction(Action.USE, Input.GetKey)) {
@@ -60,6 +64,19 @@ namespace Assets.CustomAssets.Scripts {
                         }
                         terrainData.SetHeights((int)(vertex.x) - area_w / 2, (int)(vertex.y) - area_h / 2, h);
                         GameObject parent = new GameObject("Grave");
+                        BoxCollider bc = parent.AddComponent<BoxCollider>();
+                        Vector3 v = new Vector3(area_w + 1, 2, area_h + 1);
+                        bc.size = v;
+                        bc.gameObject.layer = 9;
+
+                        bc = parent.AddComponent<BoxCollider>();
+                        bc.size = v * 2f;
+                        bc.isTrigger = true;
+                        bc.enabled = false;
+                        trigger_throw_coffin t = parent.AddComponent<trigger_throw_coffin>();
+                        t.curve = AnimationUtils.createThrowCoffinCurve();
+                        t.node1 = parent.transform;
+
                         parent.transform.position = hit.point;
                         //BoxCollider diggingForbidden = parent.AddComponent<BoxCollider>();
                         //diggingForbidden.size = new Vector3(2*area_w, 4, 2 * area_h);

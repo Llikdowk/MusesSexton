@@ -40,13 +40,14 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         public override void run() {
             if (cinematic) return;
             checkStateChange();
-            doMouseMovement();
 
             if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && Time.time - time_created > delay) {
                 //if (impacted.tag == "groundGrave") {
                 //AnimationUtils.cameraAnimator.Play("dig");
                 AnimationUtils.launchDig(); // will launch digActionEvent
                 //}
+            } else {
+                doMouseMovement();
             }
         }
         
@@ -54,8 +55,20 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         public void launchActionEvent() {
             impacted.transform.position -= Vector3.up * 1.5f;
             impacted.transform.parent.GetChild(1).transform.localScale += Vector3.one * .25f;
-            ++hits;
             //impacted = null;
+        }
+
+        public void launchEndActionEvent() {
+            ++hits;
+            BoxCollider[] boxes = impacted.transform.parent.GetComponents<BoxCollider>();
+            BoxCollider trigger = null;
+            foreach(BoxCollider b in boxes) {
+                if (b.isTrigger) {
+                    trigger = b;
+                }
+            }
+            trigger.enabled = true;
+            impacted.tag = "Untagged";
         }
 
         private void doMouseMovement() {
