@@ -1,6 +1,7 @@
 ﻿
 using Assets.CustomAssets.Scripts.CustomInput;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityStandardAssets.Characters.FirstPerson;
 
 namespace Assets.CustomAssets.Scripts.Player.Behaviour {
@@ -8,31 +9,29 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private readonly FirstPersonController fps;
         private float t0 = 0f;
         private float t1 = 0f;
+        private readonly float time_created = 0f;
         private const float fastTimeWindow_s = .5f;
         private const float slowTimeWindow_s = .35f;
         private const float force = 1f;
         private bool fast = false;
         private readonly GameObject coffin;
         private readonly Rigidbody coffinRb;
-        private static readonly GameObject chainPrefab = Resources.Load<GameObject>("Prefabs/Chain");
+        private readonly MeshRenderer coffinMeshRenderer;
+        private const float startDelay = .25f;
 
         public CoffinDragBehaviour(GameObject character, GameObject coffin) : base(character) {
+            time_created = Time.time;
             fps = Player.getInstance().gameObject.AddComponent<FirstPersonController>();
             configureController();
             Debug.Log("COFFIN MODE");
             this.coffin = coffin;
+            coffin.transform.parent = Player.getInstance().coffinSlot;
+            coffin.transform.localEulerAngles = Vector3.zero;
+            coffin.transform.localPosition = Vector3.zero;
+            coffinMeshRenderer = coffin.GetComponent<MeshRenderer>();
+            coffinMeshRenderer.shadowCastingMode = ShadowCastingMode.Off;
             this.coffinRb = coffin.GetComponent<Rigidbody>();
-            coffinRb.isKinematic = false;
-            GameObject chain = UnityEngine.Object.Instantiate(chainPrefab);
-            Transform firstLink = chain.transform.GetChild(0).transform;
-            firstLink.parent = Player.getInstance().eyeSight;
-            firstLink.position = Vector3.zero;
-            //coffin.transform.GetChild(0).transform.parent = 
-            //chain.transform.GetChild(10).GetComponent<SpringJoint>();
-
-            if (chainPrefab == null) {
-                DebugMsg.loadFail();
-            }
+            coffinRb.isKinematic = true;
         }
 
         private void configureController() {
@@ -57,6 +56,8 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         }
 
         public override void destroy() {
+            coffinRb.isKinematic = false;
+            coffin.GetComponent<MeshRenderer>().shadowCastingMode = ShadowCastingMode.On;
             UnityEngine.Object.Destroy(fps);
         }
 
@@ -92,10 +93,13 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
 
         private void checkStateChange() {
-            if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
-                coffinRb.isKinematic = true;
+            /*
+            if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && Time.time - time_created > startDelay) {
+                coffin.transform.parent = null;
+                coffinRb.isKinematic = false;
                 Player.getInstance().behaviour = new WalkBehaviour(character);
             }
+            */
         }
     }
 }

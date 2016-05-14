@@ -2,7 +2,7 @@
 
 namespace Assets.CustomAssets.Scripts.Player.Behaviour {
     public abstract class CharacterBehaviour {
-        protected static bool cinematic = false;
+        public static bool cinematic { get; protected set; }
         protected GameObject character;
 
         protected CharacterBehaviour(GameObject character) {

@@ -15,22 +15,26 @@ namespace Assets.CustomAssets.Scripts {
         private float[,] heightMap;
         private RaycastHit hit;
         private Ray ray;
+        private float time_created = 0f;
+        private const float startDelay = .25f;
 
         public void Awake() {
-            //Terrain original = terrain;
-            //terrain = Instantiate(terrain);
-            //original.gameObject.SetActive(false);
+            //terrain = Terrain.activeTerrain;
             terrainData = terrain.terrainData;
-            heightMap = terrainData.GetHeights(0, 0, terrainData.heightmapWidth, terrainData.heightmapHeight);
             //Debug.Log("HEIGHTMAP DATA: " + "size[0]: " + heightMap.GetLength(0) + " size[1]: " + heightMap.GetLength(1));
         }
 
-        public void Start () { 
+        public void Start () {
+            heightMap = terrainData.GetHeights(0, 0, terrainData.heightmapWidth, terrainData.heightmapHeight);
+            time_created = Time.time;
         }
         
+        public void OnEnable() {
+            time_created = Time.time;
+        }
 
         public void Update () {
-
+            if (Time.time - time_created < startDelay) { return; }
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, maxDistance)) {
                 GameObject impacted = hit.collider.gameObject;

@@ -8,12 +8,12 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private readonly FirstPersonController fps;
         private static readonly GameObject coffinSet = GameObject.Find("CoffinSet");
 
-
         public WalkBehaviour(GameObject character) : base(character) {
             fps = character.AddComponent<FirstPersonController>();
             configureController();
-            character.GetComponent<DigBehaviour>().enabled = true;
-            Debug.Log("WALK MODE");
+            DigBehaviour db = character.GetComponent<DigBehaviour>();
+            db.enabled = true;
+            Debug.Log("WALK MODE -> digBehaviour set to " + db.enabled);
         }
 
         private void configureController() {
