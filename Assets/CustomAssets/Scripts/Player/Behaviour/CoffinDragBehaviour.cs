@@ -52,6 +52,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         }
 
         public override void cinematicMode(bool enabled) {
+            base.cinematicMode(enabled);
             fps.enabled = !enabled;
         }
 

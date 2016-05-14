@@ -13,7 +13,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         }
 
         public override void cinematicMode(bool enabled) {
-            cinematic = enabled;
+            base.cinematicMode(enabled);
         }
 
         public override void destroy() {
@@ -26,7 +26,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
         private void checkStateChange() {
             if(GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
-                Player.getInstance().behaviour = new WalkBehaviour(character);
+                Player.getInstance().behaviour = new ExploreWalkBehaviour(character);
             }
         }
     }

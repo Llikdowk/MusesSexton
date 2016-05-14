@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
 namespace Assets.CustomAssets.Scripts.Player.Behaviour {
-    public class WalkBehaviour : CharacterBehaviour {
+    public class ExploreWalkBehaviour : CharacterBehaviour {
         private readonly FirstPersonController fps;
         private static readonly GameObject coffinSet = GameObject.Find("CoffinSet");
 
-        public WalkBehaviour(GameObject character) : base(character) {
+        public ExploreWalkBehaviour(GameObject character) : base(character) {
             fps = character.AddComponent<FirstPersonController>();
             configureController();
-            DigBehaviour db = character.GetComponent<DigBehaviour>();
+            RayExplorer db = character.GetComponent<RayExplorer>();
             db.enabled = true;
             Debug.Log("WALK MODE -> digBehaviour set to " + db.enabled);
         }
@@ -24,13 +24,13 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         }
 
         public override void cinematicMode(bool enabled) {
-            cinematic = enabled;
+            base.cinematicMode(enabled);
             fps.enabled = !enabled;
         }
 
         public override void destroy() {
             UnityEngine.Object.Destroy(fps);
-            character.GetComponent<DigBehaviour>().enabled = false;
+            character.GetComponent<RayExplorer>().enabled = false;
         }
 
         public override void run() {

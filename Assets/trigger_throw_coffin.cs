@@ -58,7 +58,7 @@ public class trigger_throw_coffin : MonoBehaviour {
     private void doFinalAction() {
         coffin = null;
         Player.getInstance().cinematic = false;
-        Player.getInstance().behaviour = new WalkBehaviour(Player.getInstance().gameObject);
+        Player.getInstance().behaviour = new ExploreWalkBehaviour(Player.getInstance().gameObject);
         coroutineEnd = false;
         Debug.LogWarning("CAUTION! THIS BODY IS NO LONGER KINEMATIC!");
     }

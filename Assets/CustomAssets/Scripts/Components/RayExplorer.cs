@@ -5,7 +5,7 @@ using Assets.CustomAssets.Scripts.Player.Behaviour;
 using UnityEngine;
 
 namespace Assets.CustomAssets.Scripts {
-    public class DigBehaviour : MonoBehaviour {
+    public class RayExplorer : MonoBehaviour {
         public int maxDistance = 15;
         public int minDistance = 2;
         public Material groundGrave;
@@ -79,8 +79,7 @@ namespace Assets.CustomAssets.Scripts {
                         //mr.material = groundHeap;
                     }
                     else if (impacted.tag == "groundGrave") {
-                        impacted.transform.position -= Vector3.up*.25f;
-                        impacted.transform.parent.GetChild(1).transform.localScale += Vector3.one * .25f;
+                        Player.Player.getInstance().behaviour = new DigBehaviour(gameObject);
                     }
                     else if (impacted.tag == "groundHeap") {
                         impacted.transform.localScale -= Vector3.one * .25f;
@@ -105,6 +104,7 @@ namespace Assets.CustomAssets.Scripts {
                     } else {
                         UIUtils.infoInteractive.text = "";
                     }
+                    
                 }
             } else {
                 UIUtils.infoInteractive.text = "";
