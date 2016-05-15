@@ -6,6 +6,18 @@ public class verse_text : MonoBehaviour {
     private GameObject foreground;
     private GameObject shadow;
 
+    public Color color;
+    public Color shadowColor;
+    public Color overColor;
+
+    public void setOverColor() {
+        foreground.GetComponent<TextMesh>().color = overColor;
+    }
+
+    public void setNormalColor() {
+        foreground.GetComponent<TextMesh>().color = color;
+    }
+
     private GameObject generateText(string name, Color c) {
         GameObject g = new GameObject(name);
         g.transform.parent = gameObject.transform;
@@ -29,9 +41,9 @@ public class verse_text : MonoBehaviour {
 	}
 	
 	public void Update () {
-        Vector3 v = new Vector3(Mathf.Sin(Time.time)/4f, Mathf.Cos(Time.time), 0);
-        foreground.transform.localPosition = v;
-        shadow.transform.localPosition = v + shadow.transform.forward*.1f;
+        //Vector3 v = new Vector3(Mathf.Sin(Time.time)/4f, Mathf.Cos(Time.time), 0);
+        //foreground.transform.localPosition = v;
+        //shadow.transform.localPosition = v + shadow.transform.forward*.1f;
     }
 
     public void OnDestroy() {

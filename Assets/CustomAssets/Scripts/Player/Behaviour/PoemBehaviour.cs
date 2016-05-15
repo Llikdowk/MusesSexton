@@ -49,36 +49,56 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private Ray ray;
         private RaycastHit hit;
         private float maxDistance = 1000;
+        private bool textDisplayed = false;
+
+        private Stack<verse_text> lastTextColorChanged = new Stack<verse_text>(6);
+        private bool textColored = false;
 
         public override void run() {
             if (cinematic) return;
             checkStateChange();
             doMouseMovement();
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, maxDistance)) {
-                ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Debug.DrawRay(Player.getInstance().eyeSight.position, hit.point - Player.getInstance().eyeSight.position, Color.magenta);
+
                 if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
-                    if (hit.collider.gameObject.tag == "landmark") {
+                    if (!textDisplayed && hit.collider.gameObject.tag == "landmark") {
                         GameObject textSet = hit.collider.gameObject.transform.parent.GetChild(0).gameObject;
                         textSet.GetComponent<move_to_player>().doAction(Player.getInstance().eyeSight);
                         Debug.Log("LANDMARK CLICKED");
+                        textDisplayed = true;
+                    }
+                    else if (textDisplayed && hit.collider.gameObject.tag == "poemLetters") {
+                        Debug.Log("TEXT SELECTED is " + hit.collider.gameObject.name);
                     }
                 }
-                if (hit.collider.gameObject.tag == "poemLetters") {
-                    hit.collider.gameObject.GetComponent<TextMesh>().color = Color.cyan;
+
+                if (textDisplayed && hit.collider.gameObject.tag == "poemLetters") {
+                    verse_text t = hit.collider.gameObject.GetComponent<verse_text>();
+                    lastTextColorChanged.Push(t);
+                    t.setOverColor();
+                    textColored = true;
+                }
+                else if (textColored) {
+                    cleanTextColor();
+                }
+            }
+            else {
+                if (lastTextColorChanged.Count > 0) {
+                    cleanTextColor();
                 }
             }
         }
 
+        private void cleanTextColor() {
+            while (lastTextColorChanged.Count > 0) {
+                verse_text t = lastTextColorChanged.Pop();
+                t.setNormalColor();
+            }
+        }
+
         private void doMouseMovement() {
-            /*
-            Vector3 mouse = Input.mousePosition;
-            p0 = new Vector3(mouse.x / Screen.width * 2 - 1, mouse.y / (2 * Screen.height) * 2 - 1, 0);
-            Vector3 dif = p0 - p1;
-            Camera.main.transform.localPosition += new Vector3(dif.x / 2f, 0, 0);
-            poemCamera.transform.localPosition += new Vector3(dif.x, 0, 0);
-            Camera.main.transform.Rotate(new Vector3(-2 * dif.y, 2 * dif.x, 0), Space.Self);
-            p1 = p0;
-            */
             mouseLook.LookRotation(character.transform, Camera.main.transform);
         }
 

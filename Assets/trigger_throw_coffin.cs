@@ -24,6 +24,7 @@ public class trigger_throw_coffin : MonoBehaviour {
 
 	public void OnTriggerStay (Collider c) {
         if (c.tag != "Player") return;
+        if (Player.getInstance().behaviour.GetType() != typeof(CoffinDragBehaviour)) return;
 
         if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
             setup();
