@@ -1265,7 +1265,7 @@ GameObject:
   - 114: {fileID: 847556884}
   m_Layer: 0
   m_Name: Terrain Volume
-  m_TagString: Untagged
+  m_TagString: terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1284,7 +1284,7 @@ MonoBehaviour:
   mMaterial: {fileID: 2100000, guid: 4957708f6bc8f8049a95a9a2669782b5, type: 2}
   mCastShadows: 1
   mReceiveShadows: 1
-  mShowWireframe: 0
+  mShowWireframe: 1
   mLodThreshold: 1
   mMinimumLOD: 0
 --- !u!114 &847556882
@@ -1322,7 +1322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747f253283d29264ba6624bdf2e9ad88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mUseInEditMode: 1
+  mUseInEditMode: 0
 --- !u!1 &865312186
 GameObject:
   m_ObjectHideFlags: 0
@@ -3827,7 +3827,7 @@ GameObject:
   - 114: {fileID: 2140619766}
   m_Layer: 0
   m_Name: ThrowCoffinCurve
-  m_TagString: terrain
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -17,13 +17,15 @@
         _fresnelColor("Fresnel Color", Color) = (1, 1, 1, 1)
     }
     SubShader {
-        Tags{ "RenderType" = "Opaque" "LightMode" = "ForwardBase" }
+        Tags{ "LightMode" = "ForwardBase" "RenderType" = "Opaque" "LightMode" = "ForwardBase" }
         Pass {
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
             #pragma multi_compile_fog
+            #pragma multi_compile_fwdbase
             #include "UnityCG.cginc"
+            #include "AutoLight.cginc"
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -32,10 +34,11 @@
             };
 
             struct v2f {
-                UNITY_FOG_COORDS(1)
                 nointerpolation float4 pos : POSITION;
                 nointerpolation float3 normal: NORMAL;
+                UNITY_FOG_COORDS(1)
                 nointerpolation float4 worldPos : TEXCOORD2;
+                LIGHTING_COORDS(3, 4)
             };
 
             uniform float _albedo;
@@ -56,6 +59,7 @@
                 o.worldPos = mul(_Object2World, v.vertex);
                 o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
                 o.normal = v.normal;
+                TRANSFER_VERTEX_TO_FRAGMENT(o);
                 UNITY_TRANSFER_FOG(o, o.pos);
                 return o;
             }
@@ -88,7 +92,8 @@
                 float specular = computeSpecular(IN.worldPos.xyz, normal, lightDir, viewDir);
                 float fresnel = computeFresnel(IN.worldPos.xyz, normal, viewDir);
 
-                float3 c = _ke * _emissiveColor + diffuse * _diffuseColor + specular * _specularColor + fresnel * _fresnelIntensity * _fresnelColor;
+                float attenuation = LIGHT_ATTENUATION(IN);
+                float3 c = _ke * _emissiveColor + attenuation*diffuse * _diffuseColor + attenuation*specular * _specularColor + fresnel * _fresnelIntensity * _fresnelColor;
                 float4 col = float4(c, 1);
                 UNITY_APPLY_FOG(IN.fogCoord, col);
                 return col;
@@ -96,5 +101,5 @@
             ENDCG
         }
     }
-    Fallback "Diffuse"
+    FallBack "VertexLit"
 }

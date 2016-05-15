@@ -121,15 +121,17 @@ namespace Assets.CustomAssets.Scripts {
                         coffinAction();
                 }
                 else {
-                    if (impacted.tag == "terrain")
+                    if (impacted.tag == "terrain") {
                         UIUtils.infoInteractive.text = "dig terrain!";
+                        Debug.Log("terrain!");
+                    }
                     else if (impacted.tag == "groundGrave")
                         UIUtils.infoInteractive.text = "dig plane!";
-                    else if (impacted.tag == "groundHeap") 
+                    else if (impacted.tag == "groundHeap")
                         UIUtils.infoInteractive.text = "undig!";
-                    else if (impacted.tag == "coffin") 
+                    else if (impacted.tag == "coffin")
                         UIUtils.infoInteractive.text = "drag!";
-                    else 
+                    else
                         UIUtils.infoInteractive.text = "";
                     
                 }
