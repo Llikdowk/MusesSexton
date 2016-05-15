@@ -42,10 +42,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             checkStateChange();
 
             if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && Time.time - time_created > delay) {
-                //if (impacted.tag == "groundGrave") {
-                //AnimationUtils.cameraAnimator.Play("dig");
                 AnimationUtils.launchDig(); // will launch digActionEvent
-                //}
             } else {
                 doMouseMovement();
             }
@@ -55,7 +52,6 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         public void launchActionEvent() {
             impacted.transform.position -= Vector3.up * 1.5f;
             impacted.transform.parent.GetChild(1).transform.localScale += Vector3.one * .25f;
-            //impacted = null;
         }
 
         public void launchEndActionEvent() {

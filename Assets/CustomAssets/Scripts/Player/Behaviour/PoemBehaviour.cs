@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Assets.CustomAssets.Scripts.CustomInput;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 namespace Assets.CustomAssets.Scripts.Player.Behaviour {
     public class PoemBehaviour : CharacterBehaviour {
@@ -14,6 +15,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private readonly Camera poemCamera;
         private readonly CursorLockMode cursorStateBackup;
         private Vector3 p0, p1;
+        private readonly MouseLook mouseLook;
 
         public PoemBehaviour(GameObject character) : base(character) {
             originalCameraPos = Camera.main.transform.position;
@@ -26,6 +28,11 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             Cursor.visible = true;
             cursorStateBackup = Cursor.lockState;
             Cursor.lockState = CursorLockMode.None;
+            mouseLook = new MouseLook();
+            mouseLook.Init(character.transform, Camera.main.transform);
+            mouseLook.XSensitivity = 1f;
+            mouseLook.YSensitivity = 1f;
+            mouseLook.smooth = true;
         }
 
 
@@ -39,13 +46,28 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             Cursor.visible = false;
         }
 
+        private Ray ray;
+        private RaycastHit hit;
+        private float maxDistance = 1000;
+
         public override void run() {
             if (cinematic) return;
             checkStateChange();
             doMouseMovement();
+
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, maxDistance)) {
+                if (hit.collider.gameObject.tag == "landmark") {
+                    if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
+                        GameObject textSet = hit.collider.gameObject.transform.parent.GetChild(0).gameObject;
+                        textSet.GetComponent<move_to_player>().doAction(Player.getInstance().eyeSight);
+                    }
+                }
+            }
         }
 
         private void doMouseMovement() {
+            /*
             Vector3 mouse = Input.mousePosition;
             p0 = new Vector3(mouse.x / Screen.width * 2 - 1, mouse.y / (2 * Screen.height) * 2 - 1, 0);
             Vector3 dif = p0 - p1;
@@ -53,6 +75,8 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             poemCamera.transform.localPosition += new Vector3(dif.x, 0, 0);
             Camera.main.transform.Rotate(new Vector3(-2 * dif.y, 2 * dif.x, 0), Space.Self);
             p1 = p0;
+            */
+            mouseLook.LookRotation(character.transform, Camera.main.transform);
         }
 
         private void checkStateChange() {

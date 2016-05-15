@@ -15,11 +15,11 @@ public class trigger_throw_coffin : MonoBehaviour {
     public void OnTriggerEnter(Collider c) {
         if (c.tag != "Player") return;
         Debug.Log("hasEntered!");
-        Player.getInstance().disableRayExploration = true;
+        //Player.getInstance().disableRayExploration = true;
     }
 
     public void OnTriggerExit(Collider c) {
-        Player.getInstance().disableRayExploration = false;
+        //Player.getInstance().disableRayExploration = false;
     }
 
 	public void OnTriggerStay (Collider c) {

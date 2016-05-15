@@ -39,15 +39,10 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
         private void checkStateChange() {
             Player p = Player.getInstance();
-            /*
-            if (p.triggerCartBack && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
-                GameObject coffin = coffinSet.transform.GetChild(p.coffinsBuried).gameObject;
-                p.behaviour = new CoffinDragBehaviour(character, coffin);
-            } else */
+            
             if (p.triggerCartFront && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
                 p.behaviour = new DriveCartBehaviour(character);
             }
-
             if (GameActions.checkAction(Action.DEBUG, Input.GetKeyDown)) {
                 p.behaviour = new PoemBehaviour(character);
             }
