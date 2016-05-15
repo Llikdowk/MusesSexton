@@ -10,6 +10,7 @@ TagManager:
   - coffin
   - camera
   - landmark
+  - poemLetters
   layers:
   - Default
   - TransparentFX

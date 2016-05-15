@@ -54,14 +54,17 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             if (cinematic) return;
             checkStateChange();
             doMouseMovement();
-
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, maxDistance)) {
-                if (hit.collider.gameObject.tag == "landmark") {
-                    if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
+                ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
+                    if (hit.collider.gameObject.tag == "landmark") {
                         GameObject textSet = hit.collider.gameObject.transform.parent.GetChild(0).gameObject;
                         textSet.GetComponent<move_to_player>().doAction(Player.getInstance().eyeSight);
+                        Debug.Log("LANDMARK CLICKED");
                     }
+                }
+                if (hit.collider.gameObject.tag == "poemLetters") {
+                    hit.collider.gameObject.GetComponent<TextMesh>().color = Color.cyan;
                 }
             }
         }
