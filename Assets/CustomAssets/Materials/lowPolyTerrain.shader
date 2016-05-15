@@ -82,6 +82,7 @@
                 return fresnel;
             }
 
+
             float4 frag(v2f IN) : SV_TARGET
             {
                 float3 viewDir = normalize(_WorldSpaceCameraPos.xyz - IN.worldPos.xyz);
@@ -93,6 +94,8 @@
                 float fresnel = computeFresnel(IN.worldPos.xyz, normal, viewDir);
 
                 float attenuation = LIGHT_ATTENUATION(IN);
+                attenuation = ((dot(normal, lightDir)) * 0.5 + 0.5) * pow(attenuation,25)*dot(normal, lightDir);
+
                 float3 c = _ke * _emissiveColor + attenuation*diffuse * _diffuseColor + attenuation*specular * _specularColor + fresnel * _fresnelIntensity * _fresnelColor;
                 float4 col = float4(c, 1);
                 UNITY_APPLY_FOG(IN.fogCoord, col);
