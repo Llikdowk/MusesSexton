@@ -1263,6 +1263,7 @@ GameObject:
   - 114: {fileID: 847556882}
   - 114: {fileID: 847556881}
   - 114: {fileID: 847556884}
+  - 114: {fileID: 847556885}
   m_Layer: 0
   m_Name: Terrain Volume
   m_TagString: terrain
@@ -1323,6 +1324,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mUseInEditMode: 0
+--- !u!114 &847556885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 847556880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc1839ae5e58e743a487271c6168708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangeX: 1
+  rangeY: 2
+  rangeZ: 2
+  smoothFactor: 1
+  euclidean: 0
+  erase: 1
 --- !u!1 &865312186
 GameObject:
   m_ObjectHideFlags: 0
@@ -3467,6 +3485,7 @@ MonoBehaviour:
   groundGrave: {fileID: 2100000, guid: c7064321323956c41b7819fedd870c90, type: 2}
   groundHeap: {fileID: 2100000, guid: b23e1e3b4e4e3a443b6b3c2d9213ad31, type: 2}
   terrain: {fileID: 155188694}
+  voxelTerrain: {fileID: 847556880}
 --- !u!114 &1886560612
 MonoBehaviour:
   m_ObjectHideFlags: 0

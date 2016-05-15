@@ -50,7 +50,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         
 
         public void launchActionEvent() {
-            impacted.transform.position -= Vector3.up * 1.5f;
+            impacted.transform.position -= Vector3.up * 1f;
             impacted.transform.parent.GetChild(1).transform.localScale += Vector3.one * .25f;
         }
 
