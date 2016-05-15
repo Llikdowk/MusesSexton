@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: groundHeap
   m_Shader: {fileID: 4800000, guid: ab4c4424c14ce8c40ae0de852b993deb, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: BRUSH_MARKER_ON
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}

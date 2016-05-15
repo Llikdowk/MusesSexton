@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: lowPolyTerrain
+  m_Shader: {fileID: 4800000, guid: bf044478c23c46d40bde6df51267dade, type: 3}
+  m_ShaderKeywords: BRUSH_MARKER_OFF
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Amount
+        second: 0.36
+      data:
+        first:
+          name: _albedo
+        second: 1
+      data:
+        first:
+          name: _ke
+        second: 0.33
+      data:
+        first:
+          name: _kd
+        second: 0.68
+      data:
+        first:
+          name: _ks
+        second: 0.51
+      data:
+        first:
+          name: _gloss
+        second: 1
+      data:
+        first:
+          name: _fresnelIntensity
+        second: 1.04
+      data:
+        first:
+          name: _fresnelConvexity
+        second: 0
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 0.44117647, g: 1, b: 0.93062884, a: 1}
+      data:
+        first:
+          name: _emissiveColor
+        second: {r: 0.53676474, g: 0.92332655, b: 1, a: 1}
+      data:
+        first:
+          name: _diffuseColor
+        second: {r: 0, g: 0.7266951, b: 0.875, a: 1}
+      data:
+        first:
+          name: _specularColor
+        second: {r: 0.633218, g: 0.89705884, b: 0.8533886, a: 1}
+      data:
+        first:
+          name: _fresnelColor
+        second: {r: 0.3897059, g: 0.6717039, b: 1, a: 1}
