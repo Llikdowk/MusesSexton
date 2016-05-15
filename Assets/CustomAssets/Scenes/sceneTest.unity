@@ -1338,7 +1338,7 @@ MonoBehaviour:
   rangeX: 1
   rangeY: 2
   rangeZ: 2
-  smoothFactor: 1
+  smoothFactor: 0
   euclidean: 0
   erase: 1
 --- !u!1 &865312186
@@ -2166,19 +2166,19 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: 4d3ac2abbd7dd6941a73042ca118419f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.33000183
+      value: 0.3300028
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4d3ac2abbd7dd6941a73042ca118419f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.42000198
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4d3ac2abbd7dd6941a73042ca118419f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.0443878
+      value: 2.02
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4d3ac2abbd7dd6941a73042ca118419f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.029068371
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4d3ac2abbd7dd6941a73042ca118419f, type: 3}
       propertyPath: m_LocalRotation.y
@@ -2190,7 +2190,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4d3ac2abbd7dd6941a73042ca118419f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99957746
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4d3ac2abbd7dd6941a73042ca118419f, type: 3}
       propertyPath: m_RootOrder
@@ -3787,7 +3787,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2123177907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1836843844}

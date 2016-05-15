@@ -63,16 +63,16 @@ Material:
       data:
         first:
           name: _emissiveColor
-        second: {r: 0.53676474, g: 0.92332655, b: 1, a: 1}
+        second: {r: 0.86764705, g: 0.97809327, b: 1, a: 1}
       data:
         first:
           name: _diffuseColor
-        second: {r: 0, g: 0.7266951, b: 0.875, a: 1}
+        second: {r: 0.8455882, g: 0.8455882, b: 0.8455882, a: 1}
       data:
         first:
           name: _specularColor
-        second: {r: 0.633218, g: 0.89705884, b: 0.8533886, a: 1}
+        second: {r: 0.8911116, g: 0.9044118, b: 0.90221035, a: 1}
       data:
         first:
           name: _fresnelColor
-        second: {r: 0.3897059, g: 0.6717039, b: 1, a: 1}
+        second: {r: 0.6544118, g: 0.8140974, b: 1, a: 1}

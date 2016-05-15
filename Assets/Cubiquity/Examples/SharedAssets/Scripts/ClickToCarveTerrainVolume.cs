@@ -59,7 +59,7 @@ public class ClickToCarveTerrainVolume : MonoBehaviour
 				}
 				
 				// Set this flag so the click won't be processed again next frame.
-				isMouseAlreadyDown = true;
+				//isMouseAlreadyDown = true;
 			}
 		//}
 		else
