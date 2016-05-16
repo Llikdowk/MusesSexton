@@ -66,12 +66,6 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             if (cinematic) return;
             checkStateChange();
             handleMovementSpeed();
-
-            /*
-            Transform playerTransform = Player.getInstance().gameObject.transform;
-            coffinRb.AddForce((playerTransform.position + Vector3.ProjectOnPlane(playerTransform.forward, Vector3.up)*2 - coffin.transform.position).normalized
-                * force * coffinRb.mass, ForceMode.Impulse);
-                */
         }
 
         private void handleMovementSpeed() {
@@ -94,7 +88,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
 
         private void checkStateChange() {
-            if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && Time.time - time_created > startDelay) {
+            if (!Player.getInstance().insideThrowCoffinTrigger && GameActions.checkAction(Action.USE, Input.GetKeyDown) && Time.time - time_created > startDelay) {
                 coffin.transform.parent = null;
                 coffinRb.isKinematic = false;
                 Player.getInstance().behaviour = new ExploreWalkBehaviour(character);

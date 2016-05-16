@@ -12,7 +12,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private readonly Vector3 originalCameraRotation;
         private readonly CursorLockMode cursorStateBackup;
         private readonly float time_created;
-        private readonly GameObject impacted;
+        private readonly GameObject groundFloor;
         private const int limitHits = 3;
         private const float delay = .25f;
         private Vector3 p0, p1;
@@ -26,7 +26,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             cursorStateBackup = Cursor.lockState;
             Cursor.lockState = CursorLockMode.None;
             time_created = Time.time;
-            this.impacted = groundFloor;
+            this.groundFloor = groundFloor;
         }
 
 
@@ -50,13 +50,14 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         
 
         public void launchActionEvent() {
-            impacted.transform.position -= Vector3.up * 1f;
-            impacted.transform.parent.GetChild(1).transform.localScale += Vector3.one * .25f;
+            groundFloor.transform.position -= Vector3.up * 1f;
+            groundFloor.transform.parent.GetChild(1).transform.localScale += Vector3.one * .25f;
         }
 
         public void launchEndActionEvent() {
             ++hits;
-            BoxCollider[] boxes = impacted.transform.parent.GetComponents<BoxCollider>();
+            /*
+            BoxCollider[] boxes = groundFloor.transform.parent.GetComponents<BoxCollider>();
             BoxCollider trigger = null;
             foreach(BoxCollider b in boxes) {
                 if (b.isTrigger) {
@@ -64,20 +65,21 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                 }
             }
             trigger.enabled = true;
-            impacted.tag = "Untagged";
+            */
+            groundFloor.tag = "Untagged";
         }
 
         private void doMouseMovement() {
             Vector3 mouse = Input.mousePosition;
             p0 = new Vector3(mouse.x / Screen.width * 2 - 1, mouse.y / (2 * Screen.height) * 2 - 1, 0);
             Vector3 dif = p0 - p1;
-            //Camera.main.transform.localPosition += new Vector3(dif.x / 2f, 0, 0);
             Camera.main.transform.Rotate(new Vector3(-5 * dif.y, 5 * dif.x, 0), Space.Self);
             p1 = p0;
         }
 
         private void checkStateChange() {
             if (hits == limitHits) {
+                groundFloor.transform.parent.GetComponent<BoxCollider>().enabled = true;
                 Player.getInstance().behaviour = new ExploreWalkBehaviour(character);
             }
         }

@@ -17,20 +17,20 @@ public class trigger_throw_coffin : MonoBehaviour {
     private bool fullHollow = false; // TODO!
 
     public void OnTriggerEnter(Collider c) {
-        if (c.tag != "Player") return;
-        Debug.Log("hasEntered!");
-        Player.getInstance().insideBuryCoffinArea = true;
+        Player.getInstance().insideThrowCoffinTrigger = true;
+        Debug.Log("throw coffin enabled!");
     }
 
     public void OnTriggerExit(Collider c) {
-        Player.getInstance().insideBuryCoffinArea = false;
+        Player.getInstance().insideThrowCoffinTrigger = false;
+        Debug.Log("throw coffin disabled!");
     }
 
-	public void OnTriggerStay (Collider c) {
+    public void OnTriggerStay (Collider c) {
         if (c.tag != "Player") return;
         if (Player.getInstance().behaviour.GetType() == typeof(CoffinDragBehaviour)) {
             UIUtils.infoInteractive.text = "click to throw!";
-            if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && !fullHollow) {
+            if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && fullHollow) {
                 setup();
                 if (!hasCoffinInside && coffin != null) {
                     StartCoroutine(doAction());

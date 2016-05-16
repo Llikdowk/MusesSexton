@@ -30,11 +30,11 @@ Material:
       data:
         first:
           name: _ke
-        second: -0.08
+        second: 0.5
       data:
         first:
           name: _kd
-        second: 0.61
+        second: -0.67
       data:
         first:
           name: _ks
@@ -63,7 +63,7 @@ Material:
       data:
         first:
           name: _emissiveColor
-        second: {r: 0.5883621, g: 0.77205884, b: 0.7396418, a: 1}
+        second: {r: 0.9275862, g: 1, b: 0.99361056, a: 1}
       data:
         first:
           name: _diffuseColor

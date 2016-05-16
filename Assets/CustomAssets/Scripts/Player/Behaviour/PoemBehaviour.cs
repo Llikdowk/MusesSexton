@@ -21,9 +21,9 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private RaycastHit hit;
         private float maxDistance = 1000;
         private bool textDisplayed = false;
-        private Stack<VerseTextComponent> lastTextColorChanged = new Stack<VerseTextComponent>(6);
+        private readonly Stack<VerseTextComponent> lastTextColorChanged = new Stack<VerseTextComponent>(6);
         private bool textColored = false;
-        private Transform graveHollow;
+        private readonly Transform graveHollow;
 
         public PoemBehaviour(GameObject character, Transform graveHollow) : base(character) {
             originalCameraPos = Camera.main.transform.position;

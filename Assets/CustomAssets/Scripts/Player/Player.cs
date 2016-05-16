@@ -5,7 +5,8 @@ using UnityEngine;
 namespace Assets.CustomAssets.Scripts.Player {
     public class Player {
         public bool triggerCartFront = false;
-        public bool insideBuryCoffinArea = false;
+        public bool digNewHolesDisabled = false;
+        public bool insideThrowCoffinTrigger = false;
         public int coffinsBuried = 0;
 
         public readonly GameObject gameObject;

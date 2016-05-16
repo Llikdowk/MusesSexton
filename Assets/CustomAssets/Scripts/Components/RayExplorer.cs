@@ -23,7 +23,7 @@ namespace Assets.CustomAssets.Scripts {
         private Ray ray;
         private float time_created = 0f;
         private const float startDelay = .25f;
-        private int mask;
+        private const int mask = ~(1<<9 + 1<<8);
 
         public void Awake() {
             terrainData = terrain.terrainData;
@@ -32,7 +32,6 @@ namespace Assets.CustomAssets.Scripts {
         public void Start () {
             heightMap = terrainData.GetHeights(0, 0, terrainData.heightmapWidth, terrainData.heightmapHeight);
             time_created = Time.time;
-            mask = ~(1<<9);
 
             clickToCarve = voxelTerrain.GetComponent<ClickToCarveTerrainVolume>();
         }
@@ -79,7 +78,6 @@ namespace Assets.CustomAssets.Scripts {
         }
 
         public void Update () {
-            if (Player.Player.getInstance().insideBuryCoffinArea) return;
             if (Time.time - time_created < startDelay) return;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             PickSurfaceResult pickResult;
@@ -92,17 +90,13 @@ namespace Assets.CustomAssets.Scripts {
                 Debug.DrawRay(Player.Player.getInstance().eyeSight.position, hit.point - this.gameObject.transform.position, Color.red);
                 showInfoMsg(impacted);
                 if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
-                    if (impacted.tag == "terrain")
-                        terrainAction();
-                    //else if (impacted.tag == "groundGrave")
-                    //    groundGraveAction();
-                    else if (impacted.tag == "groundHeap")
+                    if (impacted.tag == "groundHeap") {
                         groundHeapAction();
+                    }
                     else if (impacted.tag == "coffin")
                         coffinAction();
                     else {
-                        // If we hit a solid voxel then create an explosion at this point.
-                        if (hashit) {
+                        if (hashit && !Player.Player.getInstance().digNewHolesDisabled) {
                             clickToCarve.doAction();
                             createHollowEntity(clickToCarve.rangeX + 1, clickToCarve.rangeY + 1, clickToCarve.rangeZ + 1);
                         }
@@ -117,15 +111,12 @@ namespace Assets.CustomAssets.Scripts {
         private void createHollowEntity(int sizeX, int sizeY, int sizeZ) {
             GameObject parent = new GameObject("Grave");
             BoxCollider bc = parent.AddComponent<BoxCollider>();
-            Vector3 v = new Vector3(sizeX, sizeY, sizeZ);
+            Vector3 v = new Vector3(sizeX*1.5f, sizeY*1.5f, sizeZ*1.5f);
             bc.size = v;
             bc.gameObject.layer = 9;
+            bc.enabled = false;
 
-            bc = parent.AddComponent<BoxCollider>();
-            bc.size = v * 4f;
-            bc.isTrigger = true;
-            
-            parent.transform.position = hit.point;
+            parent.transform.position = hit.point - new Vector3(sizeX/2f, 0, sizeZ/2f);
             GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
             GameObject heap = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             heap.tag = "groundHeap";
@@ -133,7 +124,21 @@ namespace Assets.CustomAssets.Scripts {
             plane.transform.parent = parent.transform;
             plane.transform.localPosition = -Vector3.up * .25f;
 
-            trigger_throw_coffin t = parent.AddComponent<trigger_throw_coffin>();
+            GameObject triggerDisableDigging = new GameObject("Disable digging area");
+            SphereCollider sc = triggerDisableDigging.AddComponent<SphereCollider>();
+            sc.radius = Mathf.Max(sizeX, sizeZ) * 2f;
+            sc.isTrigger = true;
+            triggerDisableDigging.transform.parent = parent.transform;
+            triggerDisableDigging.transform.localPosition = Vector3.zero;
+            triggerDisableDigging.AddComponent<trigger_disable_digging>();
+
+            GameObject triggerThrowCoffin = new GameObject("Trigger throw coffin");
+            bc = triggerThrowCoffin.AddComponent<BoxCollider>();
+            bc.isTrigger = true;
+            bc.size = v * 1.25f;
+            triggerThrowCoffin.transform.parent = parent.transform;
+            triggerThrowCoffin.transform.localPosition = Vector3.zero;
+            trigger_throw_coffin t = triggerThrowCoffin.AddComponent<trigger_throw_coffin>();
             t.curve = AnimationUtils.createThrowCoffinCurve();
             t.node1 = parent.transform;
             t.groundFloor = plane;
