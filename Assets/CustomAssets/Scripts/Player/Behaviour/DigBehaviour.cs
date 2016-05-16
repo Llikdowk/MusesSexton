@@ -18,7 +18,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private Vector3 p0, p1;
         private int hits = 0;
 
-        public DigBehaviour(GameObject character, GameObject impacted) : base(character) {
+        public DigBehaviour(GameObject character, GameObject groundFloor) : base(character) {
             originalCameraPos = Camera.main.transform.position;
             originalCameraRotation = Camera.main.transform.eulerAngles;
             Debug.Log("DIG behaviour");
@@ -26,7 +26,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             cursorStateBackup = Cursor.lockState;
             Cursor.lockState = CursorLockMode.None;
             time_created = Time.time;
-            this.impacted = impacted;
+            this.impacted = groundFloor;
         }
 
 

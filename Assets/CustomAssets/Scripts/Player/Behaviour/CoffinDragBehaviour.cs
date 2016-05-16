@@ -94,13 +94,11 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
 
         private void checkStateChange() {
-            /*
             if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && Time.time - time_created > startDelay) {
                 coffin.transform.parent = null;
                 coffinRb.isKinematic = false;
-                Player.getInstance().behaviour = new WalkBehaviour(character);
+                Player.getInstance().behaviour = new ExploreWalkBehaviour(character);
             }
-            */
         }
     }
 }

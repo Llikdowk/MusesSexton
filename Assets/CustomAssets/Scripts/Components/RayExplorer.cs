@@ -8,7 +8,7 @@ using Cubiquity;
 
 namespace Assets.CustomAssets.Scripts {
     public class RayExplorer : MonoBehaviour {
-        public int maxDistance = 15;
+        public int maxDistance = 7;
         public int minDistance = 2;
         public Material groundGrave;
         public Material groundHeap;
@@ -94,8 +94,8 @@ namespace Assets.CustomAssets.Scripts {
                 if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
                     if (impacted.tag == "terrain")
                         terrainAction();
-                    else if (impacted.tag == "groundGrave")
-                        groundGraveAction();
+                    //else if (impacted.tag == "groundGrave")
+                    //    groundGraveAction();
                     else if (impacted.tag == "groundHeap")
                         groundHeapAction();
                     else if (impacted.tag == "coffin")
@@ -122,13 +122,9 @@ namespace Assets.CustomAssets.Scripts {
             bc.gameObject.layer = 9;
 
             bc = parent.AddComponent<BoxCollider>();
-            bc.size = v * 2f;
+            bc.size = v * 4f;
             bc.isTrigger = true;
-            bc.enabled = false;
-            trigger_throw_coffin t = parent.AddComponent<trigger_throw_coffin>();
-            t.curve = AnimationUtils.createThrowCoffinCurve();
-            t.node1 = parent.transform;
-
+            
             parent.transform.position = hit.point;
             GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
             GameObject heap = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -136,6 +132,12 @@ namespace Assets.CustomAssets.Scripts {
             plane.tag = "groundGrave";
             plane.transform.parent = parent.transform;
             plane.transform.localPosition = -Vector3.up * .25f;
+
+            trigger_throw_coffin t = parent.AddComponent<trigger_throw_coffin>();
+            t.curve = AnimationUtils.createThrowCoffinCurve();
+            t.node1 = parent.transform;
+            t.groundFloor = plane;
+
             heap.transform.parent = parent.transform;
             heap.transform.localPosition = Vector3.zero + sizeX / 2f * Vector3.right + Vector3.up;
             MeshRenderer mr = plane.GetComponent<MeshRenderer>();
@@ -154,7 +156,7 @@ namespace Assets.CustomAssets.Scripts {
             else if (impacted.tag == "groundHeap")
                 UIUtils.infoInteractive.text = "undig!";
             else if (impacted.tag == "coffin")
-                UIUtils.infoInteractive.text = "drag!";
+                UIUtils.infoInteractive.text = "drag coffin!";
             else {
                 UIUtils.infoInteractive.text = "";
             }

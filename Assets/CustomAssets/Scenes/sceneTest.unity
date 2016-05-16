@@ -3540,7 +3540,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1925985837
 Transform:
   m_ObjectHideFlags: 0
@@ -3594,6 +3594,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  groundFloor: {fileID: 0}
 --- !u!4 &1945297244 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 84341456dd3f4e341a41337f19515488, type: 3}
@@ -3889,6 +3890,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  groundFloor: {fileID: 0}
 --- !u!4 &2140619767
 Transform:
   m_ObjectHideFlags: 0

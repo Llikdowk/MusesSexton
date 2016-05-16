@@ -7,12 +7,15 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
     public class ExploreWalkBehaviour : CharacterBehaviour {
         private readonly FirstPersonController fps;
         private static readonly GameObject coffinSet = GameObject.Find("CoffinSet");
+        private readonly float time_created = 0;
+        private const float delay = 1f;
 
         public ExploreWalkBehaviour(GameObject character) : base(character) {
             fps = character.AddComponent<FirstPersonController>();
             configureController();
             RayExplorer db = character.GetComponent<RayExplorer>();
             db.enabled = true;
+            time_created = Time.time;
             Debug.Log("WALK MODE -> digBehaviour set to " + db.enabled);
         }
 
@@ -38,6 +41,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         }
 
         private void checkStateChange() {
+            if (Time.time - time_created < delay) return;
             Player p = Player.getInstance();
             
             if (p.triggerCartFront && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
