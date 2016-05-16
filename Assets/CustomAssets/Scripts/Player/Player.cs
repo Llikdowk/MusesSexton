@@ -25,7 +25,7 @@ namespace Assets.CustomAssets.Scripts.Player {
             gameObject = GameObject.Find("Player");
             eyeSight = GameObject.Find("EyeSight").transform;
             coffinSlot = GameObject.Find("CoffinSlot").transform;
-            _behaviour = new ExploreWalkBehaviour(gameObject);
+            _behaviour = new EmptyBehaviour(gameObject);
         }
 
         public CharacterBehaviour behaviour {

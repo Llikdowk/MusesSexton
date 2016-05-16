@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 //should be renamed to: VerseTextComponent
-public class verse_text : MonoBehaviour {
+public class VerseTextComponent : MonoBehaviour {
 
     public string verse;
     private GameObject foreground;

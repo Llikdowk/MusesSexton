@@ -45,14 +45,18 @@ public class trigger_throw_coffin : MonoBehaviour {
                 doFinalAction();
             }
         }
-        else if (!hasAlreadyEnterPoem && Player.getInstance().behaviour.GetType() == typeof(ExploreWalkBehaviour) && hasCoffinInside) {
-            UIUtils.infoInteractive.text = "select verse! ('P' to exit)";
-            Player.getInstance().behaviour = new PoemBehaviour(Player.getInstance().gameObject, node1);
-            hasAlreadyEnterPoem = true;
-        }
-        else if (Player.getInstance().behaviour.GetType() == typeof(ExploreWalkBehaviour) && GameActions.checkAction(Action.USE, Input.GetKeyDown) && !hasCoffinInside) {
-            UIUtils.infoInteractive.text = "dig hollow!";
-            Player.getInstance().behaviour = new DigBehaviour(Player.getInstance().gameObject, groundFloor);
+        else if (Player.getInstance().behaviour.GetType() == typeof(ExploreWalkBehaviour)) {
+
+            if (!hasAlreadyEnterPoem && hasCoffinInside) {
+                UIUtils.infoInteractive.text = "select verse! ('P' to exit)";
+                Player.getInstance().behaviour = new PoemBehaviour(Player.getInstance().gameObject, node1);
+                hasAlreadyEnterPoem = true;
+            }
+            else if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && !hasCoffinInside && !fullHollow) {
+                UIUtils.infoInteractive.text = "dig hollow!";
+                Player.getInstance().behaviour = new DigBehaviour(Player.getInstance().gameObject, groundFloor);
+                fullHollow = true;
+            }
         }
     }
 

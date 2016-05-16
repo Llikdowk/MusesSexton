@@ -79,7 +79,7 @@ namespace Assets.CustomAssets.Scripts {
         }
 
         public void Update () {
-            //if (Player.Player.getInstance().disableRayExploration) { return; }
+            if (Player.Player.getInstance().insideBuryCoffinArea) return;
             if (Time.time - time_created < startDelay) return;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             PickSurfaceResult pickResult;

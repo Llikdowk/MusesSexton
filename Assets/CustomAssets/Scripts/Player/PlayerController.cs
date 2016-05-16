@@ -7,10 +7,14 @@ using UnityEngine;
 namespace Assets.CustomAssets.Scripts.Player {
     public class PlayerController : MonoBehaviour {
         private Player player;
-        public TerrainVolume terrainVolume;
 
         public void Start() {
             player = Player.getInstance();
+            player.behaviour = new ExploreWalkBehaviour(player.gameObject);
+        }
+
+        public void OnEnabled() {
+            player.behaviour = new ExploreWalkBehaviour(player.gameObject);
         }
 
         public void Update() {

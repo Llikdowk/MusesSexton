@@ -16,12 +16,12 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private readonly CursorLockMode cursorStateBackup;
         private Vector3 p0, p1;
         private readonly MouseLook mouseLook;
-        private move_to_player textMovement;
+        private MoveTextComponent textMovement;
         private Ray ray;
         private RaycastHit hit;
         private float maxDistance = 1000;
         private bool textDisplayed = false;
-        private Stack<verse_text> lastTextColorChanged = new Stack<verse_text>(6);
+        private Stack<VerseTextComponent> lastTextColorChanged = new Stack<VerseTextComponent>(6);
         private bool textColored = false;
         private Transform graveHollow;
 
@@ -66,7 +66,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                 if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
                     if (!textDisplayed && hit.collider.gameObject.tag == "landmark") {
                         GameObject textSet = hit.collider.gameObject.transform.parent.GetChild(0).gameObject;
-                        textMovement = textSet.GetComponent<move_to_player>();
+                        textMovement = textSet.GetComponent<MoveTextComponent>();
                         textMovement.doGoToPlayer(Player.getInstance().eyeSight);
                         Debug.Log("LANDMARK CLICKED");
                         textDisplayed = true;
@@ -85,7 +85,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                 }
 
                 if (textDisplayed && hit.collider.gameObject.tag == "poemLetters") {
-                    verse_text t = hit.collider.gameObject.GetComponent<verse_text>();
+                    VerseTextComponent t = hit.collider.gameObject.GetComponent<VerseTextComponent>();
                     lastTextColorChanged.Push(t);
                     t.setOverColor();
                     textColored = true;
@@ -107,7 +107,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
         private void cleanTextColor() {
             while (lastTextColorChanged.Count > 0) {
-                verse_text t = lastTextColorChanged.Pop();
+                VerseTextComponent t = lastTextColorChanged.Pop();
                 t.setNormalColor();
             }
         }

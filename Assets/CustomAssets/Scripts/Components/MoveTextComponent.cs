@@ -2,8 +2,7 @@
 using System.Collections;
 using Assets.CustomAssets.Scripts.Player;
 
-//should be renamed to: MoveTextComponent
-public class move_to_player : MonoBehaviour {
+public class MoveTextComponent : MonoBehaviour {
 
     public float movementSpeed = 0.032f;
     private readonly Vector3 nearScale = new Vector3(.05f, .05f, .05f);
@@ -11,7 +10,7 @@ public class move_to_player : MonoBehaviour {
 
     public void resetAllToOrigin() {
         for (int i = 0; i < transform.childCount; ++i) {
-            verse_text verse = transform.GetChild(i).GetComponent<verse_text>();
+            VerseTextComponent verse = transform.GetChild(i).GetComponent<VerseTextComponent>();
             verse.resetOrigins();
         }
     }
@@ -83,7 +82,7 @@ public class move_to_player : MonoBehaviour {
 
     private IEnumerator moveToOrigin(Transform verse) {
         float t = 0f;
-        verse_text aux = verse.gameObject.GetComponent<verse_text>();
+        VerseTextComponent aux = verse.gameObject.GetComponent<VerseTextComponent>();
         Vector3 currentScale = verse.localScale;
         Vector3 currentPosition = verse.position;
         Quaternion currentRotation = verse.rotation;
