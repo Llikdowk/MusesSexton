@@ -8,8 +8,8 @@ using Cubiquity;
 
 namespace Assets.CustomAssets.Scripts {
     public class RayExplorer : MonoBehaviour {
-        public int maxDistance = 7;
-        public int minDistance = 2;
+        private float maxDistance = 5f;
+        private float minDistance = 2.5f;
         public Material groundGrave;
         public Material groundHeap;
         public Terrain terrain;
@@ -43,7 +43,7 @@ namespace Assets.CustomAssets.Scripts {
         private GameObject impacted;
 
         private void terrainAction() {
-            if (hit.distance < minDistance) return;
+            //if (hit.distance < minDistance) return;
             Vector3 p = terrain.gameObject.transform.InverseTransformPoint(hit.point);
             Vector2 vertex = new Vector2((p.x / terrainData.size.x) * terrainData.heightmapResolution, (p.z / terrainData.size.z) * terrainData.heightmapResolution);
             //Debug.Log("Res = " + terrainData.heightmapResolution + " width: " + terrainData.size.x + ", " + terrainData.size.z + " pos: " + (int)(p.x) + " " + (int)p.z + " vertex: " + (int)vertex.x + " " + (int) vertex.y);
@@ -80,32 +80,39 @@ namespace Assets.CustomAssets.Scripts {
         public void Update () {
             if (Time.time - time_created < startDelay) return;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            PickSurfaceResult pickResult;
-            bool hashit = Picking.PickSurface(voxelTerrain.GetComponent<TerrainVolume>(), ray, maxDistance, out pickResult);
-            if (hashit) {
-                UIUtils.infoInteractive.text = "dig terrain!";
-            }
+            //PickSurfaceResult pickResult;
+            //bool hashit = Picking.PickSurface(voxelTerrain.GetComponent<TerrainVolume>(), ray, maxDistance, out pickResult);
+            
             if (Physics.Raycast(ray, out hit, maxDistance, mask)) {
+                //Debug.Log("has collided with something! named " + hit.collider.gameObject.name + " tag: " + hit.collider.gameObject.tag + " normal: " + hit.normal + " distance: " + hit.distance + " PARENT: " + hit.collider.gameObject.transform.parent.name);
                 impacted = hit.collider.gameObject;
                 Debug.DrawRay(Player.Player.getInstance().eyeSight.position, hit.point - this.gameObject.transform.position, Color.red);
                 showInfoMsg(impacted);
                 if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
+                    /*
                     if (impacted.tag == "groundHeap") {
                         groundHeapAction();
                     }
-                    else if (impacted.tag == "coffin")
+                    else*/ if (impacted.tag == "coffin")
                         coffinAction();
-                    else {
-                        if (hashit && !Player.Player.getInstance().digNewHolesDisabled) {
+                    else if (impacted.name.Contains("OctreeNode") && hit.distance > minDistance) {
+                        if (/*hashit &&*/ !Player.Player.getInstance().digNewHolesDisabled) {
                             clickToCarve.doAction();
                             createHollowEntity(clickToCarve.rangeX + 1, clickToCarve.rangeY + 1, clickToCarve.rangeZ + 1);
                         }
                     }
                 }
             }
+            /*
+            if (hashit) {
+                //GameObject g = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                //g.transform.position = pickResult.worldSpacePos;
+            }
+            */
             else {
                 UIUtils.infoInteractive.text = "";
             }
+            
         }
 
         private void createHollowEntity(int sizeX, int sizeY, int sizeZ) {
@@ -152,8 +159,8 @@ namespace Assets.CustomAssets.Scripts {
 
         private void showInfoMsg(GameObject impacted) {
 
-            if (impacted.tag == "terrain") {
-                UIUtils.infoInteractive.text = "dig terrain!";
+            if (impacted.tag == "terrain" && hit.distance > minDistance) {
+                UIUtils.infoInteractive.text = "TERRAIN SPOTTED!";
                 Debug.Log("terrain!");
             }
             else if (impacted.tag == "groundGrave")
@@ -162,6 +169,15 @@ namespace Assets.CustomAssets.Scripts {
                 UIUtils.infoInteractive.text = "undig!";
             else if (impacted.tag == "coffin")
                 UIUtils.infoInteractive.text = "drag coffin!";
+            else if (impacted.tag == "doNothing") {
+                Debug.Log("DO NOGHING");
+            }
+            
+            else if (impacted.name.Contains("OctreeNode") && hit.distance > minDistance && hit.distance > minDistance) {
+                if (/*hashit &&*/ !Player.Player.getInstance().digNewHolesDisabled) {
+                    UIUtils.infoInteractive.text = "dig terrain!";
+                }
+            }
             else {
                 UIUtils.infoInteractive.text = "";
             }

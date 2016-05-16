@@ -11,6 +11,7 @@ TagManager:
   - camera
   - landmark
   - poemLetters
+  - doNothing
   layers:
   - Default
   - TransparentFX
