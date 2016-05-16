@@ -25,16 +25,12 @@ Material:
     m_Floats:
       data:
         first:
-          name: _Amount
-        second: 0.36
-      data:
-        first:
           name: _albedo
         second: 1
       data:
         first:
           name: _ke
-        second: 0.33
+        second: 0.01
       data:
         first:
           name: _kd
@@ -42,11 +38,11 @@ Material:
       data:
         first:
           name: _ks
-        second: 0.51
+        second: 1.5
       data:
         first:
           name: _gloss
-        second: 1
+        second: 1.45
       data:
         first:
           name: _fresnelIntensity
@@ -55,6 +51,10 @@ Material:
         first:
           name: _fresnelConvexity
         second: 0
+      data:
+        first:
+          name: _Amount
+        second: 0.36
     m_Colors:
       data:
         first:
@@ -63,7 +63,7 @@ Material:
       data:
         first:
           name: _emissiveColor
-        second: {r: 0.86764705, g: 0.97809327, b: 1, a: 1}
+        second: {r: 0.7205882, g: 0, b: 0.6993944, a: 1}
       data:
         first:
           name: _diffuseColor
@@ -75,4 +75,4 @@ Material:
       data:
         first:
           name: _fresnelColor
-        second: {r: 0.6544118, g: 0.8140974, b: 1, a: 1}
+        second: {r: 0.5965518, g: 1, b: 1, a: 1}
