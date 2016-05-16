@@ -5,7 +5,7 @@ using Assets.CustomAssets.Scripts.Player;
 using Assets.CustomAssets.Scripts.Player.Behaviour;
 using Assets.CustomAssets.Scripts;
 
-public class trigger_throw_coffin : MonoBehaviour {
+public class trigger_hollow_behaviours : MonoBehaviour {
     public Transform node1;
     public AnimationCurve curve;
     public GameObject groundFloor;
@@ -35,11 +35,6 @@ public class trigger_throw_coffin : MonoBehaviour {
                 if (!hasCoffinInside && coffin != null) {
                     StartCoroutine(doAction());
                 }
-
-                if (hasCoffinInside) {
-                    Debug.LogError("DO UNDIG BEHAVIOUR!");
-                    Player.getInstance().behaviour = new PoemBehaviour(Player.getInstance().gameObject, node1);
-                }
             }
             if (coroutineEnd) {
                 doFinalAction();
@@ -48,8 +43,8 @@ public class trigger_throw_coffin : MonoBehaviour {
         else if (Player.getInstance().behaviour.GetType() == typeof(ExploreWalkBehaviour)) {
 
             if (!hasAlreadyEnterPoem && hasCoffinInside) {
-                UIUtils.infoInteractive.text = "select verse! ('P' to exit)";
-                Player.getInstance().behaviour = new PoemBehaviour(Player.getInstance().gameObject, node1);
+                UIUtils.infoInteractive.text = "undig!";
+                Player.getInstance().behaviour = new DigBehaviour(Player.getInstance().gameObject, groundFloor, DigType.INVERSE);
                 hasAlreadyEnterPoem = true;
             }
             else if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && !hasCoffinInside && !fullHollow) {

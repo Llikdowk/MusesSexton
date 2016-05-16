@@ -44,7 +44,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             if (Time.time - time_created < delay) return;
             Player p = Player.getInstance();
             
-            if (p.triggerCartFront && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
+            if (p.insideCartDrive && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
                 p.behaviour = new DriveCartBehaviour(character);
             }
             if (GameActions.checkAction(Action.DEBUG, Input.GetKeyDown)) {

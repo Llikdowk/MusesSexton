@@ -4,10 +4,14 @@ using UnityEngine;
 namespace Assets.CustomAssets.Scripts.Anmation {
     public class AnimationUtils : MonoBehaviour {
         public static readonly Animator cameraAnimator = GameObject.Find("AnimatorEntity").GetComponent<Animator>();
-        private static readonly AnimationCurve throwCoffinCurve = GameObject.Find("ThrowCoffinCurve").GetComponent<trigger_throw_coffin>().curve;
+        private static readonly AnimationCurve throwCoffinCurve = GameObject.Find("ThrowCoffinCurve").GetComponent<trigger_hollow_behaviours>().curve;
 
         public static void launchDig() {
             cameraAnimator.Play("dig");
+        }
+
+        public static void launchUndig() {
+            cameraAnimator.Play("undig");
         }
 
         public static AnimationCurve createStraightCurve() {

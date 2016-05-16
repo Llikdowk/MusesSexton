@@ -19,11 +19,12 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private MoveTextComponent textMovement;
         private Ray ray;
         private RaycastHit hit;
-        private float maxDistance = 1000;
+        private const float maxDistance = 1000f;
         private bool textDisplayed = false;
         private readonly Stack<VerseTextComponent> lastTextColorChanged = new Stack<VerseTextComponent>(6);
         private bool textColored = false;
         private readonly Transform graveHollow;
+        private const int mask = ~(1 << 9);
 
         public PoemBehaviour(GameObject character, Transform graveHollow) : base(character) {
             originalCameraPos = Camera.main.transform.position;
@@ -60,7 +61,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             checkStateChange();
             doMouseMovement();
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, maxDistance)) {
+            if (Physics.Raycast(ray, out hit, maxDistance, mask)) {
                 Debug.DrawRay(Player.getInstance().eyeSight.position, hit.point - Player.getInstance().eyeSight.position, Color.magenta);
 
                 if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {

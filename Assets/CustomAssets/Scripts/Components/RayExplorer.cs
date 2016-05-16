@@ -138,7 +138,7 @@ namespace Assets.CustomAssets.Scripts {
             bc.size = v * 1.25f;
             triggerThrowCoffin.transform.parent = parent.transform;
             triggerThrowCoffin.transform.localPosition = Vector3.zero;
-            trigger_throw_coffin t = triggerThrowCoffin.AddComponent<trigger_throw_coffin>();
+            trigger_hollow_behaviours t = triggerThrowCoffin.AddComponent<trigger_hollow_behaviours>();
             t.curve = AnimationUtils.createThrowCoffinCurve();
             t.node1 = parent.transform;
             t.groundFloor = plane;

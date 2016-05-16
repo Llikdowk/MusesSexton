@@ -4,7 +4,7 @@ using Assets.CustomAssets.Scripts.Player;
 
 public class MoveTextComponent : MonoBehaviour {
 
-    public float movementSpeed = 0.032f;
+    public float movementSpeed = 0.1f;
     private readonly Vector3 nearScale = new Vector3(.05f, .05f, .05f);
     private bool actionDone = false;
 
@@ -35,7 +35,7 @@ public class MoveTextComponent : MonoBehaviour {
         foreach (Transform verse in transform) {
             StartCoroutine(moveToDestination(verse, destination, n));
             ++n;
-            yield return new WaitForSeconds(.25f);
+            yield return new WaitForSeconds(.1f);
         }
         Player.getInstance().behaviour.cinematicMode(false);
     }

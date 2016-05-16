@@ -30,11 +30,11 @@ Material:
       data:
         first:
           name: _ke
-        second: 0.5
+        second: 0.13
       data:
         first:
           name: _kd
-        second: -0.67
+        second: 0.54
       data:
         first:
           name: _ks
@@ -50,7 +50,7 @@ Material:
       data:
         first:
           name: _fresnelConvexity
-        second: 0
+        second: 0.117
       data:
         first:
           name: _Amount
@@ -63,7 +63,7 @@ Material:
       data:
         first:
           name: _emissiveColor
-        second: {r: 0.9275862, g: 1, b: 0.99361056, a: 1}
+        second: {r: 0.7137931, g: 1, b: 0.97474647, a: 1}
       data:
         first:
           name: _diffuseColor

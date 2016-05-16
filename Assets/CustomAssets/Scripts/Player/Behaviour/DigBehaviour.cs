@@ -7,6 +7,8 @@ using Assets.CustomAssets.Scripts.CustomInput;
 using UnityEngine;
 
 namespace Assets.CustomAssets.Scripts.Player.Behaviour {
+    public enum DigType { NORMAL, INVERSE };
+
     public class DigBehaviour : CharacterBehaviour {
         private readonly Vector3 originalCameraPos;
         private readonly Vector3 originalCameraRotation;
@@ -17,8 +19,9 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private const float delay = .25f;
         private Vector3 p0, p1;
         private int hits = 0;
+        private DigType type;
 
-        public DigBehaviour(GameObject character, GameObject groundFloor) : base(character) {
+        public DigBehaviour(GameObject character, GameObject groundFloor, DigType type = DigType.NORMAL) : base(character) {
             originalCameraPos = Camera.main.transform.position;
             originalCameraRotation = Camera.main.transform.eulerAngles;
             Debug.Log("DIG behaviour");
@@ -27,6 +30,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             Cursor.lockState = CursorLockMode.None;
             time_created = Time.time;
             this.groundFloor = groundFloor;
+            this.type = type;
         }
 
 
@@ -42,7 +46,11 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             checkStateChange();
 
             if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && Time.time - time_created > delay) {
-                AnimationUtils.launchDig(); // will launch digActionEvent
+                if (type == DigType.NORMAL) {
+                    AnimationUtils.launchDig(); // will launch digActionEvent
+                } else if (type == DigType.INVERSE) {
+                    AnimationUtils.launchUndig();
+                }
             } else {
                 doMouseMovement();
             }
@@ -50,23 +58,17 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         
 
         public void launchActionEvent() {
-            groundFloor.transform.position -= Vector3.up * 1f;
-            groundFloor.transform.parent.GetChild(1).transform.localScale += Vector3.one * .25f;
+            if (type == DigType.NORMAL) {
+                groundFloor.transform.position -= Vector3.up * 1f;
+                groundFloor.transform.parent.GetChild(1).transform.localScale += Vector3.one * .25f;
+            } else {
+                groundFloor.transform.position += Vector3.up * 1f;
+                groundFloor.transform.parent.GetChild(1).transform.localScale -= Vector3.one * .25f;
+            }
         }
 
         public void launchEndActionEvent() {
             ++hits;
-            /*
-            BoxCollider[] boxes = groundFloor.transform.parent.GetComponents<BoxCollider>();
-            BoxCollider trigger = null;
-            foreach(BoxCollider b in boxes) {
-                if (b.isTrigger) {
-                    trigger = b;
-                }
-            }
-            trigger.enabled = true;
-            */
-            groundFloor.tag = "Untagged";
         }
 
         private void doMouseMovement() {
@@ -79,8 +81,13 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
         private void checkStateChange() {
             if (hits == limitHits) {
-                groundFloor.transform.parent.GetComponent<BoxCollider>().enabled = true;
-                Player.getInstance().behaviour = new ExploreWalkBehaviour(character);
+                if (type == DigType.NORMAL) {
+                    groundFloor.transform.parent.GetComponent<BoxCollider>().enabled = true;
+                    Player.getInstance().behaviour = new ExploreWalkBehaviour(character);
+                } else if (type == DigType.INVERSE) {
+                    groundFloor.transform.parent.GetComponent<BoxCollider>().enabled = false;
+                    Player.getInstance().behaviour = new PoemBehaviour(character, groundFloor.transform);
+                }
             }
         }
     }
