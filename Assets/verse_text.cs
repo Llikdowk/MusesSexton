@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+//should be renamed to: VerseTextComponent
 public class verse_text : MonoBehaviour {
 
     public string verse;
@@ -9,6 +10,16 @@ public class verse_text : MonoBehaviour {
     public Color color;
     public Color shadowColor;
     public Color overColor;
+
+    public Vector3 originalPosition { get; private set; }
+    public Quaternion originalRotation { get; private set; }
+    public Vector3 originalScale { get; private set; }
+
+    public void resetOrigins() {
+        transform.position = originalPosition;
+        transform.rotation = originalRotation;
+        transform.localScale = originalScale;
+    }
 
     public void setOverColor() {
         foreground.GetComponent<TextMesh>().color = overColor;
@@ -34,6 +45,9 @@ public class verse_text : MonoBehaviour {
     }
 
 	public void Start () {
+        originalPosition = transform.position;
+        originalRotation = transform.rotation;
+        originalScale = transform.localScale;
 
         foreground = generateText("Foreground", Color.white);
         shadow = generateText("Shadow", Color.black);

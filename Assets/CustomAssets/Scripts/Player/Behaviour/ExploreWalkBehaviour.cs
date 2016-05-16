@@ -44,7 +44,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                 p.behaviour = new DriveCartBehaviour(character);
             }
             if (GameActions.checkAction(Action.DEBUG, Input.GetKeyDown)) {
-                p.behaviour = new PoemBehaviour(character);
+                p.behaviour = new PoemBehaviour(character, Player.getInstance().gameObject.transform);
             }
         }
     }

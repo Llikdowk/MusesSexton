@@ -34,7 +34,7 @@ public class trigger_throw_coffin : MonoBehaviour {
 
             if (hasCoffinInside) {
                 Debug.Log("DO UNDIG BEHAVIOUR!");
-                Player.getInstance().behaviour = new PoemBehaviour(Player.getInstance().gameObject);
+                Player.getInstance().behaviour = new PoemBehaviour(Player.getInstance().gameObject, node1);
             }
         }
 
