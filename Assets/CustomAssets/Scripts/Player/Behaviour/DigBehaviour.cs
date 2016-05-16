@@ -86,6 +86,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     Player.getInstance().behaviour = new ExploreWalkBehaviour(character);
                 } else if (type == DigType.INVERSE) {
                     groundFloor.transform.parent.GetComponent<BoxCollider>().enabled = false;
+                    UIUtils.infoInteractive.text = "select verse!";
                     Player.getInstance().behaviour = new PoemBehaviour(character, groundFloor.transform);
                 }
             }
