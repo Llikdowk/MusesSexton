@@ -2975,7 +2975,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 630412107}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.391, z: -0.85}
+  m_LocalPosition: {x: 0, y: 0.96, z: -0.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1333494589}
@@ -3822,7 +3822,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 960397544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.2}
+  m_LocalPosition: {x: 0, y: 0.57, z: -3.2}
   m_LocalScale: {x: 15.503818, y: 15.503813, z: 15.503813}
   m_Children: []
   m_Father: {fileID: 1333494589}
@@ -4541,7 +4541,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4d3ac2abbd7dd6941a73042ca118419f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.06
+      value: 0.63
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4d3ac2abbd7dd6941a73042ca118419f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4616,7 +4616,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1333494588}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.6, y: 9.8, z: 70.5}
+  m_LocalPosition: {x: 21.6, y: 9.4, z: 70.5}
   m_LocalScale: {x: 0.7976233, y: 0.79762346, z: 0.79762346}
   m_Children:
   - {fileID: 630412108}
@@ -5606,7 +5606,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1763189034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.17, y: 0, z: -0.03}
+  m_LocalPosition: {x: 0.17, y: 0.57, z: -0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1333494589}
@@ -6746,7 +6746,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2123177907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.3, z: -6.72}
+  m_LocalPosition: {x: 0, y: 0.27, z: -6.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1836843844}
