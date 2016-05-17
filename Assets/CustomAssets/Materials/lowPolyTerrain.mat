@@ -34,15 +34,15 @@ Material:
       data:
         first:
           name: _ke
-        second: 0.15
+        second: 0.39
       data:
         first:
           name: _kd
-        second: 0.2
+        second: 0.98
       data:
         first:
           name: _ks
-        second: 0.54
+        second: 0.49
       data:
         first:
           name: _gloss
@@ -50,7 +50,7 @@ Material:
       data:
         first:
           name: _fresnelIntensity
-        second: 0.7
+        second: 0.2
       data:
         first:
           name: _fresnelConvexity

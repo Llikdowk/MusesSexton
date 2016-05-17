@@ -27,7 +27,7 @@ namespace Assets.CustomAssets.Scripts {
 
         private Vector3i hollowAreaSize;
         private float hollowYOffset;
-        private const float maxYOffsetAllowed = 1f;
+        private const float maxYOffsetAllowed = .5f;
 
         public void Awake() {
             terrainData = terrain.terrainData;
@@ -170,15 +170,26 @@ namespace Assets.CustomAssets.Scripts {
             RaycastHit offsetHit;
             Ray offsetRay;
 
-            Vector3 upRight = v + new Vector3(hollowAreaSize.x, 0, hollowAreaSize.z);
-            Vector3 upLeft = v + new Vector3(-hollowAreaSize.x, 0, hollowAreaSize.z);
-            Vector3 downRight = v + new Vector3(hollowAreaSize.x, 0, -hollowAreaSize.z);
-            Vector3 downLeft = v + new Vector3(-hollowAreaSize.x, 0, -hollowAreaSize.z);
-            Vector3[] allVectors = new Vector3[4];
-            allVectors[0] = upRight;
-            allVectors[1] = upLeft;
-            allVectors[2] = downRight;
-            allVectors[3] = downLeft;
+            Vector3 upRight = new Vector3(hollowAreaSize.x, 0, hollowAreaSize.z);
+            Vector3 upLeft = new Vector3(-hollowAreaSize.x, 0, hollowAreaSize.z);
+            Vector3 downRight = new Vector3(hollowAreaSize.x, 0, -hollowAreaSize.z);
+            Vector3 downLeft = new Vector3(-hollowAreaSize.x, 0, -hollowAreaSize.z);
+
+            Vector3 up = new Vector3(0, 0, hollowAreaSize.z);
+            Vector3 left = new Vector3(-hollowAreaSize.x, 0, 0);
+            Vector3 right = new Vector3(hollowAreaSize.x, 0, 0);
+            Vector3 down = new Vector3(0, 0, -hollowAreaSize.z);
+
+            Vector3[] allVectors = new Vector3[8];
+            allVectors[0] = v + upRight;
+            allVectors[1] = v + upLeft;
+            allVectors[2] = v + downRight;
+            allVectors[3] = v + downLeft;
+
+            allVectors[4] = v + 2f*up;
+            allVectors[5] = v + 2f*left;
+            allVectors[6] = v + 2f*right;
+            allVectors[7] = v + 2f*down;
 
             foreach (Vector3 t in allVectors) {
                 offsetRay = new Ray(t, Vector3.down);
@@ -196,9 +207,12 @@ namespace Assets.CustomAssets.Scripts {
                         return false;
                     }
                     //Debug.Log("maxY set: " + maxY + " minY set: " + minY);
+                } else {
+                    yOffset = 0.0f;
+                    return false;
                 }
             }
-            yOffset = minY - .35f;
+            yOffset = minY - .15f;
             return true;
         }
 
