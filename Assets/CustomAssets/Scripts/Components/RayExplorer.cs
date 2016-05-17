@@ -52,8 +52,7 @@ namespace Assets.CustomAssets.Scripts {
             float[,] h = new float[area_w, area_h];
             for (int i = 0; i < area_w; ++i) {
                 for (int j = 0; j < area_h; ++j) {
-                    h[j, i] = 0.2f;//heightMap[(int)(vertex.y)+i, (int)(vertex.x)+j] - terrainData.heightmapResolution;
-                                   //heightMap[(int)(vertex.y) + i, (int)(vertex.x) + j] = h[j, i];
+                    h[j, i] = 0.2f;
                 }
             }
             terrainData.SetHeights((int)(vertex.x) - area_w / 2, (int)(vertex.y) - area_h / 2, h);
@@ -63,14 +62,6 @@ namespace Assets.CustomAssets.Scripts {
 
         private void groundGraveAction() {
             Player.Player.getInstance().behaviour = new DigBehaviour(gameObject, impacted);
-        }
-
-        private void groundHeapAction() {
-            Debug.LogWarning("TODO: DIGBEHAVIOUR INVERSE");
-            /*
-            impacted.transform.localScale -= Vector3.one * .25f;
-            impacted.transform.parent.GetChild(0).transform.localPosition += Vector3.up * .25f;
-            */
         }
 
         private void coffinAction() {
@@ -89,26 +80,16 @@ namespace Assets.CustomAssets.Scripts {
                 Debug.DrawRay(Player.Player.getInstance().eyeSight.position, hit.point - this.gameObject.transform.position, Color.red);
                 showInfoMsg(impacted);
                 if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
-                    /*
-                    if (impacted.tag == "groundHeap") {
-                        groundHeapAction();
-                    }
-                    else*/ if (impacted.tag == "coffin")
+                    if (impacted.tag == "coffin")
                         coffinAction();
                     else if (impacted.name.Contains("OctreeNode") && hit.distance > minDistance) {
-                        if (/*hashit &&*/ !Player.Player.getInstance().digNewHolesDisabled) {
+                        if (!Player.Player.getInstance().digNewHolesDisabled) {
                             clickToCarve.doAction();
                             createHollowEntity(clickToCarve.rangeX + 1, clickToCarve.rangeY + 1, clickToCarve.rangeZ + 1);
                         }
                     }
                 }
             }
-            /*
-            if (hashit) {
-                //GameObject g = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                //g.transform.position = pickResult.worldSpacePos;
-            }
-            */
             else {
                 UIUtils.infoInteractive.text = "";
             }

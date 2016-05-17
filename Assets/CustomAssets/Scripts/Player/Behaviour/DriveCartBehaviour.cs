@@ -21,7 +21,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private const float initialSpeed = .5f;
         private const float acceleration = .25f;
         private const float deceleration = .5f;
-        private const float maxSpeed = .1f;
+        private const float maxSpeed = .25f;
         private const float gravity = 0.0981f;
         private bool timeSpeedUpRegistered = false;
         private bool timeSpeedDownRegistered = false;
@@ -65,26 +65,6 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             }
         }
 
-        private void moveLeftRightCheck() {
-            // WORK ON THIS!
-            if (GameActions.checkAction(Action.LEFT, Input.GetKey)) {
-                direction += -forwardCart.transform.right * stepRotation * Time.deltaTime;
-                Vector3 localPlayerPos = character.transform.localPosition;
-                cart.transform.RotateAround(localPlayerPos, cart.transform.up, -stepRotation * Time.deltaTime);
-            }
-            else if (GameActions.checkAction(Action.LEFT, Input.GetKeyUp)) {
-                direction = forwardCart.transform.forward;
-            }
-            if (GameActions.checkAction(Action.RIGHT, Input.GetKey)) {
-                direction += forwardCart.transform.right * stepRotation * Time.deltaTime;
-                Vector3 localPlayerPos = character.transform.localPosition;
-                cart.transform.RotateAround(localPlayerPos, cart.transform.up, stepRotation * Time.deltaTime);
-            }
-            else if (GameActions.checkAction(Action.RIGHT, Input.GetKeyUp)) {
-                direction = forwardCart.transform.forward; ;
-            }
-        }
-
         private void movementUpdate() {
 
             cartUpdatePosition();
@@ -125,6 +105,26 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
         private void cartUpdatePosition() {
             cart.transform.position = character.transform.localPosition + playerOffset;
+        }
+
+        private void moveLeftRightCheck() {
+            // WORK ON THIS!
+            if (GameActions.checkAction(Action.LEFT, Input.GetKey)) {
+                direction += -forwardCart.transform.right * stepRotation * Time.deltaTime;
+                Vector3 localPlayerPos = character.transform.localPosition;
+                cart.transform.RotateAround(localPlayerPos, cart.transform.up, -stepRotation * Time.deltaTime);
+            }
+            else if (GameActions.checkAction(Action.LEFT, Input.GetKeyUp)) {
+                direction = forwardCart.transform.forward;
+            }
+            if (GameActions.checkAction(Action.RIGHT, Input.GetKey)) {
+                direction += forwardCart.transform.right * stepRotation * Time.deltaTime;
+                Vector3 localPlayerPos = character.transform.localPosition;
+                cart.transform.RotateAround(localPlayerPos, cart.transform.up, stepRotation * Time.deltaTime);
+            }
+            else if (GameActions.checkAction(Action.RIGHT, Input.GetKeyUp)) {
+                direction = forwardCart.transform.forward;
+            }
         }
 
         private void moveForward() {
