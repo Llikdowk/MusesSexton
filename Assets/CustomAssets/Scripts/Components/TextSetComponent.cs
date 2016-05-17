@@ -35,7 +35,7 @@ namespace Assets.CustomAssets.Scripts.Components {
         public void doGoToPlayer(Transform destination) {
             if (!actionDone) {
                 Player.Player.getInstance().behaviour.cinematicMode(true);
-                StartCoroutine(runToDestination(destination));
+                StartCoroutine(runToPlayerDestination(destination));
                 actionDone = true;
             }
         }
@@ -47,17 +47,17 @@ namespace Assets.CustomAssets.Scripts.Components {
             }
         }
 
-        private IEnumerator runToDestination(Transform destination) {
+        private IEnumerator runToPlayerDestination(Transform destination) {
             int n = 0;
             foreach (Transform verse in transform) {
-                StartCoroutine(moveToDestination(verse, destination, n));
+                StartCoroutine(moveToPlayerDestination(verse, destination, n));
                 ++n;
                 yield return new WaitForSeconds(.1f);
             }
             Player.Player.getInstance().behaviour.cinematicMode(false);
         }
 
-        private IEnumerator moveToDestination(Transform verse, Transform destination, int n) {
+        private IEnumerator moveToPlayerDestination(Transform verse, Transform destination, int n) {
             float t = 0f;
             Vector3 originalScale = verse.localScale;
             Vector3 originalPosition = verse.position;
@@ -65,7 +65,7 @@ namespace Assets.CustomAssets.Scripts.Components {
             while (t < 1f) {
                 t += movementSpeed;
                 verse.position = Vector3.Slerp(originalPosition, destination.GetChild(n).position, t);
-                verse.rotation = Quaternion.Slerp(originalRotation, destination.rotation, t);
+                verse.rotation = Quaternion.Slerp(originalRotation, destination.rotation, t); // FIXME -> change effect?
                 verse.localScale = Vector3.Slerp(originalScale, nearScale, t);
                 yield return new WaitForSeconds(.016f);
             }

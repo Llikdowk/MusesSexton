@@ -33,9 +33,16 @@ namespace Assets.CustomAssets.Scripts.Components {
         }
 
         public void updateTextGender() {
-            int genderChosen = (int)Player.Player.getInstance().genderChosen;
-            foreground.GetComponent<TextMesh>().text = verse[genderChosen];
-            shadow.GetComponent<TextMesh>().text = verse[genderChosen];
+            Gender g = Player.Player.getInstance().genderChosen;
+            if (g == Gender.UNDECIDED) {
+                foreground.GetComponent<TextMesh>().text = verse[(int)initGenderDisplayed];
+                shadow.GetComponent<TextMesh>().text = verse[(int)initGenderDisplayed];
+            }
+            else {
+                int genderChosen = (int)Player.Player.getInstance().genderChosen;
+                foreground.GetComponent<TextMesh>().text = verse[genderChosen];
+                shadow.GetComponent<TextMesh>().text = verse[genderChosen];
+            }
         }
 
         private GameObject generateText(string name, Color c) {

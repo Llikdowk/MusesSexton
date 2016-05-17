@@ -27,6 +27,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private readonly Transform graveHollow;
         private const int mask = 1 << 10 | 1 << 8;
         private bool hasEnded = false;
+        private SuperTestSet superTextSet = GameObject.Find("LandmarkSet").GetComponent<SuperTestSet>();
 
         public PoemBehaviour(GameObject character, Transform graveHollow) : base(character) {
             originalCameraPos = Camera.main.transform.position;
@@ -45,6 +46,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             mouseLook.YSensitivity = 1f;
             mouseLook.smooth = true;
             this.graveHollow = graveHollow;
+            superTextSet.updateTextSetGenders();
         }
 
 
