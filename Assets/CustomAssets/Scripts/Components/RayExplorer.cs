@@ -25,6 +25,10 @@ namespace Assets.CustomAssets.Scripts {
         private const float startDelay = .25f;
         private const int mask = ~(1<<9 + 1<<8);
 
+        private Vector3i hollowAreaSize;
+        private float hollowYOffset;
+        private const float maxYOffsetAllowed = 1f;
+
         public void Awake() {
             terrainData = terrain.terrainData;
         }
@@ -34,6 +38,7 @@ namespace Assets.CustomAssets.Scripts {
             time_created = Time.time;
 
             clickToCarve = voxelTerrain.GetComponent<ClickToCarveTerrainVolume>();
+            hollowAreaSize = new Vector3i(clickToCarve.rangeX, clickToCarve.rangeY, clickToCarve.rangeZ);
         }
         
         public void OnEnable() {
@@ -84,8 +89,10 @@ namespace Assets.CustomAssets.Scripts {
                         coffinAction();
                     else if (impacted.name.Contains("OctreeNode") && hit.distance > minDistance) {
                         if (!Player.Player.getInstance().digNewHolesDisabled) {
-                            clickToCarve.doAction();
-                            createHollowEntity(clickToCarve.rangeX + 1, clickToCarve.rangeY + 1, clickToCarve.rangeZ + 1);
+                            if (checkDiggingRestrictions(hit)) {
+                                clickToCarve.doAction();
+                                createHollowEntity(hollowAreaSize.x + 1, hollowAreaSize.y + 1, hollowAreaSize.z + 1);
+                            }
                         }
                     }
                 }
@@ -94,6 +101,17 @@ namespace Assets.CustomAssets.Scripts {
                 UIUtils.infoInteractive.text = "";
             }
             
+        }
+
+        private bool checkDiggingRestrictions(RaycastHit hit) {
+            Transform p = Player.Player.getInstance().gameObject.transform;
+            float angle = Vector3.Angle(hit.normal, Vector3.up);
+            Debug.Log(angle);
+            if (angle > 25f) {
+                return false;
+            }
+
+            return calcMinHollowHeight(hit, out hollowYOffset);
         }
 
         private void createHollowEntity(int sizeX, int sizeY, int sizeZ) {
@@ -109,8 +127,11 @@ namespace Assets.CustomAssets.Scripts {
             GameObject heap = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             heap.tag = "groundHeap";
             plane.tag = "groundGrave";
+            plane.transform.position = new Vector3(parent.transform.position.x, hollowYOffset, parent.transform.position.z);
             plane.transform.parent = parent.transform;
-            plane.transform.localPosition = -Vector3.up * .25f;
+            plane.transform.localScale = new Vector3(0.4f, 1.00f, 0.7f);
+            //plane.transform.localPosition = Vector3.zero + new Vector3(0, hollowYOffset, 0);
+
 
             GameObject triggerDisableDigging = new GameObject("Disable digging area");
             SphereCollider sc = triggerDisableDigging.AddComponent<SphereCollider>();
@@ -123,7 +144,7 @@ namespace Assets.CustomAssets.Scripts {
             GameObject triggerThrowCoffin = new GameObject("Trigger throw coffin");
             bc = triggerThrowCoffin.AddComponent<BoxCollider>();
             bc.isTrigger = true;
-            bc.size = v * 1.25f;
+            bc.size = v * 2.0f;
             triggerThrowCoffin.transform.parent = parent.transform;
             triggerThrowCoffin.transform.localPosition = Vector3.zero;
             trigger_hollow_behaviours t = triggerThrowCoffin.AddComponent<trigger_hollow_behaviours>();
@@ -136,6 +157,56 @@ namespace Assets.CustomAssets.Scripts {
             MeshRenderer mr = plane.GetComponent<MeshRenderer>();
             mr.material = groundGrave;
 
+        }
+
+        private bool calcMinHollowHeight(RaycastHit hit, out float yOffset) {
+            Vector3 n = hit.normal;
+            Vector3 p = hit.point;
+            Vector3 v = p + n;
+            float minY = float.MaxValue;
+            float maxY = float.MinValue;
+
+
+            RaycastHit offsetHit;
+            Ray offsetRay;
+
+            Vector3 upRight = v + new Vector3(hollowAreaSize.x, 0, hollowAreaSize.z);
+            Vector3 upLeft = v + new Vector3(-hollowAreaSize.x, 0, hollowAreaSize.z);
+            Vector3 downRight = v + new Vector3(hollowAreaSize.x, 0, -hollowAreaSize.z);
+            Vector3 downLeft = v + new Vector3(-hollowAreaSize.x, 0, -hollowAreaSize.z);
+            Vector3[] allVectors = new Vector3[4];
+            allVectors[0] = upRight;
+            allVectors[1] = upLeft;
+            allVectors[2] = downRight;
+            allVectors[3] = downLeft;
+
+            foreach (Vector3 t in allVectors) {
+                offsetRay = new Ray(t, Vector3.down);
+                Debug.DrawRay(t, Vector3.down, Color.magenta);
+                if (Physics.Raycast(offsetRay, out offsetHit, 1000.0f)) {
+                    if (offsetHit.point.y < minY) {
+                        /*
+                        Debug.Log("dif: " + Mathf.Abs(minY - lastMinY) + " max allowed: " + maxYOffsetAllowed);
+                        if (Mathf.Abs(minY - offsetHit.point.y) > maxYOffsetAllowed) {
+                            yOffset = 0.0f;
+                            return false;
+                        }
+                        */
+                        minY = offsetHit.point.y;
+                    }
+                    if (offsetHit.point.y > maxY) {
+                        maxY = offsetHit.point.y;
+                    }
+
+                    if (maxY - minY > maxYOffsetAllowed) {
+                        yOffset = 0.0f;
+                        return false;
+                    }
+                    //Debug.Log("maxY set: " + maxY + " minY set: " + minY);
+                }
+            }
+            yOffset = minY - .35f;
+            return true;
         }
 
         private void showInfoMsg(GameObject impacted) {
@@ -156,7 +227,9 @@ namespace Assets.CustomAssets.Scripts {
             
             else if (impacted.name.Contains("OctreeNode") && hit.distance > minDistance && hit.distance > minDistance) {
                 if (/*hashit &&*/ !Player.Player.getInstance().digNewHolesDisabled) {
-                    UIUtils.infoInteractive.text = "dig terrain!";
+                    if (checkDiggingRestrictions(hit)) {
+                        UIUtils.infoInteractive.text = "dig terrain!";
+                    }
                 }
             }
             else {

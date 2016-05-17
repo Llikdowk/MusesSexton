@@ -104,8 +104,7 @@ public class ClickToCarveTerrainVolume : MonoBehaviour
 					// We're iterating over a cubic region, but we want our explosion to be spherical. Therefore 
 					// we only further consider voxels which are within the required range of our explosion center. 
 					// The corners of the cubic region we are iterating over will fail the following test.
-					if(distSquared < rangeSquared)
-					{
+					if(distSquared < rangeSquared) {
                         if (erase) {
                             terrainVolume.data.SetVoxel(x, y, z, emptyMaterialSet);
                         } else {
@@ -136,4 +135,93 @@ public class ClickToCarveTerrainVolume : MonoBehaviour
     private int manhattanDistance(int x, int y, int z) {
         return x + y + z;
     }
+
+
+
+
+    /*
+    public void doActionRelativeSpace(Transform local) {
+        if (terrainVolume == null) {
+            return;
+        }
+        if (!isMouseAlreadyDown) {
+            Vector2 mousePos = Input.mousePosition;
+            Ray ray = Camera.main.ScreenPointToRay(new Vector3(mousePos.x, mousePos.y, 0));
+            PickSurfaceResult pickResult;
+            bool hit = Picking.PickSurface(terrainVolume, ray, 1000.0f, out pickResult);
+            if (hit) {
+                DestroyRelativeVoxels((int)pickResult.volumeSpacePos.x, (int)pickResult.volumeSpacePos.y, (int)pickResult.volumeSpacePos.z, local);
+            }
+        }
+        else {
+            isMouseAlreadyDown = false;
+        }
+    }
+
+    private void DestroyRelativeVoxels(int xPos, int yPos, int zPos, Transform local) {
+        // Initialise outside the loop, but we'll use it later.
+        int aux = Mathf.Max(rangeX, rangeY, rangeZ);
+        int rangeSquared = aux * aux;
+        MaterialSet emptyMaterialSet = new MaterialSet();
+        MaterialSet fillMaterialSet = new MaterialSet();
+        fillMaterialSet.weights[0] = 255;
+        fillMaterialSet.weights[1] = 255;
+        fillMaterialSet.weights[2] = 255;
+
+        Vector3 positions = transform.TransformPoint(new Vector3(xPos, yPos, zPos));
+        xPos = (int)positions.x;
+        yPos = (int)positions.y;
+        zPos = (int)positions.z;
+
+        // Iterage over every voxel in a cubic region defined by the received position (the center) and
+        // the range. It is quite possible that this will be hundreds or even thousands of voxels.
+        for (int z = zPos - rangeZ; z < zPos + rangeZ; z++) {
+            for (int y = yPos - rangeY; y < yPos + rangeY; y++) {
+                for (int x = xPos - rangeX; x < xPos + rangeX; x++) {
+                    // Compute the distance from the current voxel to the center of our explosion.
+                    Vector3 v = transform.TransformPoint(new Vector3(x, y, z));
+                    x = (int)v.x;
+                    y = (int)v.y;
+                    z = (int)v.z;
+                    int xDistance = x - xPos;
+                    int yDistance = y - yPos;
+                    int zDistance = z - zPos;
+
+                    // Working with squared distances avoids costly square root operations.
+                    int distSquared = 0;
+                    if (euclidean) {
+                        distSquared = sqrEuclideanDistance(xDistance, yDistance, zDistance);
+                    }
+                    else {
+                        distSquared = manhattanDistance(xDistance, yDistance, zDistance);
+                    }
+
+                    // We're iterating over a cubic region, but we want our explosion to be spherical. Therefore 
+                    // we only further consider voxels which are within the required range of our explosion center. 
+                    // The corners of the cubic region we are iterating over will fail the following test.
+                    if (distSquared < rangeSquared) {
+                        if (erase) {
+                            terrainVolume.data.SetVoxel(x, y, z, emptyMaterialSet);
+                        }
+                        else {
+                            terrainVolume.data.SetVoxel(x, y, z, fillMaterialSet);
+                        }
+                    }
+                }
+            }
+        }
+
+        TerrainVolumeEditor.BlurTerrainVolume(terrainVolume,
+            new Region(
+                xPos - rangeX + smoothFactor,
+                yPos - rangeY + smoothFactor,
+                zPos - rangeZ + smoothFactor,
+                xPos + rangeX + smoothFactor,
+                yPos + rangeY + smoothFactor,
+                zPos + rangeZ + smoothFactor)
+            );
+        //TerrainVolumeEditor.BlurTerrainVolume(terrainVolume, new Region(xPos - range, yPos - range, zPos - range, xPos + range, yPos + range, zPos + range));
+        //TerrainVolumeEditor.BlurTerrainVolume(terrainVolume, new Region(xPos - range, yPos - range, zPos - range, xPos + range, yPos + range, zPos + range));
+    }
+    */
 }
