@@ -105,7 +105,7 @@ GameObject:
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &51891643
 Transform:
   m_ObjectHideFlags: 0
@@ -2135,7 +2135,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab0621c01661064a9792b641d6de087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verse: no you are not
+  verse:
+  - Snow covered pines judge his crimes
+  - Snow covered pines judge her crimes
+  - Snow covered pines judge their crimes
+  - Snow covered pines judge my crimes
+  initGenderDisplayed: 1
   color: {r: 1, g: 1, b: 1, a: 1}
   shadowColor: {r: 0, g: 0, b: 0, a: 0}
   overColor: {r: 0, g: 0.87, b: 1, a: 1}
@@ -2149,7 +2154,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.3, y: 1.494873, z: 0}
+  m_Size: {x: 25, y: 1.494873, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &322718223
 Prefab:
@@ -3368,7 +3373,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab0621c01661064a9792b641d6de087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verse: JESUS CHRIST
+  verse:
+  - I hid from him in the forest
+  - I hid from her in the forest
+  - I hid from them in the forest
+  - I hid from myself in the forest
+  initGenderDisplayed: 1
   color: {r: 1, g: 1, b: 1, a: 1}
   shadowColor: {r: 0, g: 0, b: 0, a: 0}
   overColor: {r: 0, g: 0.87, b: 1, a: 1}
@@ -3382,7 +3392,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.299999, y: 1.494873, z: 0}
+  m_Size: {x: 25, y: 1.494873, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &839176959
 Prefab:
@@ -3705,7 +3715,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab0621c01661064a9792b641d6de087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verse: I AM THE GREATEST
+  verse:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  initGenderDisplayed: 0
   color: {r: 1, g: 1, b: 1, a: 1}
   shadowColor: {r: 0, g: 0, b: 0, a: 0}
   overColor: {r: 0, g: 0.87, b: 1, a: 1}
@@ -3801,7 +3829,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab0621c01661064a9792b641d6de087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verse: this is great aint it?
+  verse:
+  - All but food for the pine roots
+  - All but food for the pine roots
+  - All but food for the pine roots
+  - All but food for the pine roots
+  initGenderDisplayed: 0
   color: {r: 1, g: 1, b: 1, a: 1}
   shadowColor: {r: 0, g: 0, b: 0, a: 0}
   overColor: {r: 0, g: 0.87, b: 1, a: 1}
@@ -3812,12 +3845,12 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 934399486}
-  m_Text: TESTTESTSTES
+  m_Text: All but food for the pine roots.
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
-  m_Anchor: 0
-  m_Alignment: 0
+  m_Anchor: 4
+  m_Alignment: 1
   m_TabSize: 4
   m_FontSize: 0
   m_FontStyle: 0
@@ -3862,7 +3895,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.3, y: 1.494873, z: 0}
+  m_Size: {x: 25, y: 1.494873, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &950803507
 Prefab:
@@ -4235,7 +4268,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab0621c01661064a9792b641d6de087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verse: I AM THE GREATEST
+  verse:
+  - Green needles to pierce his heart
+  - Green needles to pierce her heart
+  - Green needles to pierce their hearts
+  - Green needles to pierce my heart
+  initGenderDisplayed: 0
   color: {r: 1, g: 1, b: 1, a: 1}
   shadowColor: {r: 0, g: 0, b: 0, a: 0}
   overColor: {r: 0, g: 0.87, b: 1, a: 1}
@@ -4249,7 +4287,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.3, y: 1.494873, z: 0}
+  m_Size: {x: 25, y: 1.494873, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1134576388 stripped
 Transform:
@@ -4658,7 +4696,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab0621c01661064a9792b641d6de087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verse: onomomo mo mo mo
+  verse:
+  - Immortal trees to witness this ritual
+  - Immortal trees to witness this ritual
+  - Immortal trees to witness this ritual
+  - Immortal trees to witness this ritual
+  initGenderDisplayed: 2
   color: {r: 1, g: 1, b: 1, a: 1}
   shadowColor: {r: 0, g: 0, b: 0, a: 0}
   overColor: {r: 0, g: 0.87, b: 1, a: 1}
@@ -4672,7 +4715,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.3, y: 1.494873, z: 0}
+  m_Size: {x: 25, y: 1.494873, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1305079999
 GameObject:
@@ -5816,7 +5859,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab0621c01661064a9792b641d6de087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verse: onomomo mo mo mo
+  verse:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  initGenderDisplayed: 0
   color: {r: 1, g: 1, b: 1, a: 1}
   shadowColor: {r: 0, g: 0, b: 0, a: 0}
   overColor: {r: 0, g: 0.87, b: 1, a: 1}
@@ -6206,7 +6266,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab0621c01661064a9792b641d6de087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verse: JESUS CHRIST
+  verse:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  initGenderDisplayed: 0
   color: {r: 1, g: 1, b: 1, a: 1}
   shadowColor: {r: 0, g: 0, b: 0, a: 0}
   overColor: {r: 0, g: 0.87, b: 1, a: 1}
@@ -6311,7 +6384,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab0621c01661064a9792b641d6de087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verse: that's a suprisingly difficult question to answer
+  verse:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  initGenderDisplayed: 0
   color: {r: 1, g: 1, b: 1, a: 1}
   shadowColor: {r: 0, g: 0, b: 0, a: 0}
   overColor: {r: 0, g: 0.87, b: 1, a: 1}
@@ -6569,7 +6692,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab0621c01661064a9792b641d6de087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verse: that's a suprisingly difficult question to answer
+  verse:
+  - Return to nature, my beloved one
+  - Return to nature, my beloved one
+  - Return to nature, my beloved ones
+  - I return to nature, loved by noone
+  initGenderDisplayed: 2
   color: {r: 1, g: 1, b: 1, a: 1}
   shadowColor: {r: 0, g: 0, b: 0, a: 0}
   overColor: {r: 0, g: 0.87, b: 1, a: 1}
@@ -6583,7 +6711,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.3, y: 1.494873, z: 0}
+  m_Size: {x: 25, y: 1.494873, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1886560606
 GameObject:
@@ -6895,7 +7023,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1985978783}
   m_Layer: 0
-  m_Name: Landmark0
+  m_Name: LandmarkPINE
   m_TagString: landmark
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -7102,7 +7230,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab0621c01661064a9792b641d6de087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verse: no you are not
+  verse:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  initGenderDisplayed: 0
   color: {r: 1, g: 1, b: 1, a: 1}
   shadowColor: {r: 0, g: 0, b: 0, a: 0}
   overColor: {r: 0, g: 0.87, b: 1, a: 1}
@@ -7280,7 +7423,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab0621c01661064a9792b641d6de087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verse: this is great aint it?
+  verse:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  initGenderDisplayed: 0
   color: {r: 1, g: 1, b: 1, a: 1}
   shadowColor: {r: 0, g: 0, b: 0, a: 0}
   overColor: {r: 0, g: 0.87, b: 1, a: 1}

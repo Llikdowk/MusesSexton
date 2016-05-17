@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Assets.CustomAssets.Scripts.Components;
 using Assets.CustomAssets.Scripts.CustomInput;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
@@ -16,7 +17,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private readonly CursorLockMode cursorStateBackup;
         private Vector3 p0, p1;
         private readonly MouseLook mouseLook;
-        private MoveTextComponent textMovement;
+        private TextSetComponent textSetComponent;
         private Ray ray;
         private RaycastHit hit;
         private const float maxDistance = 1000f;
@@ -24,7 +25,8 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private readonly Stack<VerseTextComponent> lastTextColorChanged = new Stack<VerseTextComponent>(6);
         private bool textColored = false;
         private readonly Transform graveHollow;
-        private const int mask = ~(1 << 9);
+        private const int mask = 1 << 10 | 1 << 8;
+        private bool hasEnded = false;
 
         public PoemBehaviour(GameObject character, Transform graveHollow) : base(character) {
             originalCameraPos = Camera.main.transform.position;
@@ -67,8 +69,8 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                 if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
                     if (!textDisplayed && hit.collider.gameObject.tag == "landmark") {
                         GameObject textSet = hit.collider.gameObject.transform.parent.GetChild(0).gameObject;
-                        textMovement = textSet.GetComponent<MoveTextComponent>();
-                        textMovement.doGoToPlayer(Player.getInstance().eyeSight);
+                        textSetComponent = textSet.GetComponent<TextSetComponent>();
+                        textSetComponent.doGoToPlayer(Player.getInstance().eyeSight);
                         Debug.Log("LANDMARK CLICKED");
                         textDisplayed = true;
                     }
@@ -76,11 +78,13 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                         Debug.Log("TEXT SELECTED is " + hit.collider.gameObject.name);
                         GameObject aux = hit.collider.gameObject;
                         int n = (int)Char.GetNumericValue(aux.name[aux.name.Length - 1]);
-                        textMovement.doGoToOrigin(n, graveHollow);
+                        textSetComponent.doGoToOrigin(n, graveHollow);
+                        textSetComponent.updatePlayerState(n);
+                        textSetComponent.updateTextGenders();
                         textDisplayed = false;
                     }
                     else if (textDisplayed) {
-                        textMovement.doGoToOrigin(-1, graveHollow);
+                        textSetComponent.doGoToOrigin(-1, graveHollow);
                         textDisplayed = false;
                     }
                 }
@@ -100,7 +104,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     cleanTextColor();
                 }
                 if (textDisplayed && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
-                        textMovement.doGoToOrigin(-1, graveHollow);
+                        textSetComponent.doGoToOrigin(-1, graveHollow);
                         textDisplayed = false;
                 }
             }
@@ -118,6 +122,15 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         }
 
         private void checkStateChange() {
+            if (Player.getInstance().versesSelectedCount == 3) {
+                Debug.LogWarning("CAMERA CHANGES TO BE DONE");
+
+                Player.getInstance().versesSelectedCount = 0;
+                Player.getInstance().genderChosen = Gender.UNDECIDED;
+                Player.getInstance().behaviour = new ExploreWalkBehaviour(character);
+                hasEnded = true;
+            }
+
             if (GameActions.checkAction(Action.DEBUG, Input.GetKeyDown)) {
                 Player.getInstance().behaviour = new ExploreWalkBehaviour(character);
             }

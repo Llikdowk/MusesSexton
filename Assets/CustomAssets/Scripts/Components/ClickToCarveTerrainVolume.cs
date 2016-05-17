@@ -124,9 +124,9 @@ public class ClickToCarveTerrainVolume : MonoBehaviour
                 yPos + rangeY + smoothFactor,
                 zPos + rangeZ + smoothFactor)
             );
-		//TerrainVolumeEditor.BlurTerrainVolume(terrainVolume, new Region(xPos - range, yPos - range, zPos - range, xPos + range, yPos + range, zPos + range));
-		//TerrainVolumeEditor.BlurTerrainVolume(terrainVolume, new Region(xPos - range, yPos - range, zPos - range, xPos + range, yPos + range, zPos + range));
-	}
+        //TerrainVolumeEditor.BlurTerrainVolume(terrainVolume, new Region(xPos - range, yPos - range, zPos - range, xPos + range, yPos + range, zPos + range));
+        //TerrainVolumeEditor.BlurTerrainVolume(terrainVolume, new Region(xPos - range, yPos - range, zPos - range, xPos + range, yPos + range, zPos + range));
+    }
 
     private int sqrEuclideanDistance(int x, int y, int z) {
         return x*x + y*y + z*z;

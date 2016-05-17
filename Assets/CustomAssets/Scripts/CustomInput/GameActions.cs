@@ -38,16 +38,16 @@ namespace Assets.CustomAssets.Scripts.CustomInput {
         }
 
         private GameActions() {
-            //registerAction(Action.LEFT, KeyCode.LeftArrow);
+            registerAction(Action.LEFT, KeyCode.LeftArrow);
             registerAction(Action.LEFT, KeyCode.A);
 
-            //registerAction(Action.FORWARD, KeyCode.UpArrow);
+            registerAction(Action.FORWARD, KeyCode.UpArrow);
             registerAction(Action.FORWARD, KeyCode.W);
 
-            //registerAction(Action.BACK, KeyCode.DownArrow);
+            registerAction(Action.BACK, KeyCode.DownArrow);
             registerAction(Action.BACK, KeyCode.S);
 
-            //registerAction(Action.RIGHT, KeyCode.RightArrow);
+            registerAction(Action.RIGHT, KeyCode.RightArrow);
             registerAction(Action.RIGHT, KeyCode.D);
 
             registerAction(Action.QUIT, KeyCode.Escape);

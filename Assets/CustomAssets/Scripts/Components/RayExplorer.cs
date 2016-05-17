@@ -185,13 +185,6 @@ namespace Assets.CustomAssets.Scripts {
                 Debug.DrawRay(t, Vector3.down, Color.magenta);
                 if (Physics.Raycast(offsetRay, out offsetHit, 1000.0f)) {
                     if (offsetHit.point.y < minY) {
-                        /*
-                        Debug.Log("dif: " + Mathf.Abs(minY - lastMinY) + " max allowed: " + maxYOffsetAllowed);
-                        if (Mathf.Abs(minY - offsetHit.point.y) > maxYOffsetAllowed) {
-                            yOffset = 0.0f;
-                            return false;
-                        }
-                        */
                         minY = offsetHit.point.y;
                     }
                     if (offsetHit.point.y > maxY) {

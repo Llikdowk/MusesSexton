@@ -1,8 +1,8 @@
 ﻿
 using Assets.CustomAssets.Scripts.CustomInput;
+using Assets.CustomAssets.Scripts.Components;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityStandardAssets.Characters.FirstPerson;
 
 namespace Assets.CustomAssets.Scripts.Player.Behaviour {
     public class CoffinDragBehaviour : CharacterBehaviour {

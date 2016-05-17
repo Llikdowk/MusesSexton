@@ -7,7 +7,20 @@ namespace Assets.CustomAssets.Scripts.Player {
         public bool insideCartDrive = false;
         public bool digNewHolesDisabled = false;
         public bool insideThrowCoffinTrigger = false;
-        public int coffinsBuried = 0;
+        private int coffinsBuried = 0;
+        public Gender genderChosen = Gender.UNDECIDED;
+        public int versesSelectedCount = 0;
+        public string[] versesSelected = new string[3 * 3];
+        private int versesSelectedNext = 0;
+
+        public void addVerse(string value) {
+            versesSelected[versesSelectedNext] = value;
+            Debug.Log("first person verse: " + value);
+        }
+
+        public void coffinBuriedAction() {
+            ++coffinsBuried;
+        }
 
         public readonly GameObject gameObject;
         public readonly Transform coffinSlot;
