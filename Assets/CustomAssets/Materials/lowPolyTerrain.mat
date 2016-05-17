@@ -34,19 +34,19 @@ Material:
       data:
         first:
           name: _ke
-        second: 0.39
+        second: 0.81
       data:
         first:
           name: _kd
-        second: 0.98
+        second: -0.12
       data:
         first:
           name: _ks
-        second: 0.49
+        second: 0.48
       data:
         first:
           name: _gloss
-        second: 1
+        second: 0.46
       data:
         first:
           name: _fresnelIntensity
@@ -63,7 +63,7 @@ Material:
       data:
         first:
           name: _emissiveColor
-        second: {r: 0.7137931, g: 1, b: 0.97474647, a: 1}
+        second: {r: 1, g: 0.892647, b: 0.85294116, a: 0.934}
       data:
         first:
           name: _diffuseColor

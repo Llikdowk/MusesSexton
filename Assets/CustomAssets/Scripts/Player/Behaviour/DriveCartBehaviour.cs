@@ -110,7 +110,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private void moveLeftRightCheck() {
             // WORK ON THIS!
             if (GameActions.checkAction(Action.LEFT, Input.GetKey)) {
-                direction += -forwardCart.transform.right * stepRotation * Time.deltaTime;
+                direction += -forwardCart.transform.right * stepRotation;
                 Vector3 localPlayerPos = character.transform.localPosition;
                 cart.transform.RotateAround(localPlayerPos, cart.transform.up, -stepRotation * Time.deltaTime);
             }
@@ -118,7 +118,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                 direction = forwardCart.transform.forward;
             }
             if (GameActions.checkAction(Action.RIGHT, Input.GetKey)) {
-                direction += forwardCart.transform.right * stepRotation * Time.deltaTime;
+                direction += forwardCart.transform.right * stepRotation;
                 Vector3 localPlayerPos = character.transform.localPosition;
                 cart.transform.RotateAround(localPlayerPos, cart.transform.up, stepRotation * Time.deltaTime);
             }
@@ -130,13 +130,13 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private void moveForward() {
             float t = Time.time - t0speedUp;
             currentSpeed = Mathf.Min(maxSpeed, initialSpeed * acceleration * t * t);
-            character.transform.position += direction * currentSpeed;
+            character.transform.position += direction*Time.deltaTime * currentSpeed;
         }
 
         private void decelerateForward() {
             float t = Time.time - t0speedDown;
             currentSpeed -= Mathf.Max(0, currentSpeed*deceleration * t * t);
-            character.transform.position += direction * currentSpeed;
+            character.transform.position += direction*Time.deltaTime * currentSpeed;
         }
     }
 }

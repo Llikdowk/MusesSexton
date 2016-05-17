@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: ba037f71de933684ea3c8b6762aac3cc
-timeCreated: 1463506781
+guid: 8f594e73067e2db4bb9a9a7d6d285b9c
+timeCreated: 1463506816
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Fence1
+    4300000: Fence2
     6400000: //RootNode
   materials:
     importMaterials: 1

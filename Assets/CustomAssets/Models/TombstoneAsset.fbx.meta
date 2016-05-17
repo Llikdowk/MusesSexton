@@ -1,16 +1,24 @@
 fileFormatVersion: 2
-guid: db7873c80a0198a4cb1f4c1e2fa36d0a
-timeCreated: 1463505082
+guid: b5653dd12d5ddb7469d33af952af0f39
+timeCreated: 1463506629
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Tombstone
-    6400000: //RootNode
+    100000: SnowBase
+    100002: Tombstone
+    100004: //RootNode
+    400000: SnowBase
+    400002: Tombstone
+    400004: //RootNode
+    2300000: SnowBase
+    2300002: Tombstone
+    3300000: SnowBase
+    3300002: Tombstone
+    4300000: SnowBase
+    4300002: Tombstone
+    6400000: SnowBase
+    6400002: Tombstone
   materials:
     importMaterials: 1
     materialName: 0
