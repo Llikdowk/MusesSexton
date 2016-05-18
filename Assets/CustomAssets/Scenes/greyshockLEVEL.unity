@@ -5708,7 +5708,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1114901354}
   m_Layer: 0
-  m_Name: LandmarkSkellington
+  m_Name: LandmarkSkeleton
   m_TagString: landmark
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
