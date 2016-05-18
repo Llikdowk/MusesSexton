@@ -28,8 +28,12 @@ namespace Assets.CustomAssets.Scripts.Components {
             if (p.genderChosen == Gender.UNDECIDED) {
                 p.genderChosen = g;
             }
-            p.addVerse(transform.GetChild(n).GetComponent<VerseTextComponent>().verse[3]);
+            p.addVerse(transform.GetChild(n).GetComponent<VerseTextComponent>().verse[(int)Gender.FIRST_PERSON]);
             p.versesSelectedCount++;
+        }
+
+        public string getTextOf(int n) {
+            return transform.GetChild(n).GetComponent<VerseTextComponent>().getVerse();
         }
 
         public void doGoToPlayer(Transform destination) {

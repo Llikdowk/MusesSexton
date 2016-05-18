@@ -6,15 +6,25 @@ using Assets.CustomAssets.Scripts.Player.Behaviour;
 using Assets.CustomAssets.Scripts;
 
 public class trigger_hollow_behaviours : MonoBehaviour {
-    public Transform node1;
     public AnimationCurve curve;
-    public GameObject groundFloor;
+    [SerializeField] private Transform node;
+    private GameObject groundFloor;
+    private GameObject heap;
+    private GameObject tombstone;
     private Transform original;
     private Transform coffin;
     private bool coroutineEnd = false;
     private bool hasCoffinInside = false;
     private bool hasAlreadyEnterPoem = false;
     private bool fullHollow = false; // TODO!
+
+    public void init(AnimationCurve curve, Transform node, GameObject groundFloor, GameObject heap, GameObject tombstone) {
+        this.curve = curve;
+        this.node = node;
+        this.groundFloor = groundFloor;
+        this.heap = heap;
+        this.tombstone = tombstone;
+    }
 
     public void OnTriggerEnter(Collider c) {
         Player.getInstance().insideThrowCoffinTrigger = true;
@@ -44,12 +54,12 @@ public class trigger_hollow_behaviours : MonoBehaviour {
 
             if (!hasAlreadyEnterPoem && hasCoffinInside) {
                 UIUtils.infoInteractive.text = "undig!";
-                Player.getInstance().behaviour = new DigBehaviour(Player.getInstance().gameObject, groundFloor, DigType.INVERSE);
+                Player.getInstance().behaviour = new DigBehaviour(Player.getInstance().gameObject, groundFloor, heap, tombstone, DigType.INVERSE);
                 hasAlreadyEnterPoem = true;
             }
             else if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && !hasCoffinInside && !fullHollow) {
                 UIUtils.infoInteractive.text = "dig hollow!";
-                Player.getInstance().behaviour = new DigBehaviour(Player.getInstance().gameObject, groundFloor);
+                Player.getInstance().behaviour = new DigBehaviour(Player.getInstance().gameObject, groundFloor, heap, tombstone);
                 fullHollow = true;
             }
         }
@@ -70,8 +80,8 @@ public class trigger_hollow_behaviours : MonoBehaviour {
         float t = 0;
         while (t < 1f) {
             float c = curve.Evaluate(t);
-            coffin.position = Vector3.Slerp(original.position, node1.position, t) + new Vector3(0, c, 0);
-            coffin.rotation = Quaternion.Slerp(original.rotation, node1.rotation, t);
+            coffin.position = Vector3.Slerp(original.position, node.position, t) + new Vector3(0, c, 0);
+            coffin.rotation = Quaternion.Slerp(original.rotation, node.rotation, t);
             t += .016f;
             yield return new WaitForSeconds(.016f);
         }

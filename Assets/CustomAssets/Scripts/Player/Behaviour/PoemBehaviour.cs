@@ -28,8 +28,12 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private const int mask = 1 << 10 | 1 << 8;
         private bool hasEnded = false;
         private SuperTestSet superTextSet = GameObject.Find("LandmarkSet").GetComponent<SuperTestSet>();
+        private int currentVerseSelected = 0;
 
-        public PoemBehaviour(GameObject character, Transform graveHollow) : base(character) {
+        private readonly TombstoneController tombstone;
+
+
+        public PoemBehaviour(GameObject character, Transform graveHollow, GameObject tombstone) : base(character) {
             originalCameraPos = Camera.main.transform.position;
             originalCameraRotation = Camera.main.transform.rotation;
             poemCamera = Camera.main.transform.GetChild(0).GetComponent<Camera>();
@@ -47,6 +51,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             mouseLook.smooth = true;
             this.graveHollow = graveHollow;
             superTextSet.updateTextSetGenders();
+            this.tombstone = tombstone.GetComponent<TombstoneController>();
         }
 
 
@@ -82,8 +87,11 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                         int n = (int)Char.GetNumericValue(aux.name[aux.name.Length - 1]);
                         textSetComponent.doGoToOrigin(n, graveHollow);
                         textSetComponent.updatePlayerState(n);
-                        textSetComponent.updateTextGenders();
+                        superTextSet.updateTextSetGenders();
                         textDisplayed = false;
+                        //textTombstone[currentVerseSelected].text = textSetComponent.getTextOf(n);
+                        tombstone.goUp(textSetComponent.getTextOf(n), currentVerseSelected);
+                        ++currentVerseSelected;
                     }
                     else if (textDisplayed) {
                         textSetComponent.doGoToOrigin(-1, graveHollow);
@@ -127,6 +135,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             if (Player.getInstance().versesSelectedCount == 3) {
                 Debug.LogWarning("CAMERA CHANGES TO BE DONE");
 
+                currentVerseSelected = 0;
                 Player.getInstance().versesSelectedCount = 0;
                 Player.getInstance().genderChosen = Gender.UNDECIDED;
                 Player.getInstance().behaviour = new ExploreWalkBehaviour(character);

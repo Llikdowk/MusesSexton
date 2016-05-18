@@ -15,13 +15,15 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private readonly CursorLockMode cursorStateBackup;
         private readonly float time_created;
         private readonly GameObject groundFloor;
+        private readonly GameObject heap;
+        private readonly GameObject tombstone;
         private const int limitHits = 3;
         private const float delay = .25f;
         private Vector3 p0, p1;
         private int hits = 0;
         private DigType type;
 
-        public DigBehaviour(GameObject character, GameObject groundFloor, DigType type = DigType.NORMAL) : base(character) {
+        public DigBehaviour(GameObject character, GameObject groundFloor, GameObject heap, GameObject tombstone, DigType type = DigType.NORMAL) : base(character) {
             originalCameraPos = Camera.main.transform.position;
             originalCameraRotation = Camera.main.transform.eulerAngles;
             Debug.Log("DIG behaviour");
@@ -30,7 +32,9 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             Cursor.lockState = CursorLockMode.None;
             time_created = Time.time;
             this.groundFloor = groundFloor;
+            this.heap = heap;
             this.type = type;
+            this.tombstone = tombstone;
         }
 
 
@@ -60,10 +64,12 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         public void launchActionEvent() {
             if (type == DigType.NORMAL) {
                 groundFloor.transform.position -= Vector3.up * 1f;
-                groundFloor.transform.parent.GetChild(1).transform.localScale += Vector3.one * .25f;
+                //groundFloor.transform.parent.GetChild(1).transform.localScale += Vector3.one * .25f;
+                heap.transform.localScale += Vector3.up * .25f;
             } else {
                 groundFloor.transform.position += Vector3.up * 1f;
-                groundFloor.transform.parent.GetChild(1).transform.localScale -= Vector3.one * .25f;
+                //groundFloor.transform.parent.GetChild(1).transform.localScale -= Vector3.one * .25f;
+                heap.transform.localScale -= Vector3.up * .25f;
             }
         }
 
@@ -88,7 +94,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     groundFloor.transform.parent.GetComponent<BoxCollider>().enabled = false;
                     UIUtils.infoInteractive.text = "select verse!";
                     Player.getInstance().coffinBuriedAction();
-                    Player.getInstance().behaviour = new PoemBehaviour(character, groundFloor.transform);
+                    Player.getInstance().behaviour = new PoemBehaviour(character, groundFloor.transform, tombstone);
                 }
             }
         }

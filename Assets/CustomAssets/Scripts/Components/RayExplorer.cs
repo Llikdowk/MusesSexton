@@ -30,8 +30,16 @@ namespace Assets.CustomAssets.Scripts {
         private bool restrictionsPassed = false;
         private GameObject impacted;
 
+        private GameObject graveAsset;
+        private GameObject dirtAsset;
+        private GameObject tombstoneAsset;
+
+
         public void Awake() {
             terrainData = terrain.terrainData;
+            graveAsset = Resources.Load<GameObject>("Models/GraveAsset");
+            dirtAsset = Resources.Load<GameObject>("Models/DirtAsset");
+            tombstoneAsset = Resources.Load<GameObject>("Prefabs/TombstonePrefab");
         }
 
         public void Start () {
@@ -99,13 +107,14 @@ namespace Assets.CustomAssets.Scripts {
             bc.enabled = false;
 
             parent.transform.position = hit.point - new Vector3(sizeX/2f, 0, sizeZ/2f);
-            GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
-            GameObject heap = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            GameObject plane = Object.Instantiate(graveAsset); //GameObject.CreatePrimitive(PrimitiveType.Plane);
+            GameObject heap = Object.Instantiate(dirtAsset); //GameObject.CreatePrimitive(PrimitiveType.Sphere);
             heap.tag = "groundHeap";
             plane.tag = "groundGrave";
             plane.transform.position = new Vector3(parent.transform.position.x, hollowYOffset, parent.transform.position.z);
             plane.transform.parent = parent.transform;
-            plane.transform.localScale = new Vector3(0.4f, 1.00f, 0.7f);
+            plane.transform.localEulerAngles = new Vector3(0, 90, 0);
+            plane.transform.localScale = new Vector3(1.00f, .70f, 1.0f);
             //plane.transform.localPosition = Vector3.zero + new Vector3(0, hollowYOffset, 0);
 
 
@@ -123,15 +132,22 @@ namespace Assets.CustomAssets.Scripts {
             bc.size = v * 2.0f;
             triggerThrowCoffin.transform.parent = parent.transform;
             triggerThrowCoffin.transform.localPosition = Vector3.zero;
-            trigger_hollow_behaviours t = triggerThrowCoffin.AddComponent<trigger_hollow_behaviours>();
-            t.curve = AnimationUtils.createThrowCoffinCurve();
-            t.node1 = parent.transform;
-            t.groundFloor = plane;
 
             heap.transform.parent = parent.transform;
-            heap.transform.localPosition = Vector3.zero + sizeX / 2f * Vector3.right + Vector3.up;
+            heap.transform.localScale = new Vector3(1.00f, 0.21f, 1.00f);
+            heap.transform.localPosition = new Vector3(-3.37f, -0.05f, 0.31f); //lastOffset: new Vector3(-3.37f, 0.24f, 0.31f); // Vector3.zero + sizeX / 2f * Vector3.right + Vector3.up;
             MeshRenderer mr = plane.GetComponent<MeshRenderer>();
             mr.material = groundGrave;
+
+            GameObject tombstone = Object.Instantiate(tombstoneAsset);
+            tombstone.transform.parent = parent.transform;
+            tombstone.transform.localEulerAngles = new Vector3(0, -90, 0);
+            tombstone.transform.localPosition = new Vector3(0, -2.25f, 3.00f);
+            tombstone.AddComponent<TombstoneController>();
+
+            trigger_hollow_behaviours t = triggerThrowCoffin.AddComponent<trigger_hollow_behaviours>();
+            t.init(AnimationUtils.createThrowCoffinCurve(), parent.transform, plane, heap, tombstone);
+
 
         }
 

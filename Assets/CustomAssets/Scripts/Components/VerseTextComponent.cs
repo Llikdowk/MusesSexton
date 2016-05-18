@@ -18,6 +18,14 @@ namespace Assets.CustomAssets.Scripts.Components {
         public Quaternion originalRotation { get; private set; }
         public Vector3 originalScale { get; private set; }
 
+        public string getVerse() {
+            if (Player.Player.getInstance().genderChosen != Gender.UNDECIDED) {
+                return verse[(int)Player.Player.getInstance().genderChosen];
+            } else {
+                return verse[(int)initGenderDisplayed];
+            }
+        }
+
         public void resetOrigins() {
             transform.position = originalPosition;
             transform.rotation = originalRotation;
