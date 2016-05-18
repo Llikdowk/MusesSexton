@@ -16,7 +16,7 @@ public class trigger_hollow_behaviours : MonoBehaviour {
     private bool coroutineEnd = false;
     private bool hasCoffinInside = false;
     private bool hasAlreadyEnterPoem = false;
-    private bool fullHollow = false; // TODO!
+    private bool fullHollow = false; // TODO! -> needs to be put TRUE somewhere!
 
     public void init(AnimationCurve curve, Transform node, GameObject groundFloor, GameObject heap, GameObject tombstone) {
         this.curve = curve;
@@ -51,17 +51,21 @@ public class trigger_hollow_behaviours : MonoBehaviour {
             }
         }
         else if (Player.getInstance().behaviour.GetType() == typeof(ExploreWalkBehaviour)) {
-
+            
             if (!hasAlreadyEnterPoem && hasCoffinInside) {
                 UIUtils.infoInteractive.text = "undig!";
-                Player.getInstance().behaviour = new DigBehaviour(Player.getInstance().gameObject, groundFloor, heap, tombstone, DigType.INVERSE);
+                DigBehaviour d = new DigBehaviour(Player.getInstance().gameObject, DigType.INVERSE);
+                Player.getInstance().behaviour = d;
+                d.init(groundFloor, heap, tombstone);
                 hasAlreadyEnterPoem = true;
             }
+            /*
             else if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && !hasCoffinInside && !fullHollow) {
                 UIUtils.infoInteractive.text = "dig hollow!";
                 Player.getInstance().behaviour = new DigBehaviour(Player.getInstance().gameObject, groundFloor, heap, tombstone);
                 fullHollow = true;
             }
+            */
         }
     }
 

@@ -14,16 +14,16 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private readonly Vector3 originalCameraRotation;
         private readonly CursorLockMode cursorStateBackup;
         private readonly float time_created;
-        private readonly GameObject groundFloor;
-        private readonly GameObject heap;
-        private readonly GameObject tombstone;
+        private GameObject groundFloor;
+        private GameObject heap;
+        private GameObject tombstone;
         private const int limitHits = 3;
         private const float delay = .25f;
         private Vector3 p0, p1;
         private int hits = 0;
         private DigType type;
 
-        public DigBehaviour(GameObject character, GameObject groundFloor, GameObject heap, GameObject tombstone, DigType type = DigType.NORMAL) : base(character) {
+        public DigBehaviour(GameObject character, DigType type = DigType.NORMAL) : base(character) {
             originalCameraPos = Camera.main.transform.position;
             originalCameraRotation = Camera.main.transform.eulerAngles;
             Debug.Log("DIG behaviour");
@@ -31,12 +31,14 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             cursorStateBackup = Cursor.lockState;
             Cursor.lockState = CursorLockMode.None;
             time_created = Time.time;
-            this.groundFloor = groundFloor;
-            this.heap = heap;
             this.type = type;
-            this.tombstone = tombstone;
         }
 
+        public void init(GameObject groundFloor, GameObject heap, GameObject tombstone) {
+            this.groundFloor = groundFloor;
+            this.heap = heap;
+            this.tombstone = tombstone;
+        }
 
         public override void destroy() {
             Camera.main.transform.position = originalCameraPos;

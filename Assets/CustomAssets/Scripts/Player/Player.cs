@@ -22,6 +22,8 @@ namespace Assets.CustomAssets.Scripts.Player {
         private CharacterBehaviour _behaviour;
         public readonly AnimationCameraComponent cameraAnimation = GameObject.Find("AnimatorEntity").GetComponent<AnimationCameraComponent>();
 
+        //private DigBehaviour digBehaviourSaved;
+
         public void addVerse(string value) {
             versesSelected[versesSelectedNext] = value;
             Debug.Log("first person verse: " + value);
@@ -55,8 +57,18 @@ namespace Assets.CustomAssets.Scripts.Player {
             set { _behaviour.cinematicMode(value); }
         }
 
-        public void doMovementDisplacement(Transform destination) {
-            cameraAnimation.moveTo(destination);
+        public void doMovementDisplacement(Transform destination, params endAnimationCallback[] f) {
+            cameraAnimation.moveTo(destination, f);
         }
+
+        /*
+        public void setDigBehaviour(DigBehaviour d) {
+            digBehaviourSaved = d;
+        }
+
+        public void applyDigBehaviour() {
+            behaviour = digBehaviourSaved;
+        }
+        */
     }
 }

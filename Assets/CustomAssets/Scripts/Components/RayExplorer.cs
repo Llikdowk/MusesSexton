@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.CustomAssets.Scripts.Anmation;
+using Assets.CustomAssets.Scripts.Components;
 using Assets.CustomAssets.Scripts.CustomInput;
 using Assets.CustomAssets.Scripts.Player.Behaviour;
 using UnityEngine;
@@ -74,7 +75,6 @@ namespace Assets.CustomAssets.Scripts {
                         if (checkDiggingRestrictions(hit)) {
                             restrictionsPassed = true;
                             if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
-                                clickToCarve.doAction();
                                 createHollowEntity(hollowAreaSize.x + 1, hollowAreaSize.y + 1, hollowAreaSize.z + 1);
                             }
                         }
@@ -100,15 +100,38 @@ namespace Assets.CustomAssets.Scripts {
 
         private void createHollowEntity(int sizeX, int sizeY, int sizeZ) {
             GameObject parent = new GameObject("Grave");
+            parent.transform.position = hit.point - new Vector3(sizeX / 2f, 0, sizeZ / 2f);
+            GameObject plane, heap, tombstone;
+            GameObject playerPosition = new GameObject("PlayerPosition");
+            playerPosition.transform.parent = parent.transform;
+            playerPosition.transform.localPosition = new Vector3(0.20f, 1.30f, -2.02f);
+            Player.Player player = Player.Player.getInstance();
+            //player.setDigBehaviour(new );
+            //endAnimationCallback fun = player.applyDigBehaviour;
+
+            DigBehaviour playerDigBehaviour = new DigBehaviour(player.gameObject);
+            endAnimationCallback lfun = () => {
+                player.behaviour = playerDigBehaviour;
+            };
+
+            endAnimationCallback lfun2 = () => {
+                deployTombAssets(parent, sizeX, sizeY, sizeZ, out plane, out heap, out tombstone);
+                playerDigBehaviour.init(plane, heap, tombstone);
+            };
+
+            Player.Player.getInstance().doMovementDisplacement(playerPosition.transform, lfun, clickToCarve.doAction, lfun2);
+
+        }
+
+        private void deployTombAssets(GameObject parent, int sizeX, int sizeY, int sizeZ, out GameObject plane, out GameObject heap, out GameObject tombstone) {
             BoxCollider bc = parent.AddComponent<BoxCollider>();
-            Vector3 v = new Vector3(sizeX*1.5f, sizeY*1.5f, sizeZ*1.5f);
+            Vector3 v = new Vector3(sizeX * 1.5f, sizeY * 1.5f, sizeZ * 1.5f);
             bc.size = v;
             bc.gameObject.layer = 9;
             bc.enabled = false;
 
-            parent.transform.position = hit.point - new Vector3(sizeX/2f, 0, sizeZ/2f);
-            GameObject plane = Object.Instantiate(graveAsset); //GameObject.CreatePrimitive(PrimitiveType.Plane);
-            GameObject heap = Object.Instantiate(dirtAsset); //GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            plane = Object.Instantiate(graveAsset); //GameObject.CreatePrimitive(PrimitiveType.Plane);
+            heap = Object.Instantiate(dirtAsset); //GameObject.CreatePrimitive(PrimitiveType.Sphere);
             heap.tag = "groundHeap";
             plane.tag = "groundGrave";
             plane.transform.position = new Vector3(parent.transform.position.x, hollowYOffset, parent.transform.position.z);
@@ -139,7 +162,7 @@ namespace Assets.CustomAssets.Scripts {
             MeshRenderer mr = plane.GetComponent<MeshRenderer>();
             mr.material = groundGrave;
 
-            GameObject tombstone = Object.Instantiate(tombstoneAsset);
+            tombstone = Object.Instantiate(tombstoneAsset);
             tombstone.transform.parent = parent.transform;
             tombstone.transform.localEulerAngles = new Vector3(0, -90, 0);
             tombstone.transform.localPosition = new Vector3(0, -2.25f, 3.00f);
@@ -147,11 +170,6 @@ namespace Assets.CustomAssets.Scripts {
 
             trigger_hollow_behaviours t = triggerThrowCoffin.AddComponent<trigger_hollow_behaviours>();
             t.init(AnimationUtils.createThrowCoffinCurve(), parent.transform, plane, heap, tombstone);
-
-            GameObject playerPosition = new GameObject("PlayerPosition");
-            playerPosition.transform.parent = parent.transform;
-            playerPosition.transform.localPosition = new Vector3(0.20f, 1.30f, -2.02f);
-            Player.Player.getInstance().doMovementDisplacement(playerPosition.transform);
 
         }
 

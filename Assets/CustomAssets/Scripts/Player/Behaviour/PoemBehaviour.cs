@@ -6,6 +6,7 @@ using Assets.CustomAssets.Scripts.Components;
 using Assets.CustomAssets.Scripts.CustomInput;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
+using MouseLook = Assets.CustomAssets.Scripts.Components.MouseLook;
 
 namespace Assets.CustomAssets.Scripts.Player.Behaviour {
     public class PoemBehaviour : CharacterBehaviour {
