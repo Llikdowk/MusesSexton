@@ -40,6 +40,5 @@ namespace Assets.CustomAssets.Scripts.Anmation {
         public static AnimationCurve createThrowCoffinCurve() {
             return throwCoffinCurve;
         }
-
     }
 }

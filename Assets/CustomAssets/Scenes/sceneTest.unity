@@ -2853,7 +2853,7 @@ Camera:
   field of view: 75
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 256
@@ -3568,7 +3568,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: 10
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 32
@@ -3816,7 +3816,7 @@ Transform:
   - {fileID: 350888889}
   - {fileID: 1137184211}
   m_Father: {fileID: 1348285497}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &582923630
 GameObject:
   m_ObjectHideFlags: 0
@@ -4298,7 +4298,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 517068254}
-  - {fileID: 1920932822}
   - {fileID: 1604658770}
   - {fileID: 699103921}
   m_Father: {fileID: 0}
@@ -4312,15 +4311,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 06d015d550f036b4b913270bdb93af0d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.34
+      value: 2.351
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 06d015d550f036b4b913270bdb93af0d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.49
+      value: -1.401
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 06d015d550f036b4b913270bdb93af0d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.69
+      value: 2.714
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 06d015d550f036b4b913270bdb93af0d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4361,6 +4360,14 @@ Prefab:
     - target: {fileID: 100000, guid: 06d015d550f036b4b913270bdb93af0d, type: 3}
       propertyPath: m_Layer
       value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 06d015d550f036b4b913270bdb93af0d, type: 3}
+      propertyPath: m_UseLightProbes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 06d015d550f036b4b913270bdb93af0d, type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 06d015d550f036b4b913270bdb93af0d, type: 3}
@@ -4422,7 +4429,7 @@ Transform:
   - {fileID: 593460099}
   - {fileID: 737942497}
   m_Father: {fileID: 620558789}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1 &728545819 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: ee444772d121acc47a3c20df3a7717a2, type: 3}
@@ -6513,6 +6520,7 @@ GameObject:
   - 4: {fileID: 1348285497}
   - 95: {fileID: 1348285498}
   - 114: {fileID: 1348285499}
+  - 114: {fileID: 1348285500}
   m_Layer: 0
   m_Name: AnimatorEntity
   m_TagString: Untagged
@@ -6530,6 +6538,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.119999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1920932822}
   - {fileID: 576151443}
   m_Father: {fileID: 1886560610}
   m_RootOrder: 0
@@ -6559,6 +6568,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afc4d405440018b4a8630dfc70037d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1348285500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1348285496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fda49b28a1c3224bb1cfc97642ba896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1388036593
@@ -7295,7 +7315,7 @@ RectTransform:
   - {fileID: 1189573392}
   - {fileID: 1947563291}
   m_Father: {fileID: 620558789}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -9200,8 +9220,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1560775062}
-  m_Father: {fileID: 620558789}
-  m_RootOrder: 1
+  m_Father: {fileID: 1348285497}
+  m_RootOrder: 0
 --- !u!81 &1920932823
 AudioListener:
   m_ObjectHideFlags: 0
@@ -9215,7 +9235,7 @@ Behaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1920932821}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!124 &1920932825
 Behaviour:
   m_ObjectHideFlags: 0
@@ -9244,7 +9264,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: 5
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 2147483648

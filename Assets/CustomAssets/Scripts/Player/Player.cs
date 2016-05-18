@@ -1,4 +1,6 @@
 ﻿
+using Assets.CustomAssets.Scripts.Anmation;
+using Assets.CustomAssets.Scripts.Components;
 using Assets.CustomAssets.Scripts.Player.Behaviour;
 using UnityEngine;
 
@@ -13,6 +15,13 @@ namespace Assets.CustomAssets.Scripts.Player {
         public string[] versesSelected = new string[3 * 3];
         private int versesSelectedNext = 0;
 
+        public readonly GameObject gameObject;
+        public readonly Transform coffinSlot;
+        public readonly Transform eyeSight;
+        private static Player instance;
+        private CharacterBehaviour _behaviour;
+        public readonly AnimationCameraComponent cameraAnimation = GameObject.Find("AnimatorEntity").GetComponent<AnimationCameraComponent>();
+
         public void addVerse(string value) {
             versesSelected[versesSelectedNext] = value;
             Debug.Log("first person verse: " + value);
@@ -21,12 +30,6 @@ namespace Assets.CustomAssets.Scripts.Player {
         public void coffinBuriedAction() {
             ++coffinsBuried;
         }
-
-        public readonly GameObject gameObject;
-        public readonly Transform coffinSlot;
-        public readonly Transform eyeSight;
-        private static Player instance;
-        private CharacterBehaviour _behaviour;
 
         public static Player getInstance() {
             if (instance == null) {
@@ -52,8 +55,8 @@ namespace Assets.CustomAssets.Scripts.Player {
             set { _behaviour.cinematicMode(value); }
         }
 
-        public void doMovementDisplacement() {
-            
+        public void doMovementDisplacement(Transform destination) {
+            cameraAnimation.moveTo(destination);
         }
     }
 }

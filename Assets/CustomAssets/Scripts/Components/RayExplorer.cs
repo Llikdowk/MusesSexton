@@ -151,6 +151,7 @@ namespace Assets.CustomAssets.Scripts {
             GameObject playerPosition = new GameObject("PlayerPosition");
             playerPosition.transform.parent = parent.transform;
             playerPosition.transform.localPosition = new Vector3(0.20f, 1.30f, -2.02f);
+            Player.Player.getInstance().doMovementDisplacement(playerPosition.transform);
 
         }
 
