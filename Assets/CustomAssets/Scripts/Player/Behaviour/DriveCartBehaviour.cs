@@ -15,7 +15,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private float t0speedDown = 0f;
         private float currentSpeed = 0f;
         //private const float initialSpeed = .35f;
-        private const float acceleration = .1f;
+        private const float acceleration = .01f;
         private const float deceleration = .2f;
         private const float maxSpeed = .125f;
         private bool timeSpeedUpRegistered = false;
