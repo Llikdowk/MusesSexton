@@ -41,8 +41,8 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         }
 
         public override void destroy() {
-            Camera.main.transform.position = originalCameraPos;
-            Camera.main.transform.eulerAngles = originalCameraRotation;
+            //Camera.main.transform.position = originalCameraPos;
+            //Camera.main.transform.eulerAngles = originalCameraRotation;
             Cursor.lockState = cursorStateBackup;
             Cursor.visible = false;
         }

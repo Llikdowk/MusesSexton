@@ -106,24 +106,25 @@ namespace Assets.CustomAssets.Scripts {
             playerPosition.transform.parent = parent.transform;
             playerPosition.transform.localPosition = new Vector3(0.20f, 1.30f, -2.02f);
             Player.Player player = Player.Player.getInstance();
-            //player.setDigBehaviour(new );
-            //endAnimationCallback fun = player.applyDigBehaviour;
 
             DigBehaviour playerDigBehaviour = new DigBehaviour(player.gameObject);
+
             endAnimationCallback lfun = () => {
                 player.behaviour = playerDigBehaviour;
+                AnimationUtils.launchDig();
             };
 
             endAnimationCallback lfun2 = () => {
-                deployTombAssets(parent, sizeX, sizeY, sizeZ, out plane, out heap, out tombstone);
+                trigger_hollow_behaviours  t = deployTombAssets(parent, sizeX, sizeY, sizeZ, out plane, out heap, out tombstone);
                 playerDigBehaviour.init(plane, heap, tombstone);
+                t.fullHollow = true;
             };
 
             Player.Player.getInstance().doMovementDisplacement(playerPosition.transform, lfun, clickToCarve.doAction, lfun2);
 
         }
 
-        private void deployTombAssets(GameObject parent, int sizeX, int sizeY, int sizeZ, out GameObject plane, out GameObject heap, out GameObject tombstone) {
+        private trigger_hollow_behaviours deployTombAssets(GameObject parent, int sizeX, int sizeY, int sizeZ, out GameObject plane, out GameObject heap, out GameObject tombstone) {
             BoxCollider bc = parent.AddComponent<BoxCollider>();
             Vector3 v = new Vector3(sizeX * 1.5f, sizeY * 1.5f, sizeZ * 1.5f);
             bc.size = v;
@@ -158,7 +159,7 @@ namespace Assets.CustomAssets.Scripts {
 
             heap.transform.parent = parent.transform;
             heap.transform.localScale = new Vector3(1.00f, 0.21f, 1.00f);
-            heap.transform.localPosition = new Vector3(-3.37f, -0.05f, 0.31f); //lastOffset: new Vector3(-3.37f, 0.24f, 0.31f); // Vector3.zero + sizeX / 2f * Vector3.right + Vector3.up;
+            heap.transform.localPosition = new Vector3(3.37f, -0.05f, 0.31f); //lastOffset: new Vector3(-3.37f, 0.24f, 0.31f); // Vector3.zero + sizeX / 2f * Vector3.right + Vector3.up;
             MeshRenderer mr = plane.GetComponent<MeshRenderer>();
             mr.material = groundGrave;
 
@@ -170,7 +171,7 @@ namespace Assets.CustomAssets.Scripts {
 
             trigger_hollow_behaviours t = triggerThrowCoffin.AddComponent<trigger_hollow_behaviours>();
             t.init(AnimationUtils.createThrowCoffinCurve(), parent.transform, plane, heap, tombstone);
-
+            return t;
         }
 
         private bool calcMinHollowHeight(RaycastHit hit, out float yOffset) {

@@ -16,7 +16,7 @@ public class trigger_hollow_behaviours : MonoBehaviour {
     private bool coroutineEnd = false;
     private bool hasCoffinInside = false;
     private bool hasAlreadyEnterPoem = false;
-    private bool fullHollow = false; // TODO! -> needs to be put TRUE somewhere!
+    public bool fullHollow = false; // TODO! -> needs to be put TRUE somewhere!
 
     public void init(AnimationCurve curve, Transform node, GameObject groundFloor, GameObject heap, GameObject tombstone) {
         this.curve = curve;
