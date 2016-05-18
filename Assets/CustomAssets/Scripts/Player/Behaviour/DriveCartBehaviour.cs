@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
 using Assets.CustomAssets.Scripts.CustomInput;
-using Assets.CustomAssets.Scripts.Player.Behaviour;
 using UnityEngine;
-using UnityStandardAssets.Characters.FirstPerson;
-using MouseLook = Assets.CustomAssets.Scripts.Components.MouseLook;
+using Assets.CustomAssets.Scripts.Components;
 
 namespace Assets.CustomAssets.Scripts.Player.Behaviour {
     public class DriveCartBehaviour : CharacterBehaviour {
@@ -15,34 +10,38 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private static readonly Vector3 playerOffset = Vector3.zero; //new Vector3(-.6f, .3f, -4.8f);
 
         private readonly CharacterController characterController;
-        private const float stepRotation = 22.5f;
+        private const float stepRotation = 90f;
         private float t0speedUp = 0f;
         private float t0speedDown = 0f;
         private float currentSpeed = 0f;
-        private const float initialSpeed = .5f;
-        private const float acceleration = .25f;
-        private const float deceleration = .5f;
-        private const float maxSpeed = .1f;
-        private const float gravity = 0.0981f;
+        //private const float initialSpeed = .35f;
+        private const float acceleration = .1f;
+        private const float deceleration = .2f;
+        private const float maxSpeed = .125f;
         private bool timeSpeedUpRegistered = false;
         private bool timeSpeedDownRegistered = false;
-        private readonly MouseLook mouseLook;
-        private Vector3 direction;
-        //from fpscontroller:
-        private float radius = 2f;
-        private float height = 2f;
+        private readonly FirstPersonController fps;
 
         public DriveCartBehaviour(GameObject character) : base(character) {
             Debug.Log("DRIVING!");
             //cart.transform.parent = character.transform;
-            mouseLook = new MouseLook();
+            //mouseLook = new MouseLook();
+            characterController = character.GetComponent<CharacterController>();
+
+            fps = character.AddComponent<FirstPersonController>();
+            var mouseLook = fps.m_MouseLook;
+            configureController();
             mouseLook.Init(character.transform, Camera.main.transform);
             mouseLook.XSensitivity = 1f;
             mouseLook.YSensitivity = 1f;
             mouseLook.smooth = true;
-            characterController = character.GetComponent<CharacterController>();
-            direction = cart.transform.forward;
+        }
 
+        private void configureController() {
+            fps.m_WalkSpeed = 0;
+            fps.m_RunSpeed = 0;
+            fps.m_JumpSpeed = 0;
+            fps.m_GravityMultiplier = 1;
         }
 
         public override void cinematicMode(bool enabled) {
@@ -50,13 +49,14 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         }
 
         public override void destroy() {
+            UnityEngine.Object.Destroy(fps);
             cart.transform.parent = null;
         }
 
         public override void run() {
             checkStateChange();
 
-            mouseLook.LookRotation(character.transform, Camera.main.transform);
+            //mouseLook.LookRotation(character.transform, Camera.main.transform);
             movementUpdate();
         }
 
@@ -69,18 +69,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private void movementUpdate() {
 
             cartUpdatePosition();
-
-            RaycastHit hitInfo;
-            if (Physics.SphereCast(character.transform.position, radius, Vector3.down, out hitInfo,
-                               height / 2f, ~0, QueryTriggerInteraction.Ignore)) {
-                direction = (Vector3.ProjectOnPlane(forwardCart.transform.forward, hitInfo.normal).normalized - Vector3.up* gravity).normalized;
-                //Vector3 localPlayerPos = character.transform.localPosition;
-                //TODO: ROTATE VERTICAL ACCORDING TO THE NORMAL
-            } else {
-                direction = (Vector3.up* gravity*Time.deltaTime).normalized * 2f; //fixme
-                
-            }
-
+                        
             if (GameActions.checkAction(Action.FORWARD, Input.GetKey)) {
                 moveLeftRightCheck();
                 timeSpeedDownRegistered = false;
@@ -111,35 +100,27 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         }
 
         private void moveLeftRightCheck() {
-            // WORK ON THIS!
+            
             if (GameActions.checkAction(Action.LEFT, Input.GetKey)) {
-                //direction += -forwardCart.transform.right * stepRotation;
                 Vector3 localPlayerPos = character.transform.localPosition;
-                cart.transform.RotateAround(localPlayerPos, cart.transform.up, -stepRotation * Time.deltaTime);
-            }
-            else if (GameActions.checkAction(Action.LEFT, Input.GetKeyUp)) {
-                //direction = forwardCart.transform.forward;
+                cart.transform.RotateAround(localPlayerPos, cart.transform.up, -stepRotation * currentSpeed * 2f * Time.deltaTime);
             }
             if (GameActions.checkAction(Action.RIGHT, Input.GetKey)) {
-                //direction += forwardCart.transform.right * stepRotation;
                 Vector3 localPlayerPos = character.transform.localPosition;
-                cart.transform.RotateAround(localPlayerPos, cart.transform.up, stepRotation * Time.deltaTime);
-            }
-            else if (GameActions.checkAction(Action.RIGHT, Input.GetKeyUp)) {
-                //direction = forwardCart.transform.forward;
+                cart.transform.RotateAround(localPlayerPos, cart.transform.up, stepRotation * currentSpeed * 2f * Time.deltaTime);
             }
         }
 
         private void moveForward() {
             float t = Time.time - t0speedUp;
-            currentSpeed = Mathf.Min(maxSpeed, initialSpeed * acceleration * t * t);
-            character.transform.position += direction * currentSpeed;
+            currentSpeed = Mathf.Min(maxSpeed, currentSpeed + acceleration * t * t);
+            character.transform.position += forwardCart.transform.forward * currentSpeed;
         }
 
         private void decelerateForward() {
             float t = Time.time - t0speedDown;
-            currentSpeed -= Mathf.Max(0, currentSpeed*deceleration * t * t);
-            character.transform.position += direction * currentSpeed;
+            currentSpeed = Mathf.Max(0, currentSpeed - deceleration * t * t);
+            character.transform.position += forwardCart.transform.forward * currentSpeed;
         }
     }
 }
