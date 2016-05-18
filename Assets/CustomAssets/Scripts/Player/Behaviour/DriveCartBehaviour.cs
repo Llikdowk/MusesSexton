@@ -10,7 +10,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private static readonly Vector3 playerOffset = Vector3.zero; //new Vector3(-.6f, .3f, -4.8f);
 
         private readonly CharacterController characterController;
-        private const float stepRotation = 90f;
+        private const float stepRotation = 160f;
         private float t0speedUp = 0f;
         private float t0speedDown = 0f;
         private float currentSpeed = 0f;
@@ -96,7 +96,25 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         }
 
         private void cartUpdatePosition() {
+            Ray ray = new Ray(character.transform.position - cart.transform.forward*4f, Vector3.down);
+            Debug.DrawRay(ray.origin, ray.direction, Color.magenta);
+            RaycastHit hit;
+            Vector3 resultCart = cart.transform.forward;
+            if (Physics.Raycast(ray, out hit, 100.0f)) {
+                resultCart = Vector3.Lerp(cart.transform.forward, Vector3.ProjectOnPlane(cart.transform.forward, hit.normal).normalized, .1f);
+            }
+
+            //cart.transform.forward
+            Vector3 resultChar = cart.transform.forward;
+            ray = new Ray(character.transform.position, Vector3.down);
+            if (Physics.Raycast(ray, out hit, 100.0f)) {
+                resultChar = Vector3.Lerp(cart.transform.forward, Vector3.ProjectOnPlane(cart.transform.forward, hit.normal).normalized, .1f);
+            }
+
+            cart.transform.forward = Vector3.Lerp(resultCart, resultChar, .25f);
+
             cart.transform.position = character.transform.localPosition + playerOffset;
+
         }
 
         private void moveLeftRightCheck() {

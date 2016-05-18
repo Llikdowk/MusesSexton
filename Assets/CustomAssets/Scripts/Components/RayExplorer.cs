@@ -159,7 +159,7 @@ namespace Assets.CustomAssets.Scripts {
 
             heap.transform.parent = parent.transform;
             heap.transform.localScale = new Vector3(1.00f, 0.21f, 1.00f);
-            heap.transform.localPosition = new Vector3(3.37f, -0.05f, 0.31f); //lastOffset: new Vector3(-3.37f, 0.24f, 0.31f); // Vector3.zero + sizeX / 2f * Vector3.right + Vector3.up;
+            heap.transform.localPosition = new Vector3(-.00f, -0.04f, -4.8f); //lastOffset: new Vector3(-3.37f, 0.24f, 0.31f); // Vector3.zero + sizeX / 2f * Vector3.right + Vector3.up;
             MeshRenderer mr = plane.GetComponent<MeshRenderer>();
             mr.material = groundGrave;
 
