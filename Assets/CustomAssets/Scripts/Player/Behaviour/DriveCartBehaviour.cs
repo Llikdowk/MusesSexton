@@ -42,6 +42,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             fps.m_RunSpeed = 0;
             fps.m_JumpSpeed = 0;
             fps.m_GravityMultiplier = 1;
+            fps.speed_from_outside = true;
         }
 
         public override void cinematicMode(bool enabled) {
@@ -57,6 +58,17 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             checkStateChange();
 
             //mouseLook.LookRotation(character.transform, Camera.main.transform);
+            /*
+            Ray ray = new Ray(character.transform.position, Vector3.ProjectOnPlane(cart.transform.forward, Vector3.up).normalized);
+            Debug.DrawLine(ray.origin, ray.origin + ray.direction*5f);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 2.5f)) {
+                if (Vector3.Dot(hit.normal, Vector3.up) > .75f) {
+                    return; // cause complete block
+                }
+            }
+            */
+            //fps.speed = currentSpeed;
             movementUpdate();
         }
 

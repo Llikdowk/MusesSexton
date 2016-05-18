@@ -166,7 +166,7 @@ namespace Assets.CustomAssets.Scripts {
             tombstone = Object.Instantiate(tombstoneAsset);
             tombstone.transform.parent = parent.transform;
             tombstone.transform.localEulerAngles = new Vector3(0, -90, 0);
-            tombstone.transform.localPosition = new Vector3(0, -2.25f, 3.00f);
+            tombstone.transform.localPosition = new Vector3(0, -2.25f, 3.50f);
             tombstone.AddComponent<TombstoneController>();
 
             trigger_hollow_behaviours t = triggerThrowCoffin.AddComponent<trigger_hollow_behaviours>();

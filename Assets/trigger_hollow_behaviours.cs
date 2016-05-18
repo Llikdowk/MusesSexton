@@ -43,7 +43,8 @@ public class trigger_hollow_behaviours : MonoBehaviour {
             if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && fullHollow) {
                 setup();
                 if (!hasCoffinInside && coffin != null) {
-                    StartCoroutine(doAction());
+                    
+                    //StartCoroutine(doAction());
                 }
             }
             if (coroutineEnd) {
@@ -80,7 +81,6 @@ public class trigger_hollow_behaviours : MonoBehaviour {
     }
 
     private IEnumerator doAction() {
-        Player.getInstance().cinematic = true;
         float t = 0;
         while (t < 1f) {
             float c = curve.Evaluate(t);
@@ -94,13 +94,13 @@ public class trigger_hollow_behaviours : MonoBehaviour {
     }
 
     private void doFinalAction() {
+        //coffin.GetComponent<Rigidbody>().isKinematic = true;
         coffin = null;
         Player.getInstance().cinematic = false;
         Player.getInstance().behaviour = new ExploreWalkBehaviour(Player.getInstance().gameObject);
         hasCoffinInside = true;
         coroutineEnd = false;
         Debug.LogWarning("CAUTION! THIS BODY IS NO LONGER KINEMATIC!");
-        //coffin.GetComponent<Rigidbody>().isKinematic = true;
     }
     
 }
