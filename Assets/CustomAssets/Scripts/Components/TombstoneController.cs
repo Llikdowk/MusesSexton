@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class TombstoneController : MonoBehaviour {
@@ -15,11 +16,18 @@ public class TombstoneController : MonoBehaviour {
         transform.position += Vector3.up;
     }
 
-    private string split(string text, int index) {
-        if (index == 0 && text.Length < 18) return text;
-        if (index != 0 && text.Length < 28) return text;
+    private static string split(string text, int index) {
+        if (index == 0) {
+            if (text.Length < 18) return text;
 
-        int splitIndex = text.IndexOf(" ", text.Length / 2);
-        return text.Substring(0, splitIndex) + '\n' + text.Substring(splitIndex+1);
+            int splitIndex = text.IndexOf(" ", text.Length / 2, StringComparison.Ordinal);
+            return text.Substring(0, splitIndex) + '\n' + text.Substring(splitIndex + 1);
+        }
+        else {
+            if (text.Length < 28) return text;
+
+            int splitIndex = text.LastIndexOf(" ", text.Length / 2, StringComparison.Ordinal);
+            return text.Substring(0, splitIndex) + '\n' + text.Substring(splitIndex + 1);
+        }
     }
 }

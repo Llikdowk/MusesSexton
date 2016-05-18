@@ -51,5 +51,9 @@ namespace Assets.CustomAssets.Scripts.Player {
             get { return CharacterBehaviour.cinematic; }
             set { _behaviour.cinematicMode(value); }
         }
+
+        public void doMovementDisplacement() {
+            
+        }
     }
 }

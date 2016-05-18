@@ -148,6 +148,9 @@ namespace Assets.CustomAssets.Scripts {
             trigger_hollow_behaviours t = triggerThrowCoffin.AddComponent<trigger_hollow_behaviours>();
             t.init(AnimationUtils.createThrowCoffinCurve(), parent.transform, plane, heap, tombstone);
 
+            GameObject playerPosition = new GameObject("PlayerPosition");
+            playerPosition.transform.parent = parent.transform;
+            playerPosition.transform.localPosition = new Vector3(0.20f, 1.30f, -2.02f);
 
         }
 

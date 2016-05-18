@@ -96,6 +96,7 @@ public class trigger_hollow_behaviours : MonoBehaviour {
         hasCoffinInside = true;
         coroutineEnd = false;
         Debug.LogWarning("CAUTION! THIS BODY IS NO LONGER KINEMATIC!");
+        //coffin.GetComponent<Rigidbody>().isKinematic = true;
     }
     
 }
