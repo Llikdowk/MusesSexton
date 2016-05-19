@@ -18,6 +18,8 @@ obj/
 *.user
 *.unityproj
 *.booproj
+Cubiquity.log
+Assets/StreamingAssets/Cubiquity/VoxelDatabases/
 
 # ============ #
 # OS generated #
