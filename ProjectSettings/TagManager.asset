@@ -12,6 +12,7 @@ TagManager:
   - landmark
   - poemLetters
   - doNothing
+  - orb
   layers:
   - Default
   - TransparentFX

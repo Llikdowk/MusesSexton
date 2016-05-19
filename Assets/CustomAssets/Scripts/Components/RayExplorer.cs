@@ -21,7 +21,7 @@ namespace Assets.CustomAssets.Scripts {
         private Ray ray;
         private float time_created = 0f;
         private const float startDelay = .25f;
-        private const int mask = ~(1<<9 + 1<<8);
+        private const int mask = ~(1<<9 | 1<<8);
 
         private Vector3i hollowAreaSize;
         private float hollowYOffset;
@@ -182,7 +182,7 @@ namespace Assets.CustomAssets.Scripts {
             Debug.DrawRay(heapYLevelRay.origin, heapYLevelRay.direction, Color.yellow, 15.0f);
             RaycastHit heapYLevelHit;
             float heapYLevel = -100.0f;
-            if (Physics.Raycast(heapYLevelRay, out heapYLevelHit, 100.0f, ~(1 << 14))) {
+            if (Physics.Raycast(heapYLevelRay, out heapYLevelHit, 100.0f, ~(1 << 14 | 1 << 10))) {
                 heapYLevel = heapYLevelHit.point.y;
             } else {
                 Debug.LogError("not heap Y offset found!");
