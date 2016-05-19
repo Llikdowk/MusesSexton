@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Assets.CustomAssets.Scripts.Components;
 using Assets.CustomAssets.Scripts.CustomInput;
 using UnityEngine;
-using UnityStandardAssets.Characters.FirstPerson;
 using MouseLook = Assets.CustomAssets.Scripts.Components.MouseLook;
 
 namespace Assets.CustomAssets.Scripts.Player.Behaviour {
@@ -51,7 +48,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             mouseLook.YSensitivity = 1f;
             mouseLook.smooth = true;
             this.graveHollow = graveHollow;
-            superTextSet.updateTextSetGenders();
+            //superTextSet.updateTextSetGenders();
             this.tombstone = tombstone.GetComponent<TombstoneController>();
         }
 
@@ -78,7 +75,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     if (!textDisplayed && hit.collider.gameObject.tag == "landmark") {
                         GameObject textSet = hit.collider.gameObject.transform.parent.GetChild(0).gameObject;
                         textSetComponent = textSet.GetComponent<TextSetComponent>();
-                        textSetComponent.doGoToPlayer(Player.getInstance().eyeSight);
+                        textSetComponent.moveAllOrbsTo(Player.getInstance().gameObject.transform);
                         Debug.Log("LANDMARK CLICKED");
                         textDisplayed = true;
                     }
@@ -86,16 +83,17 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                         Debug.Log("TEXT SELECTED is " + hit.collider.gameObject.name);
                         GameObject aux = hit.collider.gameObject;
                         int n = (int)Char.GetNumericValue(aux.name[aux.name.Length - 1]);
-                        textSetComponent.doGoToOrigin(n, graveHollow);
+                        //textSetComponent.doGoToOrigin(n, graveHollow);
+                        textSetComponent.moveAllOrbsToOrigin();
                         textSetComponent.updatePlayerState(n);
-                        superTextSet.updateTextSetGenders();
+                        //superTextSet.updateTextSetGenders();
                         textDisplayed = false;
                         //textTombstone[currentVerseSelected].text = textSetComponent.getTextOf(n);
                         tombstone.goUp(textSetComponent.getTextOf(n), currentVerseSelected);
                         ++currentVerseSelected;
                     }
                     else if (textDisplayed) {
-                        textSetComponent.doGoToOrigin(-1, graveHollow);
+                        //textSetComponent.doGoToOrigin(-1, graveHollow);
                         textDisplayed = false;
                     }
                 }
@@ -103,7 +101,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                 if (textDisplayed && hit.collider.gameObject.tag == "poemLetters") {
                     VerseTextComponent t = hit.collider.gameObject.GetComponent<VerseTextComponent>();
                     lastTextColorChanged.Push(t);
-                    t.setOverColor();
+                    //t.setOverColor();
                     textColored = true;
                 }
                 else if (textColored) {
@@ -115,8 +113,9 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     cleanTextColor();
                 }
                 if (textDisplayed && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
-                        textSetComponent.doGoToOrigin(-1, graveHollow);
-                        textDisplayed = false;
+                    //textSetComponent.doGoToOrigin(-1, graveHollow);
+                    textSetComponent.moveAllOrbsToOrigin();
+                    textDisplayed = false;
                 }
             }
         }
@@ -124,7 +123,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private void cleanTextColor() {
             while (lastTextColorChanged.Count > 0) {
                 VerseTextComponent t = lastTextColorChanged.Pop();
-                t.setNormalColor();
+                //t.setNormalColor();
             }
         }
 

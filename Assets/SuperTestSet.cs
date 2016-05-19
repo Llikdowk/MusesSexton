@@ -13,9 +13,11 @@ public class SuperTestSet : MonoBehaviour {
         }
     }
 
+    /*
     public void updateTextSetGenders() {
         foreach (TextSetComponent t in allTextSets) {
             t.updateTextGenders();
         }
     }
+    */
 }
