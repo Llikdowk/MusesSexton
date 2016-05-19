@@ -38,6 +38,7 @@ public class trigger_hollow_behaviours : MonoBehaviour {
 
     public void OnTriggerStay (Collider c) {
         if (c.tag != "Player") return;
+        if (Player.getInstance().cinematic) return;
         if (Player.getInstance().behaviour.GetType() == typeof(CoffinDragBehaviour)) {
             UIUtils.infoInteractive.text = "click to throw!";
             if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && fullHollow) {

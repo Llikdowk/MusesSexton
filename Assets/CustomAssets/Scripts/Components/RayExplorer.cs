@@ -16,6 +16,7 @@ namespace Assets.CustomAssets.Scripts {
         public Terrain terrain;
 
         public GameObject voxelTerrain;
+        private TerrainVolume terrainVolume;
         private ClickToCarveTerrainVolume clickToCarve;
 
         private TerrainData terrainData;
@@ -27,7 +28,7 @@ namespace Assets.CustomAssets.Scripts {
 
         private Vector3i hollowAreaSize;
         private float hollowYOffset;
-        private const float maxYOffsetAllowed = .5f;
+        private const float maxYOffsetAllowed = 1.5f;
         private bool restrictionsPassed = false;
         private GameObject impacted;
 
@@ -45,6 +46,7 @@ namespace Assets.CustomAssets.Scripts {
 
         public void Start () {
             time_created = Time.time;
+            terrainVolume = voxelTerrain.GetComponent<TerrainVolume>();
             clickToCarve = voxelTerrain.GetComponent<ClickToCarveTerrainVolume>();
             hollowAreaSize = new Vector3i(clickToCarve.rangeX, clickToCarve.rangeY, clickToCarve.rangeZ);
         }
@@ -59,6 +61,7 @@ namespace Assets.CustomAssets.Scripts {
 
         public void Update () {
             if (Time.time - time_created < startDelay) return;
+            if (Player.Player.getInstance().cinematic) return;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //PickSurfaceResult pickResult;
             //bool hashit = Picking.PickSurface(voxelTerrain.GetComponent<TerrainVolume>(), ray, maxDistance, out pickResult);
@@ -75,7 +78,7 @@ namespace Assets.CustomAssets.Scripts {
                         if (checkDiggingRestrictions(hit)) {
                             restrictionsPassed = true;
                             if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
-                                createHollowEntity(hollowAreaSize.x + 1, hollowAreaSize.y + 1, hollowAreaSize.z + 1);
+                                createHollowEntity(ray, hollowAreaSize.x + 1, hollowAreaSize.y + 1, hollowAreaSize.z + 1);
                             }
                         }
                     }
@@ -98,13 +101,34 @@ namespace Assets.CustomAssets.Scripts {
             return calcMinHollowHeight(hit, out hollowYOffset);
         }
 
-        private void createHollowEntity(int sizeX, int sizeY, int sizeZ) {
+        private float findHollowLimitZOffset(Vector3 hitPoint, int sizeZ) {
+            RaycastHit hit;
+            for (float z = 0.0f; z < sizeZ; z += .01f) {
+                Ray ray = new Ray(hitPoint + new Vector3(0, 1, -z), Vector3.down);
+                Debug.DrawRay(ray.origin, ray.direction, Color.cyan, 5.0f);
+                Physics.Raycast(ray, out hit, 100f);
+                if (hit.collider.gameObject.tag != "groundGrave") {
+                    return Mathf.Abs(hitPoint.z - hit.point.z);
+                }
+            }
+
+            return 0.0f;
+        }
+
+        private void createHollowEntity(Ray ray, int sizeX, int sizeY, int sizeZ) {
+            //PickSurfaceResult hit;
+            //Picking.PickSurface(terrainVolume, ray, maxDistance, out hit);
+            Physics.Raycast(ray, out hit, maxDistance, mask);
+
+            float zOffset = findHollowLimitZOffset(hit.point, sizeZ);
+
             GameObject parent = new GameObject("Grave");
+            //Vector3 playerMargin = new Vector3(0, 0, zOffset - .5f);
             parent.transform.position = hit.point - new Vector3(sizeX / 2f, 0, sizeZ / 2f);
             GameObject plane, heap, tombstone;
             GameObject playerPosition = new GameObject("PlayerPosition");
             playerPosition.transform.parent = parent.transform;
-            playerPosition.transform.localPosition = new Vector3(0.20f, 1.30f, -2.02f);
+            playerPosition.transform.localPosition = new Vector3(0.20f, 1.30f, -3.02f);
             Player.Player player = Player.Player.getInstance();
 
             DigBehaviour playerDigBehaviour = new DigBehaviour(player.gameObject);
@@ -112,19 +136,17 @@ namespace Assets.CustomAssets.Scripts {
             endAnimationCallback lfun = () => {
                 player.behaviour = playerDigBehaviour;
                 AnimationUtils.launchDig();
-            };
-
-            endAnimationCallback lfun2 = () => {
-                trigger_hollow_behaviours  t = deployTombAssets(parent, sizeX, sizeY, sizeZ, out plane, out heap, out tombstone);
+                clickToCarve.doAction(ray);
+                trigger_hollow_behaviours t = deployTombAssets(playerPosition.transform, parent, sizeX, sizeY, sizeZ, out plane, out heap, out tombstone);
                 playerDigBehaviour.init(plane, heap, tombstone);
                 t.fullHollow = true;
             };
 
-            Player.Player.getInstance().doMovementDisplacement(playerPosition.transform, lfun, clickToCarve.doAction, lfun2);
+            Player.Player.getInstance().doMovementDisplacement(playerPosition.transform, lfun);
 
         }
 
-        private trigger_hollow_behaviours deployTombAssets(GameObject parent, int sizeX, int sizeY, int sizeZ, out GameObject plane, out GameObject heap, out GameObject tombstone) {
+        private trigger_hollow_behaviours deployTombAssets(Transform playerPosition, GameObject parent, int sizeX, int sizeY, int sizeZ, out GameObject plane, out GameObject heap, out GameObject tombstone) {
             BoxCollider bc = parent.AddComponent<BoxCollider>();
             Vector3 v = new Vector3(sizeX * 1.5f, sizeY * 1.5f, sizeZ * 1.5f);
             bc.size = v;
@@ -159,14 +181,25 @@ namespace Assets.CustomAssets.Scripts {
 
             heap.transform.parent = parent.transform;
             heap.transform.localScale = new Vector3(1.00f, 0.21f, 1.00f);
-            heap.transform.localPosition = new Vector3(-.00f, -0.04f, -4.8f); //lastOffset: new Vector3(-3.37f, 0.24f, 0.31f); // Vector3.zero + sizeX / 2f * Vector3.right + Vector3.up;
+
+            Ray heapYLevelRay = new Ray(playerPosition.position + Vector3.up, Vector3.down);
+            Debug.DrawRay(heapYLevelRay.origin, heapYLevelRay.direction, Color.yellow, 15.0f);
+            RaycastHit heapYLevelHit;
+            float heapYLevel = -100.0f;
+            if (Physics.Raycast(heapYLevelRay, out heapYLevelHit, 100.0f, ~(1 << 14))) {
+                heapYLevel = heapYLevelHit.point.y;
+            } else {
+                Debug.LogError("not heap Y offset found!");
+            }
+            heap.transform.localPosition = new Vector3(1.8f, 0.0f, -3.5f); //lastOffset: new Vector3(-3.37f, 0.24f, 0.31f); // Vector3.zero + sizeX / 2f * Vector3.right + Vector3.up;
+            heap.transform.position = new Vector3(heap.transform.position.x, heapYLevel - .1f, heap.transform.position.z);
             MeshRenderer mr = plane.GetComponent<MeshRenderer>();
             mr.material = groundGrave;
 
             tombstone = Object.Instantiate(tombstoneAsset);
             tombstone.transform.parent = parent.transform;
             tombstone.transform.localEulerAngles = new Vector3(0, -90, 0);
-            tombstone.transform.localPosition = new Vector3(0, -2.25f, 3.50f);
+            tombstone.transform.localPosition = new Vector3(0, -2.25f, 3.8f);
             tombstone.AddComponent<TombstoneController>();
 
             trigger_hollow_behaviours t = triggerThrowCoffin.AddComponent<trigger_hollow_behaviours>();
@@ -202,9 +235,9 @@ namespace Assets.CustomAssets.Scripts {
             allVectors[3] = v + downLeft;
 
             allVectors[4] = v + 2f*up;
-            allVectors[5] = v + 2f*left;
-            allVectors[6] = v + 2f*right;
-            allVectors[7] = v + 2f*down;
+            allVectors[5] = v + 1.5f*left;
+            allVectors[6] = v + 1.5f*right;
+            allVectors[7] = v + 2.5f*down;
 
             foreach (Vector3 t in allVectors) {
                 offsetRay = new Ray(t, Vector3.down);
@@ -218,12 +251,12 @@ namespace Assets.CustomAssets.Scripts {
                     }
 
                     if (maxY - minY > maxYOffsetAllowed) {
-                        yOffset = 0.0f;
+                        yOffset = minY;
                         return false;
                     }
                     //Debug.Log("maxY set: " + maxY + " minY set: " + minY);
                 } else {
-                    yOffset = 0.0f;
+                    yOffset = minY;
                     return false;
                 }
             }
