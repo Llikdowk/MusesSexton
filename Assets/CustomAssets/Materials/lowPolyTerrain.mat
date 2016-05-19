@@ -25,10 +25,6 @@ Material:
     m_Floats:
       data:
         first:
-          name: _Amount
-        second: 0.36
-      data:
-        first:
           name: _albedo
         second: 1
       data:
@@ -55,6 +51,10 @@ Material:
         first:
           name: _fresnelConvexity
         second: 0
+      data:
+        first:
+          name: _Amount
+        second: 0.36
     m_Colors:
       data:
         first:

@@ -1,11 +1,37 @@
 ********************************************************************************
 *                             Initializing Cubiquity                           *
 ********************************************************************************
-[12:12:59, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[12:15:53, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[12:16:45, Info   ]: Creating empty voxel database as 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
-[12:17:46, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
-[12:17:57, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
-[12:17:59, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
-[12:18:25, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
-[12:23:28, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
+[13:10:04, Info   ]: Creating voxel database from 'E:/Unity Projects/Muses Sexton/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
+[13:18:58, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[13:18:59, Info   ]: Creating voxel database from 'E:/Unity Projects/Muses Sexton/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
+[13:42:58, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[13:42:58, Info   ]: Creating voxel database from 'E:/Unity Projects/Muses Sexton/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
+[13:44:16, Info   ]: Creating voxel database from 'E:/Unity Projects/Muses Sexton/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
+[13:50:03, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[13:50:04, Info   ]: Creating voxel database from 'E:/Unity Projects/Muses Sexton/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
+[13:52:55, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[13:52:55, Info   ]: Creating voxel database from 'E:/Unity Projects/Muses Sexton/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
+[14:03:19, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[14:03:20, Info   ]: Creating voxel database from 'E:/Unity Projects/Muses Sexton/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
+[14:05:31, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[14:05:31, Info   ]: Creating voxel database from 'E:/Unity Projects/Muses Sexton/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
+[14:24:27, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[14:24:29, Info   ]: Creating voxel database from 'E:/Unity Projects/Muses Sexton/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
+[14:28:54, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[14:28:54, Info   ]: Creating voxel database from 'E:/Unity Projects/Muses Sexton/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
+[19:01:21, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[19:01:22, Info   ]: Creating voxel database from 'E:/Unity Projects/Muses Sexton/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
+[19:03:38, Info   ]: Creating voxel database from 'E:/Unity Projects/Muses Sexton/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
+[19:05:06, Info   ]: Creating voxel database from 'E:/Unity Projects/Muses Sexton/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
+[19:09:26, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[19:09:26, Info   ]: Creating voxel database from 'E:/Unity Projects/Muses Sexton/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
+[19:10:17, Info   ]: Creating voxel database from 'E:/Unity Projects/Muses Sexton/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
+[19:22:36, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[19:22:36, Info   ]: Creating voxel database from 'E:/Unity Projects/Muses Sexton/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
+[20:00:08, Info   ]: Creating voxel database from 'E:/Unity Projects/Muses Sexton/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
+[20:18:41, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
+[20:18:42, Info   ]: Creating voxel database from 'E:/Unity Projects/Muses Sexton/Assets/StreamingAssets/Cubiquity/VoxelDatabases/0B7DB542.vdb'
+********************************************************************************
+*                             Shutting down Cubiquity                          *
+********************************************************************************
+
