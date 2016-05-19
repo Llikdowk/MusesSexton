@@ -29,8 +29,10 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private bool hasEnded = false;
         private SuperTestSet superTextSet = GameObject.Find("LandmarkSet").GetComponent<SuperTestSet>();
         private int currentVerseSelected = 0;
+        private AnimationCameraComponent cameraAnimationComponent;
 
         private readonly TombstoneController tombstone;
+        private bool fovChanged = false;
 
 
         public PoemBehaviour(GameObject character, Transform graveHollow, GameObject tombstone) : base(character) {
@@ -52,6 +54,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             this.graveHollow = graveHollow;
             //superTextSet.updateTextSetGenders();
             this.tombstone = tombstone.GetComponent<TombstoneController>();
+            this.cameraAnimationComponent = Player.getInstance().gameObject.transform.GetChild(0).GetComponent<AnimationCameraComponent>();
         }
 
 
@@ -73,18 +76,31 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             if (Physics.Raycast(ray, out hit, maxDistance, currentMask)) {
                 Debug.DrawRay(Player.getInstance().eyeSight.position, hit.point - Player.getInstance().eyeSight.position, Color.magenta);
 
-                if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
-                    if (hit.collider.gameObject.tag == "landmark") {
-                        GameObject textSet = hit.collider.gameObject.transform.parent.GetChild(0).gameObject;
-                        textSetComponent = textSet.GetComponent<TextSetComponent>();
+                if (hit.collider.gameObject.tag == "landmark") {
+                    Vector3 v = hit.point;
+                    Vector3 center = hit.transform.parent.position;
+                    v = Vector3.ProjectOnPlane(v, Camera.main.transform.forward);
+                    center = Vector3.ProjectOnPlane(center, Camera.main.transform.forward);
+                    float distance = Vector3.Distance(v, center);
+                    float x = 20f/(distance);
+                    x = Mathf.Min(12.5f, x);
+                    cameraAnimationComponent.setRelativeFov(-x);
+                    fovChanged = true;
 
+                    GameObject textSet = hit.collider.gameObject.transform.parent.GetChild(0).gameObject;
+                    textSetComponent = textSet.GetComponent<TextSetComponent>();
+                    float t = Mathf.Clamp(0, x/distance, 1);
+                    textSetComponent.setOverColor(t);
+
+                    if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
+                        cameraAnimationComponent.applyShake();
                         float wait = 0.0f;
                         float waitStep = 0.15f;
                         Transform playerOrbSlot = Player.getInstance().orbSlotPosition;
                         Player.getInstance().unattachSight();
                         foreach (VerseTextComponent orb in textSetComponent.allOrbs) {
                             var orbAux = orb;
-                            endAnimationCallback lambda = 
+                            endAnimationCallback lambda =
                                 () => {
                                     Player.getInstance().drawVerse(orbAux.getVerse(), orbAux.index);
                                 };
@@ -93,7 +109,11 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                         }
                         currentMask = verseMask;
                     }
-                    else if (hit.collider.gameObject.tag == "poemLetters") {
+                }
+
+                if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
+                    
+                    if (hit.collider.gameObject.tag == "poemLetters") {
                         Debug.Log("TEXT SELECTED is " + hit.collider.gameObject.name);
                         GameObject aux = hit.collider.gameObject;
                         int n = (int)Char.GetNumericValue(aux.name[aux.name.Length - 1]);
@@ -129,6 +149,11 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     //textSetComponent.doGoToOrigin(-1, graveHollow);
                     textSetComponent.moveAllOrbsToOrigin();
                     textDisplayed = false;
+                }
+                if (fovChanged) {
+                    cameraAnimationComponent.setDefaultFov();
+                    fovChanged = false;
+                    textSetComponent.setNormalColor();
                 }
             }
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.CustomAssets.Scripts.Audio;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.CustomAssets.Scripts.Components {
@@ -7,15 +8,73 @@ namespace Assets.CustomAssets.Scripts.Components {
 
     public class AnimationCameraComponent : MonoBehaviour {
         private Transform player;
-        private Transform cameraMain;
-        private Transform camera3d;
+        //private Transform cameraMain;
+        //private Transform camera3d;
+
+        private Camera cameraMain;
+        private Camera camera3d;
+        private Camera cameraPoem;
+
+        private float defaultMainFov;
+        private float defaultPoemFov;
         
         internal void Start () {
             player = transform.parent;
-            cameraMain = Camera.main.transform;
-            camera3d = GameObject.Find("3DUICamera").transform;
+            cameraMain = Camera.main;
+            camera3d = GameObject.Find("3DUICamera").GetComponent<Camera>();
+            cameraPoem = GameObject.Find("Poem Camera").GetComponent<Camera>();
+
+            defaultMainFov = cameraMain.fieldOfView;
+            defaultPoemFov = cameraPoem.fieldOfView;
+
         }
 	
+        public void setFov(float fov) {
+            cameraMain.fieldOfView = fov;
+            cameraPoem.fieldOfView = fov - 5;
+        }
+
+        public void setDefaultFov() {
+            StartCoroutine(resetFov());
+            //cameraMain.fieldOfView = defaultMainFov;
+            //cameraPoem.fieldOfView = defaultPoemFov;
+        }
+
+        private IEnumerator resetFov() {
+            float mainFov = cameraMain.fieldOfView;
+            float poemFov = cameraPoem.fieldOfView;
+            float t = 0.0f;
+            while (t < 1.0f) {
+                cameraMain.fieldOfView = Mathf.Lerp(mainFov, defaultMainFov, t);
+                cameraPoem.fieldOfView = Mathf.Lerp(poemFov, defaultPoemFov, t);
+                t += 0.1f;
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
+        public void setRelativeFov(float offsetfov) {
+            cameraMain.fieldOfView = defaultMainFov + offsetfov;
+            cameraPoem.fieldOfView = defaultPoemFov + offsetfov;
+        }
+
+        public void applyShake() {
+            StartCoroutine(doShake(1.0f));
+            AudioUtils.playTombstoneShake();
+        }
+
+        private IEnumerator doShake(float shake) {
+            Vector3 originalPos = cameraMain.transform.localPosition;
+            float shakeAmount = 0.7f;
+            const float decreaseFactor = 10.0f;
+            while (shake > 0) {
+                cameraMain.transform.localPosition = Random.insideUnitSphere * shakeAmount;
+                shake -= Time.deltaTime * decreaseFactor;
+                yield return new WaitForFixedUpdate();
+            }
+            shake = 0;
+            cameraMain.transform.localPosition = originalPos;
+        }
+
         public void moveTo(Transform destination, params endAnimationCallback[] f) {
             Player.Player.getInstance().cinematic = true;
             StartCoroutine(doMoveTo(destination, f));

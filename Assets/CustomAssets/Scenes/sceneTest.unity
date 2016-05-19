@@ -413,6 +413,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  material: {fileID: 0}
+  overMaterialColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &136724751
 GameObject:
   m_ObjectHideFlags: 0
@@ -2521,9 +2523,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 298918166}
   - 114: {fileID: 298918169}
-  - 23: {fileID: 298918168}
-  - 102: {fileID: 298918167}
-  - 65: {fileID: 298918170}
   m_Layer: 8
   m_Name: text2
   m_TagString: poemLetters
@@ -2544,53 +2543,6 @@ Transform:
   - {fileID: 1905299508}
   m_Father: {fileID: 901426070}
   m_RootOrder: 2
---- !u!102 &298918167
-TextMesh:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 298918165}
-  m_Text: TESTTESTSTES
-  m_OffsetZ: 0
-  m_CharacterSize: 1
-  m_LineSpacing: 1
-  m_Anchor: 0
-  m_Alignment: 0
-  m_TabSize: 4
-  m_FontSize: 0
-  m_FontStyle: 0
-  m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 39c3d5648da8c4e248c24456ee09df37, type: 3}
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
---- !u!23 &298918168
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 298918165}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 39c3d5648da8c4e248c24456ee09df37, type: 3}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!114 &298918169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2608,18 +2560,6 @@ MonoBehaviour:
   - Snow covered pines judge their crimes
   - Snow covered pines judge my crimes
   initGenderDisplayed: 1
---- !u!65 &298918170
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 298918165}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 25, y: 1.494873, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &309448165 stripped
 Transform:
   m_PrefabParentObject: {fileID: 488546, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
@@ -4784,6 +4724,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2373636, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 44b34c5a089184a438f67928d9076951, type: 2}
+    - target: {fileID: 130118, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
   m_IsPrefabParent: 0
@@ -5114,6 +5062,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 130118, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
   m_IsPrefabParent: 0
@@ -5246,7 +5198,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 817706209}
   - 114: {fileID: 817706212}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: text3
   m_TagString: orb
   m_Icon: {fileID: 0}
@@ -5586,6 +5538,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  material: {fileID: 2100000, guid: 44b34c5a089184a438f67928d9076951, type: 2}
+  overMaterialColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!1 &926088460
 GameObject:
   m_ObjectHideFlags: 0
@@ -5649,7 +5603,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 934399487}
   - 114: {fileID: 934399488}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: text0
   m_TagString: orb
   m_Icon: {fileID: 0}
@@ -5950,6 +5904,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  material: {fileID: 0}
+  overMaterialColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &990134609
 GameObject:
   m_ObjectHideFlags: 0
@@ -6403,7 +6359,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1105422573}
   - 114: {fileID: 1105422576}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: text1
   m_TagString: orb
   m_Icon: {fileID: 0}
@@ -7115,7 +7071,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1233531395}
   - 114: {fileID: 1233531398}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: text4
   m_TagString: orb
   m_Icon: {fileID: 0}
@@ -8017,6 +7973,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  material: {fileID: 0}
+  overMaterialColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1579068733
 GameObject:
   m_ObjectHideFlags: 0
@@ -8554,10 +8512,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 467818, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.367
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
   m_IsPrefabParent: 0
@@ -8942,11 +8896,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 130118, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
       propertyPath: m_Layer
-      value: 15
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 160216, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
       propertyPath: m_Layer
-      value: 15
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
@@ -10042,7 +9996,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1881143332}
   - 114: {fileID: 1881143335}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: text5
   m_TagString: orb
   m_Icon: {fileID: 0}
@@ -11038,6 +10992,10 @@ Prefab:
     - target: {fileID: 488546, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 130118, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}

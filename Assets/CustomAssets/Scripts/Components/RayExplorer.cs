@@ -171,7 +171,7 @@ namespace Assets.CustomAssets.Scripts {
             GameObject triggerThrowCoffin = new GameObject("Trigger throw coffin");
             bc = triggerThrowCoffin.AddComponent<BoxCollider>();
             bc.isTrigger = true;
-            bc.size = v * 2.0f;
+            bc.size = v * 2.5f;
             triggerThrowCoffin.transform.parent = parent.transform;
             triggerThrowCoffin.transform.localPosition = Vector3.zero;
 
@@ -193,7 +193,7 @@ namespace Assets.CustomAssets.Scripts {
             tombstone = Object.Instantiate(tombstoneAsset);
             tombstone.transform.parent = parent.transform;
             tombstone.transform.localEulerAngles = new Vector3(0, -90, 0);
-            tombstone.transform.localPosition = new Vector3(0, -2.25f, 3.8f);
+            tombstone.transform.localPosition = new Vector3(0, -2.5f, 4.0f);
             tombstone.AddComponent<TombstoneController>();
 
             trigger_hollow_behaviours t = triggerThrowCoffin.AddComponent<trigger_hollow_behaviours>();

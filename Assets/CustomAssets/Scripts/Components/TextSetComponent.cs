@@ -7,6 +7,10 @@ namespace Assets.CustomAssets.Scripts.Components {
         public float movementSpeed = 0.032f;
         public VerseTextComponent[] allOrbs = new VerseTextComponent[6];
         public Transform[] playerTextSlots = new Transform[6];
+        public Material material;
+        public Color overMaterialColor;
+        private Color normalMaterialColor;
+
 
         public void Start() {
             for (int i = 0; i < allOrbs.Length; ++i) {
@@ -18,12 +22,26 @@ namespace Assets.CustomAssets.Scripts.Components {
             for (int i = 0; i < eyeSight.childCount; ++i) {
                 playerTextSlots[i] = eyeSight.GetChild(i);
             }
+
+            normalMaterialColor = material.color;
         }
 
         public void resetAllToOrigin() {
             for (int i = 0; i < allOrbs.Length; ++i) {
                 allOrbs[i].resetOrigins();
             }
+        }
+
+        public void setOverColor(float t) {
+            material.color = Color.Lerp(normalMaterialColor, overMaterialColor, t);
+        }
+
+        public void setNormalColor() {
+            material.color = normalMaterialColor;
+        }
+
+        internal void OnDestroy() {
+            setNormalColor();
         }
 
         public void updatePlayerState(int n) {
@@ -68,7 +86,7 @@ namespace Assets.CustomAssets.Scripts.Components {
         }
 
         public void moveSubjectTo(Transform subject, Transform destination, float waitForStart_s, params endAnimationCallback[] f) {
-            Player.Player.getInstance().cinematic = true;
+            //Player.Player.getInstance().cinematic = true;
             StartCoroutine(doMoveTo(subject, destination, waitForStart_s, f));
         }
 
@@ -84,7 +102,7 @@ namespace Assets.CustomAssets.Scripts.Components {
             }
 
             foreach (var x in f) x();
-            Player.Player.getInstance().cinematic = false;
+            //Player.Player.getInstance().cinematic = false;
         }
 
     }
