@@ -1,14 +1,4 @@
 ********************************************************************************
 *                             Initializing Cubiquity                           *
 ********************************************************************************
-[18:42:09, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[18:42:50, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[18:44:11, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
-[18:44:11, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[18:48:33, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[18:49:34, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
-[18:49:34, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-********************************************************************************
-*                             Shutting down Cubiquity                          *
-********************************************************************************
-
+[20:51:02, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'

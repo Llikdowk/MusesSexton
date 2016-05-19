@@ -114,7 +114,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                 if (hit.collider.gameObject.tag == "poemLetters") {
                     TextMesh t = hit.collider.gameObject.GetComponent<TextMesh>();
                     lastTextColorChanged.Push(t);
-                    t.color = Color.cyan;
+                    t.color = Player.getInstance().textOverColor;
                     textColored = true;
                 }
                 else if (textColored) {

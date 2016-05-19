@@ -16,6 +16,7 @@ namespace Assets.CustomAssets.Scripts.Player {
         private int versesSelectedNext = 0;
         public Color textOriginalColor { get; private set; }
         public Color textOverColor { get; private set; }
+        public Color shadowColor = Color.black;
 
         public readonly GameObject gameObject;
         public readonly Transform coffinSlot;
@@ -26,6 +27,7 @@ namespace Assets.CustomAssets.Scripts.Player {
         private CharacterBehaviour _behaviour;
         public readonly AnimationCameraComponent cameraAnimation = GameObject.Find("AnimatorEntity").GetComponent<AnimationCameraComponent>();
         private readonly TextMesh[] verses = new TextMesh[6];
+        private readonly TextMesh[] shadowVerses = new TextMesh[6];
 
         private open_gates giantDoorControl;
 
@@ -58,9 +60,23 @@ namespace Assets.CustomAssets.Scripts.Player {
 
             for (int i = 0; i < verses.Length; ++i) {
                 verses[i] = eyeSight.GetChild(i).GetComponent<TextMesh>();
+
+                GameObject shadow = new GameObject("shadow");
+                shadow.transform.parent = verses[i].transform;
+                shadow.transform.localPosition = new Vector3(0, 0, 1.0f);
+                shadow.transform.localEulerAngles = Vector3.zero;
+                shadow.transform.localScale = Vector3.one;
+                shadow.layer = verses[i].transform.gameObject.layer;
+                TextMesh shadowText = shadow.AddComponent<TextMesh>();
+                shadowText.font = verses[i].font;
+                shadowText.fontSize = verses[i].fontSize;
+                shadowText.alignment = verses[i].alignment;
+                shadowText.anchor = verses[i].anchor;
+                shadowText.color = shadowColor;
+                shadowVerses[i] = shadowText;
             }
             textOriginalColor = verses[0].color;
-            textOverColor = Color.cyan;
+            textOverColor = new Color(122f/256f, 0, 0);
         }
 
         public CharacterBehaviour behaviour {
@@ -87,23 +103,25 @@ namespace Assets.CustomAssets.Scripts.Player {
 
         public void drawVerse(string verse, int slotPosition) {
             verses[slotPosition].text = verse;
+            shadowVerses[slotPosition].text = verse;
         }
 
         public void cleanVerses() {
             Debug.LogWarning("TO CLEAN");
-            foreach(TextMesh v in verses) {
-                v.text = "";
+            for (int i = 0; i < verses.Length; ++i) {
+                verses[i].text = "";
+                shadowVerses[i].text = "";
             }
-        }
 
-        /*
-        public void setDigBehaviour(DigBehaviour d) {
-            digBehaviourSaved = d;
-        }
+            /*
+            public void setDigBehaviour(DigBehaviour d) {
+                digBehaviourSaved = d;
+            }
 
-        public void applyDigBehaviour() {
-            behaviour = digBehaviourSaved;
+            public void applyDigBehaviour() {
+                behaviour = digBehaviourSaved;
+            }
+            */
         }
-        */
     }
 }
