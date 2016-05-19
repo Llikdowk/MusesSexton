@@ -1,64 +1,6 @@
 ********************************************************************************
 *                             Initializing Cubiquity                           *
 ********************************************************************************
-[11:26:01, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:29:18, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:29:31, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:29:38, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:30:01, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:32:13, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:32:35, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:32:48, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:32:52, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:33:13, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:33:28, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:33:34, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:33:55, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:34:11, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:34:22, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:34:44, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:35:00, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:35:04, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:35:27, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:35:40, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:35:44, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:36:10, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:36:33, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:36:36, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:37:05, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:37:22, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:37:26, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:38:55, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
-[11:38:56, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:46:51, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:48:14, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
-[11:48:15, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:48:30, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:49:51, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
-[11:49:51, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:51:42, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:51:50, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:52:27, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
-[11:52:27, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:55:02, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:55:41, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
-[11:55:42, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:56:19, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:56:24, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:56:52, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:57:39, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:57:43, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:58:33, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
-[11:58:33, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:58:59, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:59:27, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[11:59:31, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[12:00:00, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
-[12:00:01, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[12:03:10, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[12:03:13, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[12:05:16, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
-[12:05:16, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[12:05:56, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
-[12:07:21, Info   ]: Resizing compressed data buffer to 288486bytes. This should only happen once
-[12:07:21, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
+[12:15:57, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
+[12:19:45, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
+[12:20:09, Info   ]: Creating voxel database from 'D:/WORKSPACE/AdventureJam/Assets/StreamingAssets/Cubiquity/VoxelDatabases/2C53AD49.vdb'
