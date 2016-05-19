@@ -27,6 +27,8 @@ namespace Assets.CustomAssets.Scripts.Components {
         public AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
         public AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         public AudioClip m_LandSound;           // the sound played when character touches back on ground.
+        public bool speed_from_outside = false;
+        public float speed = 0.0f;
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -94,8 +96,9 @@ namespace Assets.CustomAssets.Scripts.Components {
 
         private void FixedUpdate()
         {
-            float speed;
-            GetInput(out speed);
+            if (!speed_from_outside) {
+                GetInput(out speed);
+            }
             // always move along the camera forward as it is the direction that it being aimed at
             Vector3 desiredMove = transform.forward*m_Input.y + transform.right*m_Input.x;
 

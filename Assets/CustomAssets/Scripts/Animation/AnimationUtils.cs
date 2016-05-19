@@ -7,11 +7,15 @@ namespace Assets.CustomAssets.Scripts.Anmation {
         private static readonly AnimationCurve throwCoffinCurve = GameObject.Find("ThrowCoffinCurve").GetComponent<trigger_hollow_behaviours>().curve;
 
         public static void launchDig() {
-            cameraAnimator.Play("dig");
+            if (!cameraAnimator.GetCurrentAnimatorStateInfo(0).IsName("dig")) {
+                cameraAnimator.Play("dig");
+            }
         }
 
         public static void launchUndig() {
-            cameraAnimator.Play("undig");
+            if (!cameraAnimator.GetCurrentAnimatorStateInfo(0).IsName("undig")) {
+                cameraAnimator.Play("undig");
+            }
         }
 
         public static AnimationCurve createStraightCurve() {
@@ -40,6 +44,5 @@ namespace Assets.CustomAssets.Scripts.Anmation {
         public static AnimationCurve createThrowCoffinCurve() {
             return throwCoffinCurve;
         }
-
     }
 }

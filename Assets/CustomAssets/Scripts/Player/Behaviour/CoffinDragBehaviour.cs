@@ -35,20 +35,18 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         }
 
         private void configureController() {
-            fps.m_WalkSpeed = .5f;
-            fps.m_RunSpeed = .5f;
-            fps.m_JumpSpeed = 0;
+            fastConfiguration();
             fps.m_GravityMultiplier = 1;
         }
 
         private void slowConfiguration() {
-            fps.m_WalkSpeed = .5f;
-            fps.m_RunSpeed = .75f;
+            fps.m_WalkSpeed = 2f;
+            fps.m_RunSpeed = 2f;
         }
 
         private void fastConfiguration() {
-            fps.m_WalkSpeed = 2f;
-            fps.m_RunSpeed = 2.5f;
+            fps.m_WalkSpeed = 3f;
+            fps.m_RunSpeed = 3f;
         }
 
         public override void cinematicMode(bool enabled) {
@@ -89,6 +87,15 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
         private void checkStateChange() {
             if (!Player.getInstance().insideThrowCoffinTrigger && GameActions.checkAction(Action.USE, Input.GetKeyDown) && Time.time - time_created > startDelay) {
+                
+                Ray ray = new Ray(character.transform.position, character.transform.forward);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, 2f)) {
+                    Vector3 v = Vector3.ProjectOnPlane(character.transform.forward, Vector3.up);
+                    float checker = Vector3.Dot(hit.normal, v);
+                    if (checker < .35f && checker > -.35f) return;
+                }
+
                 coffin.transform.parent = null;
                 coffinRb.isKinematic = false;
                 Player.getInstance().behaviour = new ExploreWalkBehaviour(character);

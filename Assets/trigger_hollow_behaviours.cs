@@ -4,6 +4,7 @@ using Assets.CustomAssets.Scripts.CustomInput;
 using Assets.CustomAssets.Scripts.Player;
 using Assets.CustomAssets.Scripts.Player.Behaviour;
 using Assets.CustomAssets.Scripts;
+using Assets.CustomAssets.Scripts.Components;
 
 public class trigger_hollow_behaviours : MonoBehaviour {
     public AnimationCurve curve;
@@ -11,19 +12,20 @@ public class trigger_hollow_behaviours : MonoBehaviour {
     private GameObject groundFloor;
     private GameObject heap;
     private GameObject tombstone;
+    private GameObject playerPosition;
     private Transform original;
     private Transform coffin;
-    private bool coroutineEnd = false;
     private bool hasCoffinInside = false;
     private bool hasAlreadyEnterPoem = false;
-    private bool fullHollow = false; // TODO!
+    public bool fullHollow = false;
 
-    public void init(AnimationCurve curve, Transform node, GameObject groundFloor, GameObject heap, GameObject tombstone) {
+    public void init(AnimationCurve curve, Transform node, GameObject groundFloor, GameObject heap, GameObject tombstone, GameObject playerPosition) {
         this.curve = curve;
         this.node = node;
         this.groundFloor = groundFloor;
         this.heap = heap;
         this.tombstone = tombstone;
+        this.playerPosition = playerPosition;
     }
 
     public void OnTriggerEnter(Collider c) {
@@ -43,25 +45,21 @@ public class trigger_hollow_behaviours : MonoBehaviour {
             if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && fullHollow) {
                 setup();
                 if (!hasCoffinInside && coffin != null) {
+                    Player.getInstance().doMovementDisplacement(playerPosition.transform);
                     StartCoroutine(doAction());
                 }
             }
-            if (coroutineEnd) {
-                doFinalAction();
-            }
         }
         else if (Player.getInstance().behaviour.GetType() == typeof(ExploreWalkBehaviour)) {
-
+            
             if (!hasAlreadyEnterPoem && hasCoffinInside) {
                 UIUtils.infoInteractive.text = "undig!";
-                Player.getInstance().behaviour = new DigBehaviour(Player.getInstance().gameObject, groundFloor, heap, tombstone, DigType.INVERSE);
+                DigBehaviour d = new DigBehaviour(Player.getInstance().gameObject, DigType.INVERSE);
+                Player.getInstance().behaviour = d;
+                d.init(groundFloor, heap, tombstone);
                 hasAlreadyEnterPoem = true;
             }
-            else if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && !hasCoffinInside && !fullHollow) {
-                UIUtils.infoInteractive.text = "dig hollow!";
-                Player.getInstance().behaviour = new DigBehaviour(Player.getInstance().gameObject, groundFloor, heap, tombstone);
-                fullHollow = true;
-            }
+
         }
     }
 
@@ -76,27 +74,24 @@ public class trigger_hollow_behaviours : MonoBehaviour {
     }
 
     private IEnumerator doAction() {
-        Player.getInstance().cinematic = true;
         float t = 0;
         while (t < 1f) {
             float c = curve.Evaluate(t);
             coffin.position = Vector3.Slerp(original.position, node.position, t) + new Vector3(0, c, 0);
             coffin.rotation = Quaternion.Slerp(original.rotation, node.rotation, t);
-            t += .016f;
+            t += .1f;
             yield return new WaitForSeconds(.016f);
         }
-        coroutineEnd = true;
-        yield return null;
+        doFinalAction();
     }
 
     private void doFinalAction() {
+        coffin.GetComponent<Rigidbody>().isKinematic = true;
         coffin = null;
         Player.getInstance().cinematic = false;
         Player.getInstance().behaviour = new ExploreWalkBehaviour(Player.getInstance().gameObject);
         hasCoffinInside = true;
-        coroutineEnd = false;
         Debug.LogWarning("CAUTION! THIS BODY IS NO LONGER KINEMATIC!");
-        //coffin.GetComponent<Rigidbody>().isKinematic = true;
     }
     
 }

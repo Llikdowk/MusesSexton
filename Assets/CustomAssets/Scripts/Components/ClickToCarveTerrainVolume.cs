@@ -31,7 +31,7 @@ public class ClickToCarveTerrainVolume : MonoBehaviour
 	}
 
 
-	public void doAction()
+	public void doAction(Ray ray)
 	{
 		// Bail out if we're not attached to a terrain.
 		if(terrainVolume == null)
@@ -43,11 +43,11 @@ public class ClickToCarveTerrainVolume : MonoBehaviour
 		// then we consider this a click, and do our destruction.
 		//if(Input.GetMouseButton(0))
 		//{
-			if(!isMouseAlreadyDown)
-			{
+			//if(!isMouseAlreadyDown)
+			//{
 				// Build a ray based on the current mouse position
-				Vector2 mousePos = Input.mousePosition;
-				Ray ray = Camera.main.ScreenPointToRay(new Vector3(mousePos.x, mousePos.y, 0));				
+				//Vector2 mousePos = Input.mousePosition;
+				//Ray ray = Camera.main.ScreenPointToRay(new Vector3(mousePos.x, mousePos.y, 0));				
 				
 				// Perform the raycasting.
 				PickSurfaceResult pickResult;
@@ -62,12 +62,14 @@ public class ClickToCarveTerrainVolume : MonoBehaviour
 				//isMouseAlreadyDown = true;
 			}
 		//}
+        /*
 		else
 		{
 			// Clear the flag while we wait for a click.
 			isMouseAlreadyDown = false;
 		}
-	}
+        */
+
 	
 	void DestroyVoxels(int xPos, int yPos, int zPos)
 	{
