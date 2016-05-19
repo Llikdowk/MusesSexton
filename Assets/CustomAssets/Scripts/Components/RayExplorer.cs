@@ -94,7 +94,7 @@ namespace Assets.CustomAssets.Scripts {
                 return false;
             }
 
-            return calcMinHollowHeight(hit, out hollowYOffset);
+            return calcMinHollowHeight(hit, out hollowYOffset, p);
         }
 
         private float findHollowLimitZOffset(Vector3 hitPoint, int sizeZ) {
@@ -201,7 +201,7 @@ namespace Assets.CustomAssets.Scripts {
             return t;
         }
 
-        private bool calcMinHollowHeight(RaycastHit hit, out float yOffset) {
+        private bool calcMinHollowHeight(RaycastHit hit, out float yOffset, Transform playerTransform) {
             Vector3 n = hit.normal;
             Vector3 p = hit.point;
             Vector3 v = p + n;
@@ -217,10 +217,10 @@ namespace Assets.CustomAssets.Scripts {
             Vector3 downRight = new Vector3(hollowAreaSize.x, 0, -hollowAreaSize.z);
             Vector3 downLeft = new Vector3(-hollowAreaSize.x, 0, -hollowAreaSize.z);
 
-            Vector3 up = new Vector3(0, 0, hollowAreaSize.z);
+            Vector3 forward = new Vector3(0, 0, hollowAreaSize.z);
             Vector3 left = new Vector3(-hollowAreaSize.x, 0, 0);
             Vector3 right = new Vector3(hollowAreaSize.x, 0, 0);
-            Vector3 down = new Vector3(0, 0, -hollowAreaSize.z);
+            Vector3 backward = new Vector3(0, 0, -hollowAreaSize.z);
 
             Vector3[] allVectors = new Vector3[8];
             allVectors[0] = v + upRight;
@@ -228,10 +228,18 @@ namespace Assets.CustomAssets.Scripts {
             allVectors[2] = v + downRight;
             allVectors[3] = v + downLeft;
 
-            allVectors[4] = v + 2f*up;
+            allVectors[4] = v + 2f*forward;
             allVectors[5] = v + 1.5f*left;
             allVectors[6] = v + 1.5f*right;
-            allVectors[7] = v + 2.5f*down;
+            allVectors[7] = v + 2.5f*backward;
+
+            Ray r = new Ray(playerTransform.position, -playerTransform.forward);
+            RaycastHit checkBackLandmark;
+            if (Physics.Raycast(r, out checkBackLandmark, 5.0f)) {
+                Debug.DrawRay(r.origin, r.direction, Color.magenta, 5.0f);
+                yOffset = 0.0f;
+                return false;
+            }
 
             foreach (Vector3 t in allVectors) {
                 offsetRay = new Ray(t, Vector3.down);

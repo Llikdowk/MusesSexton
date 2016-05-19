@@ -12,6 +12,7 @@ public class wait_till_load : MonoBehaviour {
     private bool alreadyLoaded = false;
 
     internal void Awake() {
+        Application.targetFrameRate = 120;
         foreach (var obj in physicsObjects) {
             obj.SetActive(false);
         }

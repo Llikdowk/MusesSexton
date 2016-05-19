@@ -20,6 +20,7 @@
         Tags{ "LightMode" = "ForwardBase" "RenderType" = "Opaque" "LightMode" = "ForwardBase" }
         Pass {
             CGPROGRAM
+            #pragma target 4.0
             #pragma vertex vert
             #pragma fragment frag
             #pragma multi_compile_fog

@@ -55,7 +55,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         }
 
         public override void destroy() {
-            coffinRb.isKinematic = false;
+            //coffinRb.isKinematic = false;
             coffin.GetComponent<MeshRenderer>().shadowCastingMode = ShadowCastingMode.On;
             UnityEngine.Object.Destroy(fps);
         }
@@ -87,7 +87,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
         private void checkStateChange() {
             if (!Player.getInstance().insideThrowCoffinTrigger && GameActions.checkAction(Action.USE, Input.GetKeyDown) && Time.time - time_created > startDelay) {
-                
+
                 Ray ray = new Ray(character.transform.position, character.transform.forward);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, 2f)) {
