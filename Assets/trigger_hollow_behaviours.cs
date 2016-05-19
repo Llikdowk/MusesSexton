@@ -16,7 +16,6 @@ public class trigger_hollow_behaviours : MonoBehaviour {
     private Transform original;
     private Transform coffin;
     private bool hasCoffinInside = false;
-    private bool hasAlreadyEnterPoem = false;
     public bool fullHollow = false;
 
     public void init(AnimationCurve curve, Transform node, GameObject groundFloor, GameObject heap, GameObject tombstone, GameObject playerPosition) {
@@ -46,20 +45,10 @@ public class trigger_hollow_behaviours : MonoBehaviour {
                 setup();
                 if (!hasCoffinInside && coffin != null) {
                     Player.getInstance().doMovementDisplacement(playerPosition.transform);
+                    coffin.GetComponent<Rigidbody>().isKinematic = true;
                     StartCoroutine(doAction());
                 }
             }
-        }
-        else if (Player.getInstance().behaviour.GetType() == typeof(ExploreWalkBehaviour)) {
-            
-            if (!hasAlreadyEnterPoem && hasCoffinInside) {
-                UIUtils.infoInteractive.text = "undig!";
-                DigBehaviour d = new DigBehaviour(Player.getInstance().gameObject, DigType.INVERSE);
-                Player.getInstance().behaviour = d;
-                d.init(groundFloor, heap, tombstone);
-                hasAlreadyEnterPoem = true;
-            }
-
         }
     }
 
@@ -86,12 +75,11 @@ public class trigger_hollow_behaviours : MonoBehaviour {
     }
 
     private void doFinalAction() {
-        coffin.GetComponent<Rigidbody>().isKinematic = true;
         coffin = null;
         Player.getInstance().cinematic = false;
-        Player.getInstance().behaviour = new ExploreWalkBehaviour(Player.getInstance().gameObject);
-        hasCoffinInside = true;
-        Debug.LogWarning("CAUTION! THIS BODY IS NO LONGER KINEMATIC!");
+        DigBehaviour d = new DigBehaviour(Player.getInstance().gameObject, DigType.INVERSE);
+        Player.getInstance().behaviour = d;
+        d.init(groundFloor, heap, tombstone);
     }
     
 }

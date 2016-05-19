@@ -10,14 +10,14 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private static readonly Vector3 playerOffset = Vector3.zero; //new Vector3(-.6f, .3f, -4.8f);
 
         private readonly CharacterController characterController;
-        private const float stepRotation = 160f;
+        private const float stepRotation = 3.25f;
         private float t0speedUp = 0f;
         private float t0speedDown = 0f;
         private float currentSpeed = 0f;
         //private const float initialSpeed = .35f;
-        private const float acceleration = .01f;
-        private const float deceleration = .2f;
-        private const float maxSpeed = .125f;
+        private const float acceleration = 0.15f;
+        private const float deceleration = 1.5f;
+        private const float maxSpeed = 4.5f;
         private bool timeSpeedUpRegistered = false;
         private bool timeSpeedDownRegistered = false;
         private readonly FirstPersonController fps;
@@ -144,13 +144,13 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private void moveForward() {
             float t = Time.time - t0speedUp;
             currentSpeed = Mathf.Min(maxSpeed, currentSpeed + acceleration * t * t);
-            character.transform.position += forwardCart.transform.forward * currentSpeed;
+            character.transform.position += forwardCart.transform.forward * currentSpeed * Time.deltaTime;
         }
 
         private void decelerateForward() {
             float t = Time.time - t0speedDown;
             currentSpeed = Mathf.Max(0, currentSpeed - deceleration * t * t);
-            character.transform.position += forwardCart.transform.forward * currentSpeed;
+            character.transform.position += forwardCart.transform.forward * currentSpeed * Time.deltaTime;
         }
     }
 }
