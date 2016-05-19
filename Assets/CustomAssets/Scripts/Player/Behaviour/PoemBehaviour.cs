@@ -20,10 +20,12 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private RaycastHit hit;
         private const float maxDistance = 1000f;
         private bool textDisplayed = false;
-        private readonly Stack<VerseTextComponent> lastTextColorChanged = new Stack<VerseTextComponent>(6);
+        private readonly Stack<TextMesh> lastTextColorChanged = new Stack<TextMesh>(6);
         private bool textColored = false;
         private readonly Transform graveHollow;
-        private const int mask = 1 << 10 | 1 << 8;
+        private int currentMask = landmarkMask;
+        private const int landmarkMask = 1 << 10;
+        private const int verseMask = 1 << 8;
         private bool hasEnded = false;
         private SuperTestSet superTextSet = GameObject.Find("LandmarkSet").GetComponent<SuperTestSet>();
         private int currentVerseSelected = 0;
@@ -68,18 +70,30 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             checkStateChange();
             doMouseMovement();
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, maxDistance, mask)) {
+            if (Physics.Raycast(ray, out hit, maxDistance, currentMask)) {
                 Debug.DrawRay(Player.getInstance().eyeSight.position, hit.point - Player.getInstance().eyeSight.position, Color.magenta);
 
                 if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
-                    if (!textDisplayed && hit.collider.gameObject.tag == "landmark") {
+                    if (hit.collider.gameObject.tag == "landmark") {
                         GameObject textSet = hit.collider.gameObject.transform.parent.GetChild(0).gameObject;
                         textSetComponent = textSet.GetComponent<TextSetComponent>();
-                        textSetComponent.moveAllOrbsTo(Player.getInstance().gameObject.transform);
-                        Debug.Log("LANDMARK CLICKED");
-                        textDisplayed = true;
+
+                        float wait = 0.0f;
+                        float waitStep = 0.15f;
+                        Transform playerOrbSlot = Player.getInstance().orbSlotPosition;
+                        Player.getInstance().unattachSight();
+                        foreach (VerseTextComponent orb in textSetComponent.allOrbs) {
+                            var orbAux = orb;
+                            endAnimationCallback lambda = 
+                                () => {
+                                    Player.getInstance().drawVerse(orbAux.getVerse(), orbAux.index);
+                                };
+                            textSetComponent.moveSubjectTo(orb.transform, playerOrbSlot, wait, lambda);
+                            wait += waitStep;
+                        }
+                        currentMask = verseMask;
                     }
-                    else if (textDisplayed && hit.collider.gameObject.tag == "poemLetters") {
+                    else if (hit.collider.gameObject.tag == "poemLetters") {
                         Debug.Log("TEXT SELECTED is " + hit.collider.gameObject.name);
                         GameObject aux = hit.collider.gameObject;
                         int n = (int)Char.GetNumericValue(aux.name[aux.name.Length - 1]);
@@ -91,17 +105,16 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                         //textTombstone[currentVerseSelected].text = textSetComponent.getTextOf(n);
                         tombstone.goUp(textSetComponent.getTextOf(n), currentVerseSelected);
                         ++currentVerseSelected;
-                    }
-                    else if (textDisplayed) {
-                        //textSetComponent.doGoToOrigin(-1, graveHollow);
-                        textDisplayed = false;
+                        Player.getInstance().cleanVerses();
+                        Player.getInstance().reatachSight();
+                        currentMask = landmarkMask;
                     }
                 }
 
-                if (textDisplayed && hit.collider.gameObject.tag == "poemLetters") {
-                    VerseTextComponent t = hit.collider.gameObject.GetComponent<VerseTextComponent>();
+                if (hit.collider.gameObject.tag == "poemLetters") {
+                    TextMesh t = hit.collider.gameObject.GetComponent<TextMesh>();
                     lastTextColorChanged.Push(t);
-                    //t.setOverColor();
+                    t.color = Color.cyan;
                     textColored = true;
                 }
                 else if (textColored) {
@@ -122,8 +135,8 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
         private void cleanTextColor() {
             while (lastTextColorChanged.Count > 0) {
-                VerseTextComponent t = lastTextColorChanged.Pop();
-                //t.setNormalColor();
+                TextMesh t = lastTextColorChanged.Pop();
+                t.color = Player.getInstance().textOriginalColor;
             }
         }
 

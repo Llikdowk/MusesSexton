@@ -2616,7 +2616,7 @@ BoxCollider:
   m_GameObject: {fileID: 298918165}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 25, y: 1.494873, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2769,14 +2769,6 @@ Prefab:
     - target: {fileID: 488546, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 130118, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 160216, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
@@ -3770,9 +3762,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 554031024}
-  m_Layer: 0
+  - 23: {fileID: 554031026}
+  - 102: {fileID: 554031025}
+  - 65: {fileID: 554031027}
+  m_Layer: 8
   m_Name: verse_slot_3
-  m_TagString: Untagged
+  m_TagString: poemLetters
   m_Icon: {fileID: 1638116407661442457, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3785,10 +3780,69 @@ Transform:
   m_GameObject: {fileID: 554031023}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.061, z: 0.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 350888889}
   m_RootOrder: 3
+--- !u!102 &554031025
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 554031023}
+  m_Text: 
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 4
+  m_Alignment: 1
+  m_TabSize: 4
+  m_FontSize: 70
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190202
+--- !u!23 &554031026
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 554031023}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!65 &554031027
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 554031023}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 136, y: 8.049316, z: 0.000002476573}
+  m_Center: {x: -0.0009765625, y: 0, z: -0.0009765625}
 --- !u!1 &576151438
 GameObject:
   m_ObjectHideFlags: 0
@@ -3801,6 +3855,7 @@ GameObject:
   - 92: {fileID: 576151441}
   - 124: {fileID: 576151440}
   - 81: {fileID: 576151439}
+  - 114: {fileID: 576151444}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3878,6 +3933,35 @@ Transform:
   - {fileID: 1137184211}
   m_Father: {fileID: 1348285497}
   m_RootOrder: 1
+--- !u!114 &576151444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 576151438}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd70d448b18cfbc46af26466f752332c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visualizeFocus: 0
+  focalLength: 10
+  focalSize: 0.437
+  aperture: 0.58
+  focalTransform: {fileID: 0}
+  maxBlurSize: 0.81
+  highResolution: 0
+  blurType: 0
+  blurSampleCount: 0
+  nearBlur: 0
+  foregroundOverlap: 1.297
+  dofHdrShader: {fileID: 4800000, guid: acd613035ff3e455e8abf23fdc8c8c24, type: 3}
+  dx11BokehShader: {fileID: 4800000, guid: d8e82664aa8686642a424c88ab10164a, type: 3}
+  dx11BokehThreshold: 0.5
+  dx11SpawnHeuristic: 0.0875
+  dx11BokehTexture: {fileID: 2800000, guid: a4cdca73d61814d33ac1587f6c163bca, type: 3}
+  dx11BokehScale: 1.2
+  dx11BokehIntensity: 2.5
 --- !u!1 &582923630
 GameObject:
   m_ObjectHideFlags: 0
@@ -4373,14 +4457,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 130118, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 160216, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
   m_IsPrefabParent: 0
@@ -4542,58 +4618,6 @@ Transform:
   - {fileID: 737942497}
   m_Father: {fileID: 620558789}
   m_RootOrder: 2
---- !u!1 &713322897
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 713322898}
-  - 65: {fileID: 713322899}
-  - 114: {fileID: 713322900}
-  m_Layer: 0
-  m_Name: OrbsCollector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &713322898
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 713322897}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1348285497}
-  m_RootOrder: 2
---- !u!65 &713322899
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 713322897}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 16.44, y: 15.39, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &713322900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 713322897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17fdb8eea8cfe2b4d8eff22224508283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &728545819 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: ee444772d121acc47a3c20df3a7717a2, type: 3}
@@ -4763,14 +4787,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 130118, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 160216, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
   m_IsPrefabParent: 0
@@ -4903,12 +4919,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 817706209}
   - 114: {fileID: 817706212}
-  - 23: {fileID: 817706211}
-  - 102: {fileID: 817706210}
-  - 65: {fileID: 817706213}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: text3
-  m_TagString: poemLetters
+  m_TagString: orb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4926,53 +4939,6 @@ Transform:
   - {fileID: 309448165}
   m_Father: {fileID: 901426070}
   m_RootOrder: 3
---- !u!102 &817706210
-TextMesh:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 817706208}
-  m_Text: TESTTESTSTES
-  m_OffsetZ: 0
-  m_CharacterSize: 1
-  m_LineSpacing: 1
-  m_Anchor: 0
-  m_Alignment: 0
-  m_TabSize: 4
-  m_FontSize: 0
-  m_FontStyle: 0
-  m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 39c3d5648da8c4e248c24456ee09df37, type: 3}
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
---- !u!23 &817706211
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 817706208}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 39c3d5648da8c4e248c24456ee09df37, type: 3}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!114 &817706212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4990,18 +4956,6 @@ MonoBehaviour:
   - I hid from them in the forest
   - I hid from myself in the forest
   initGenderDisplayed: 1
---- !u!65 &817706213
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 817706208}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 25, y: 1.494873, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &825398538
 GameObject:
   m_ObjectHideFlags: 0
@@ -5368,12 +5322,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 934399487}
   - 114: {fileID: 934399488}
-  - 23: {fileID: 934399490}
-  - 102: {fileID: 934399489}
-  - 65: {fileID: 934399491}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: text0
-  m_TagString: poemLetters
+  m_TagString: orb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5408,65 +5359,6 @@ MonoBehaviour:
   - All but food for the pine roots
   - All but food for the pine roots
   initGenderDisplayed: 0
---- !u!102 &934399489
-TextMesh:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 934399486}
-  m_Text: All but food for the pine roots.
-  m_OffsetZ: 0
-  m_CharacterSize: 1
-  m_LineSpacing: 1
-  m_Anchor: 4
-  m_Alignment: 1
-  m_TabSize: 4
-  m_FontSize: 0
-  m_FontStyle: 0
-  m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 39c3d5648da8c4e248c24456ee09df37, type: 3}
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
---- !u!23 &934399490
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 934399486}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 39c3d5648da8c4e248c24456ee09df37, type: 3}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!65 &934399491
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 934399486}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 25, y: 1.494873, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &950803507
 Prefab:
   m_ObjectHideFlags: 0
@@ -6184,12 +6076,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 1105422573}
   - 114: {fileID: 1105422576}
-  - 23: {fileID: 1105422575}
-  - 102: {fileID: 1105422574}
-  - 65: {fileID: 1105422577}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: text1
-  m_TagString: poemLetters
+  m_TagString: orb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6207,53 +6096,6 @@ Transform:
   - {fileID: 1773271884}
   m_Father: {fileID: 901426070}
   m_RootOrder: 1
---- !u!102 &1105422574
-TextMesh:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1105422572}
-  m_Text: TESTTESTSTES
-  m_OffsetZ: 0
-  m_CharacterSize: 1
-  m_LineSpacing: 1
-  m_Anchor: 0
-  m_Alignment: 0
-  m_TabSize: 4
-  m_FontSize: 0
-  m_FontStyle: 0
-  m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 39c3d5648da8c4e248c24456ee09df37, type: 3}
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
---- !u!23 &1105422575
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1105422572}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 39c3d5648da8c4e248c24456ee09df37, type: 3}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!114 &1105422576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6271,18 +6113,6 @@ MonoBehaviour:
   - Green needles to pierce their hearts
   - Green needles to pierce my heart
   initGenderDisplayed: 0
---- !u!65 &1105422577
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1105422572}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 25, y: 1.494873, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1114901353
 GameObject:
   m_ObjectHideFlags: 0
@@ -6958,12 +6788,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 1233531395}
   - 114: {fileID: 1233531398}
-  - 23: {fileID: 1233531397}
-  - 102: {fileID: 1233531396}
-  - 65: {fileID: 1233531399}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: text4
-  m_TagString: poemLetters
+  m_TagString: orb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6981,53 +6808,6 @@ Transform:
   - {fileID: 1103102845}
   m_Father: {fileID: 901426070}
   m_RootOrder: 4
---- !u!102 &1233531396
-TextMesh:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1233531394}
-  m_Text: TESTTESTSTES
-  m_OffsetZ: 0
-  m_CharacterSize: 1
-  m_LineSpacing: 1
-  m_Anchor: 0
-  m_Alignment: 0
-  m_TabSize: 4
-  m_FontSize: 0
-  m_FontStyle: 0
-  m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 39c3d5648da8c4e248c24456ee09df37, type: 3}
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
---- !u!23 &1233531397
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1233531394}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 39c3d5648da8c4e248c24456ee09df37, type: 3}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!114 &1233531398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7045,18 +6825,6 @@ MonoBehaviour:
   - Immortal trees to witness this ritual
   - Immortal trees to witness this ritual
   initGenderDisplayed: 2
---- !u!65 &1233531399
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1233531394}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 25, y: 1.494873, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1267959229
 GameObject:
   m_ObjectHideFlags: 0
@@ -7252,7 +7020,7 @@ Transform:
   m_Children:
   - {fileID: 1920932822}
   - {fileID: 576151443}
-  - {fileID: 713322898}
+  - {fileID: 1579105957}
   m_Father: {fileID: 1886560610}
   m_RootOrder: 0
 --- !u!95 &1348285498
@@ -7306,9 +7074,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1388036594}
-  m_Layer: 0
+  - 23: {fileID: 1388036596}
+  - 102: {fileID: 1388036595}
+  - 65: {fileID: 1388036597}
+  m_Layer: 8
   m_Name: verse_slot_2
-  m_TagString: Untagged
+  m_TagString: poemLetters
   m_Icon: {fileID: 4892941663561143343, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7321,10 +7092,69 @@ Transform:
   m_GameObject: {fileID: 1388036593}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.079, z: 0.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 350888889}
   m_RootOrder: 2
+--- !u!102 &1388036595
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1388036593}
+  m_Text: 
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 4
+  m_Alignment: 1
+  m_TabSize: 4
+  m_FontSize: 70
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190202
+--- !u!23 &1388036596
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1388036593}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!65 &1388036597
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1388036593}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 136, y: 8.049316, z: 0.000002476573}
+  m_Center: {x: -0.0009765625, y: 0, z: -0.0009765625}
 --- !u!1001 &1437797760
 Prefab:
   m_ObjectHideFlags: 0
@@ -7845,6 +7675,33 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 18.965315, y: 21.977203, z: 20.966248}
   m_Center: {x: -4.4826555, y: -1.4845123, z: 0.43699646}
+--- !u!1 &1579105956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1579105957}
+  m_Layer: 0
+  m_Name: OrbPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1579105957
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1579105956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: -0.87}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1348285497}
+  m_RootOrder: 2
 --- !u!1001 &1584835813
 Prefab:
   m_ObjectHideFlags: 0
@@ -8068,9 +7925,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1615681364}
-  m_Layer: 0
+  - 23: {fileID: 1615681366}
+  - 102: {fileID: 1615681365}
+  - 65: {fileID: 1615681367}
+  m_Layer: 8
   m_Name: verse_slot_4
-  m_TagString: Untagged
+  m_TagString: poemLetters
   m_Icon: {fileID: 4476612413928447662, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8083,10 +7943,69 @@ Transform:
   m_GameObject: {fileID: 1615681363}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.26, z: 0.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 350888889}
   m_RootOrder: 4
+--- !u!102 &1615681365
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1615681363}
+  m_Text: 
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 4
+  m_Alignment: 1
+  m_TabSize: 4
+  m_FontSize: 70
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190202
+--- !u!23 &1615681366
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1615681363}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!65 &1615681367
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1615681363}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 136, y: 8.049316, z: 0.000002476573}
+  m_Center: {x: -0.0009765625, y: 0, z: -0.0009765625}
 --- !u!1 &1623679398
 GameObject:
   m_ObjectHideFlags: 0
@@ -8253,10 +8172,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 130118, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
-      propertyPath: m_TagString
-      value: orb
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
   m_IsPrefabParent: 0
@@ -8344,9 +8259,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1700320678}
-  m_Layer: 0
+  - 23: {fileID: 1700320680}
+  - 102: {fileID: 1700320679}
+  - 65: {fileID: 1700320681}
+  m_Layer: 8
   m_Name: verse_slot_5
-  m_TagString: Untagged
+  m_TagString: poemLetters
   m_Icon: {fileID: -3906512864147387971, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8359,10 +8277,69 @@ Transform:
   m_GameObject: {fileID: 1700320677}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.407, z: 0.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 350888889}
   m_RootOrder: 5
+--- !u!102 &1700320679
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1700320677}
+  m_Text: 
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 4
+  m_Alignment: 1
+  m_TabSize: 4
+  m_FontSize: 70
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190202
+--- !u!23 &1700320680
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1700320677}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!65 &1700320681
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1700320677}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 136, y: 8.049316, z: 0.000002476573}
+  m_Center: {x: -0.0009765625, y: 0, z: -0.0009765625}
 --- !u!1 &1728918152
 GameObject:
   m_ObjectHideFlags: 0
@@ -8525,11 +8502,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 130118, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
       propertyPath: m_Layer
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 160216, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
       propertyPath: m_Layer
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
@@ -9517,12 +9494,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 1881143332}
   - 114: {fileID: 1881143335}
-  - 23: {fileID: 1881143334}
-  - 102: {fileID: 1881143333}
-  - 65: {fileID: 1881143336}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: text5
-  m_TagString: poemLetters
+  m_TagString: orb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9540,53 +9514,6 @@ Transform:
   - {fileID: 1356935696}
   m_Father: {fileID: 901426070}
   m_RootOrder: 5
---- !u!102 &1881143333
-TextMesh:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1881143331}
-  m_Text: TESTTESTSTES
-  m_OffsetZ: 0
-  m_CharacterSize: 1
-  m_LineSpacing: 1
-  m_Anchor: 0
-  m_Alignment: 0
-  m_TabSize: 4
-  m_FontSize: 0
-  m_FontStyle: 0
-  m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 39c3d5648da8c4e248c24456ee09df37, type: 3}
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
---- !u!23 &1881143334
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1881143331}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 39c3d5648da8c4e248c24456ee09df37, type: 3}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!114 &1881143335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9604,18 +9531,6 @@ MonoBehaviour:
   - Return to nature, my beloved ones
   - I return to nature, loved by noone
   initGenderDisplayed: 2
---- !u!65 &1881143336
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1881143331}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 25, y: 1.494873, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1886560606
 GameObject:
   m_ObjectHideFlags: 0
@@ -9790,9 +9705,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1911411711}
-  m_Layer: 0
+  - 23: {fileID: 1911411713}
+  - 102: {fileID: 1911411712}
+  - 65: {fileID: 1911411714}
+  m_Layer: 8
   m_Name: verse_slot_1
-  m_TagString: Untagged
+  m_TagString: poemLetters
   m_Icon: {fileID: -2663371497217273435, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9805,10 +9723,69 @@ Transform:
   m_GameObject: {fileID: 1911411710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.235, z: 0.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 350888889}
   m_RootOrder: 1
+--- !u!102 &1911411712
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1911411710}
+  m_Text: 
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 4
+  m_Alignment: 1
+  m_TabSize: 4
+  m_FontSize: 70
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190202
+--- !u!23 &1911411713
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1911411710}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!65 &1911411714
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1911411710}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 136, y: 8.049316, z: 0.000002476573}
+  m_Center: {x: -0.0009765625, y: 0, z: -0.0009765625}
 --- !u!1 &1911731619
 GameObject:
   m_ObjectHideFlags: 0
@@ -10233,9 +10210,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2064704864}
-  m_Layer: 0
+  - 23: {fileID: 2064704866}
+  - 102: {fileID: 2064704865}
+  - 65: {fileID: 2064704867}
+  m_Layer: 8
   m_Name: verse_slot_0
-  m_TagString: Untagged
+  m_TagString: poemLetters
   m_Icon: {fileID: -7310811918437815874, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10248,10 +10228,69 @@ Transform:
   m_GameObject: {fileID: 2064704863}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.385, z: 0.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 350888889}
   m_RootOrder: 0
+--- !u!102 &2064704865
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2064704863}
+  m_Text: 
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 4
+  m_Alignment: 1
+  m_TabSize: 4
+  m_FontSize: 70
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190202
+--- !u!23 &2064704866
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2064704863}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!65 &2064704867
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2064704863}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 136, y: 8.049316, z: 0.000002476573}
+  m_Center: {x: -0.0009765625, y: 0, z: -0.0009765625}
 --- !u!1 &2087482529
 GameObject:
   m_ObjectHideFlags: 0
@@ -10397,14 +10436,6 @@ Prefab:
     - target: {fileID: 488546, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 130118, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 160216, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 678e7febfd2eaa44ca4e79db32be6521, type: 2}

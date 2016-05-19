@@ -21,7 +21,7 @@ namespace Assets.CustomAssets.Scripts {
         private Ray ray;
         private float time_created = 0f;
         private const float startDelay = .25f;
-        private const int mask = ~(1<<9 + 1<<8);
+        private const int mask = ~(1<<9 | 1<<8);
 
         private Vector3i hollowAreaSize;
         private float hollowYOffset;

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Assets.CustomAssets.Scripts.Player;
 
 //should be renamed to: VerseTextComponent
@@ -13,6 +14,7 @@ namespace Assets.CustomAssets.Scripts.Components {
         public Vector3 originalPosition { get; private set; }
         public Quaternion originalRotation { get; private set; }
         public Vector3 originalScale { get; private set; }
+        public int index { get; private set; }
 
         public string getVerse() {
             if (Player.Player.getInstance().genderChosen != Gender.UNDECIDED) {
@@ -33,6 +35,7 @@ namespace Assets.CustomAssets.Scripts.Components {
             originalPosition = transform.position;
             originalRotation = transform.rotation;
             originalScale = transform.localScale;
+            index = (int)Char.GetNumericValue(name[name.Length - 1]);
         }
 	
         public void Update () {

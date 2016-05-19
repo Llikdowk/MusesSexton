@@ -84,6 +84,7 @@ namespace Assets.CustomAssets.Scripts.Components {
             }
 
             foreach (var x in f) x();
+            Player.Player.getInstance().cinematic = false;
         }
 
     }
