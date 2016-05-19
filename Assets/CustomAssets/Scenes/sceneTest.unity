@@ -835,7 +835,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &267125695
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -6585,7 +6585,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 72462eda403e32b4db3eceae5ca0a570, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.37
+      value: 9.72
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 72462eda403e32b4db3eceae5ca0a570, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6617,16 +6617,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 72462eda403e32b4db3eceae5ca0a570, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.5441059
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 72462eda403e32b4db3eceae5ca0a570, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 1.5441056
       objectReference: {fileID: 0}
     - target: {fileID: 2300002, guid: 72462eda403e32b4db3eceae5ca0a570, type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: 2100000, guid: 4957708f6bc8f8049a95a9a2669782b5, type: 2}
+    - target: {fileID: 400004, guid: 72462eda403e32b4db3eceae5ca0a570, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5441056
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72462eda403e32b4db3eceae5ca0a570, type: 3}
   m_IsPrefabParent: 0
@@ -9284,9 +9288,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d96fdff10831a8488faebaab3d3d772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundGrave: {fileID: 2100000, guid: c7064321323956c41b7819fedd870c90, type: 2}
-  groundHeap: {fileID: 2100000, guid: b23e1e3b4e4e3a443b6b3c2d9213ad31, type: 2}
-  terrain: {fileID: 155188694}
   voxelTerrain: {fileID: 847556880}
 --- !u!114 &1886560612
 MonoBehaviour:
@@ -9457,13 +9458,14 @@ GameObject:
   - 222: {fileID: 1947563294}
   - 114: {fileID: 1947563293}
   - 114: {fileID: 1947563292}
+  - 223: {fileID: 1947563295}
   m_Layer: 5
   m_Name: BlackCurtain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1947563291
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9530,6 +9532,25 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1947563290}
+--- !u!223 &1947563295
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1947563290}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1001 &1954848723
 Prefab:
   m_ObjectHideFlags: 0

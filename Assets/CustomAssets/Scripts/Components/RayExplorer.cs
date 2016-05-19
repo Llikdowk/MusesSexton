@@ -11,9 +11,6 @@ namespace Assets.CustomAssets.Scripts {
     public class RayExplorer : MonoBehaviour {
         private float maxDistance = 5f;
         private float minDistance = 2.5f;
-        public Material groundGrave;
-        public Material groundHeap;
-        public Terrain terrain;
 
         public GameObject voxelTerrain;
         private TerrainVolume terrainVolume;
@@ -38,7 +35,6 @@ namespace Assets.CustomAssets.Scripts {
 
 
         public void Awake() {
-            terrainData = terrain.terrainData;
             graveAsset = Resources.Load<GameObject>("Models/GraveAsset");
             dirtAsset = Resources.Load<GameObject>("Models/DirtAsset");
             tombstoneAsset = Resources.Load<GameObject>("Prefabs/TombstonePrefab");
@@ -166,7 +162,7 @@ namespace Assets.CustomAssets.Scripts {
 
             GameObject triggerDisableDigging = new GameObject("Disable digging area");
             SphereCollider sc = triggerDisableDigging.AddComponent<SphereCollider>();
-            sc.radius = Mathf.Max(sizeX, sizeZ) * 2f;
+            sc.radius = Mathf.Max(sizeX, sizeZ) * 3f;
             sc.isTrigger = true;
             triggerDisableDigging.transform.parent = parent.transform;
             triggerDisableDigging.transform.localPosition = Vector3.zero;
@@ -193,8 +189,6 @@ namespace Assets.CustomAssets.Scripts {
             }
             heap.transform.localPosition = new Vector3(1.8f, 0.0f, -3.5f); //lastOffset: new Vector3(-3.37f, 0.24f, 0.31f); // Vector3.zero + sizeX / 2f * Vector3.right + Vector3.up;
             heap.transform.position = new Vector3(heap.transform.position.x, heapYLevel - .1f, heap.transform.position.z);
-            MeshRenderer mr = plane.GetComponent<MeshRenderer>();
-            mr.material = groundGrave;
 
             tombstone = Object.Instantiate(tombstoneAsset);
             tombstone.transform.parent = parent.transform;
@@ -203,7 +197,7 @@ namespace Assets.CustomAssets.Scripts {
             tombstone.AddComponent<TombstoneController>();
 
             trigger_hollow_behaviours t = triggerThrowCoffin.AddComponent<trigger_hollow_behaviours>();
-            t.init(AnimationUtils.createThrowCoffinCurve(), parent.transform, plane, heap, tombstone);
+            t.init(AnimationUtils.createThrowCoffinCurve(), parent.transform, plane, heap, tombstone, playerPosition.gameObject);
             return t;
         }
 

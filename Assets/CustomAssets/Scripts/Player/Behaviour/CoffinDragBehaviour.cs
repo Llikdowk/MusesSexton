@@ -86,7 +86,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
 
         private void checkStateChange() {
-            if (/*!Player.getInstance().insideThrowCoffinTrigger &&*/ GameActions.checkAction(Action.USE, Input.GetKeyDown) && Time.time - time_created > startDelay) {
+            if (!Player.getInstance().insideThrowCoffinTrigger && GameActions.checkAction(Action.USE, Input.GetKeyDown) && Time.time - time_created > startDelay) {
                 
                 Ray ray = new Ray(character.transform.position, character.transform.forward);
                 RaycastHit hit;
@@ -98,7 +98,6 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
                 coffin.transform.parent = null;
                 coffinRb.isKinematic = false;
-                coffinRb.AddRelativeForce(Vector3.forward, ForceMode.Impulse);
                 Player.getInstance().behaviour = new ExploreWalkBehaviour(character);
             }
         }
