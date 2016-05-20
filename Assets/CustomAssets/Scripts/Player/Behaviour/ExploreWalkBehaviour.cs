@@ -13,13 +13,6 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
         public ExploreWalkBehaviour(GameObject character) : base(character) {
             fps = character.AddComponent<FirstPersonController>();
-            AudioClip[] clips = new AudioClip[AudioUtils.controller.fsteps.Length];
-            int i = 0;
-            foreach (AudioSource audio in AudioUtils.controller.fsteps) {
-                clips[i] = audio.clip;
-            }
-            fps.m_FootstepSounds = clips;
-
             configureController();
             RayExplorer db = character.GetComponent<RayExplorer>();
             db.enabled = true;
@@ -46,6 +39,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
         public override void run() {
             checkStateChange();
+            AudioUtils.controller.playFootsteps();
         }
 
         private void checkStateChange() {

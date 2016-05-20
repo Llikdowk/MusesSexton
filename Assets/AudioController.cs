@@ -24,6 +24,7 @@ namespace Assets {
         public readonly AudioSource[] shovel = new AudioSource[3];
         public AudioSource throw_coffin { get; private set; }
         public readonly AudioSource[] tone = new AudioSource[6];
+        public AudioSource crumbling { get; private set; }
 
         public void Awake() {
             bell = gameObject.AddComponent<AudioSource>();
@@ -106,6 +107,9 @@ namespace Assets {
             tone[5] = gameObject.AddComponent<AudioSource>();
             tone[5].clip = Resources.Load<AudioClip>("Audio/tone6");
             foreach (var x in tone) x.volume = 1f;
+
+            crumbling = gameObject.AddComponent<AudioSource>();
+            crumbling.clip = Resources.Load<AudioClip>("Audio/crumbling");
         }
 
         public void Start() {
@@ -142,13 +146,29 @@ namespace Assets {
         }
 
         public void playTone() {
-            int i = Random.Range(0, 5);
-            tone[i].Play();
+            int i = Random.Range(0, tone.Length-1);
+            if (!tone[i].isPlaying)
+                tone[i].Play();
         }
 
         public void playDig() {
-            int i = Random.Range(0, 2);
-            shovel[i].Play();
+            /*
+            int i = Random.Range(0, shovel.Length-1);
+            if (!shovel[i].isPlaying)
+                shovel[i].Play();
+            */
+            for (int i = 0; i < shovel.Length; ++i) {
+                if (!shovel[i].isPlaying) {
+                    shovel[i].Play();
+                    return;
+                }
+            }
+        }
+
+        public void playFootsteps() {
+            int i = Random.Range(0, fsteps.Length - 1);
+            if (!fsteps[i].isPlaying)
+                fsteps[i].Play();
         }
 
         private void addChannel(IEnumerator coroutine, AudioSource channel) {

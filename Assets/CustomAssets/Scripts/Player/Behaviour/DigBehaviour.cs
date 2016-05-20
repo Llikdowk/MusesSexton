@@ -57,8 +57,11 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && Time.time - time_created > delay) {
                 if (type == DigType.NORMAL) {
                     AnimationUtils.launchDig(); // will launch digActionEvent
-                } else if (type == DigType.INVERSE) {
+                    AudioUtils.controller.playDig();
+                }
+                else if (type == DigType.INVERSE) {
                     AnimationUtils.launchUndig();
+                    AudioUtils.controller.playDig();
                 }
             } else {
                 doMouseMovement();
@@ -68,6 +71,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
         public void launchActionEvent() {
             if (type == DigType.NORMAL) {
+                AudioUtils.controller.playDig();
                 groundFloor.transform.position -= Vector3.up * 1f;
                 //groundFloor.transform.parent.GetChild(1).transform.localScale += Vector3.one * .25f;
                 heap.transform.localScale += Vector3.up * .25f;
@@ -96,6 +100,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     groundFloor.transform.parent.GetComponent<BoxCollider>().enabled = true;
                     Player.getInstance().behaviour = new ExploreWalkBehaviour(character);
                 } else if (type == DigType.INVERSE) {
+                    AudioUtils.controller.throw_coffin.Play();
                     groundFloor.transform.parent.GetComponent<BoxCollider>().enabled = false;
                     UIUtils.infoInteractive.text = "select verse!";
                     Player.getInstance().coffinBuriedAction();

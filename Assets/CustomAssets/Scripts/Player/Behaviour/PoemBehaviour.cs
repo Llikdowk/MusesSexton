@@ -99,6 +99,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     textSetComponent.setOverColor(1.0f);
 
                     if (!versesDeployed && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
+                        AudioUtils.controller.playTone();
                         cameraAnimationComponent.applyShake(.75f, 10f, 0.7f);
                         cameraAnimationComponent.setDefaultFov();
                         float wait = 0.0f;
@@ -112,7 +113,6 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                                     //cameraAnimationComponent.colorCorrection(2f);
                                     Transform text = Player.getInstance().drawVerse(orbAux.getVerse(), orbAux.index);
                                     Transform shadow = text.GetChild(0);
-                                    AudioUtils.controller.playTone();
                                     textSetComponent.moveSubjectTo(text, text.position - character.transform.up * .25f, 0f);
                                     textSetComponent.moveSubjectTo(shadow, shadow.position - character.transform.up * .25f, 0f);
                                 };
@@ -127,9 +127,10 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
 
                 if (versesDeployed && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
-                    
+
                     if (hit.collider.gameObject.tag == "poemLetters") {
-                        AudioUtils.controller.bellDing();
+                        AudioUtils.controller.playTone();
+                        AudioUtils.controller.crumbling.Play();
                         Debug.Log("TEXT SELECTED is " + hit.collider.gameObject.name);
                         GameObject aux = hit.collider.gameObject;
                         int n = (int)Char.GetNumericValue(aux.name[aux.name.Length - 1]);
@@ -149,7 +150,8 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                         ++currentVerseSelected;
 
                         exitDisplayVerseMode();
-                    } else {
+                    }
+                    else {
                         exitDisplayVerseMode();
                     }
                 }
@@ -163,6 +165,14 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
                 else if (textColored) {
                     cleanTextColor();
+                }
+
+                if (hit.collider.gameObject.tag != "poemLetters") {
+                    if (fovChanged) {
+                        cameraAnimationComponent.setDefaultFov();
+                        fovChanged = false;
+                        textSetComponent.setNormalColor();
+                    }
                 }
             }
             else {
@@ -202,6 +212,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private void checkStateChange() {
             if (Player.getInstance().versesSelectedCount == 3) {
                 Debug.LogWarning("CAMERA CHANGES TO BE DONE");
+                AudioUtils.controller.bellDing();
 
                 currentVerseSelected = 0;
                 Player.getInstance().versesSelectedCount = 0;

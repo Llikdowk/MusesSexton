@@ -82,7 +82,8 @@ public class trigger_hollow_behaviours : MonoBehaviour {
         DigBehaviour d = new DigBehaviour(Player.getInstance().gameObject, DigType.INVERSE);
         Player.getInstance().behaviour = d;
         d.init(groundFloor, heap, tombstone);
-
+        hasCoffinInside = true;
+        //GetComponent<BoxCollider>().enabled = false;
     }
 
 }

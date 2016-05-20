@@ -10,6 +10,7 @@ public class finale : MonoBehaviour {
 	public void OnTriggerEnter(Collider c) {
         Debug.Log("has entered1!");
         StartCoroutine(doMoreFog());
+        Player.getInstance().behaviour = new ExploreWalkBehaviour(Player.getInstance().gameObject);
         Player.getInstance().behaviour = new FinalPoemBehaviour(Player.getInstance().gameObject, tombstone);
     }
 

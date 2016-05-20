@@ -1,4 +1,5 @@
 ﻿
+using Assets.CustomAssets.Scripts.Audio;
 using Assets.CustomAssets.Scripts.CustomInput;
 using Assets.CustomAssets.Scripts.Components;
 using UnityEngine;
@@ -22,6 +23,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
 
         public CoffinDragBehaviour(GameObject character, GameObject coffin) : base(character) {
+            AudioUtils.controller.pickup_coffin.Play();
             time_created = Time.time;
             fps = Player.getInstance().gameObject.AddComponent<FirstPersonController>();
             configureController();
@@ -91,7 +93,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
         private void checkStateChange() {
             if (!Player.getInstance().insideThrowCoffinTrigger && GameActions.checkAction(Action.USE, Input.GetKeyDown) && Time.time - time_created > startDelay) {
-
+                AudioUtils.controller.throw_coffin.Play();
                 Ray ray = new Ray(character.transform.position, character.transform.forward);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, 2f)) {
