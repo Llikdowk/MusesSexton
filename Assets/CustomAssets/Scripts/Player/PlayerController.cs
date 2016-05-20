@@ -20,5 +20,9 @@ namespace Assets.CustomAssets.Scripts.Player {
         public void Update() {
             player.behaviour.run();
         }
+
+        public void LateUpdate() {
+            UIUtils.checkForClearAction();
+        }
     }
 }

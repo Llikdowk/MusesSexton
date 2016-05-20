@@ -40,6 +40,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             this.groundFloor = groundFloor;
             this.heap = heap;
             this.tombstone = tombstone;
+            UIUtils.forceClear();
         }
 
         public override void destroy() {
@@ -101,9 +102,8 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     Player.getInstance().behaviour = new ExploreWalkBehaviour(character);
                 } else if (type == DigType.INVERSE) {
                     groundFloor.transform.parent.GetComponent<BoxCollider>().enabled = false;
-                    UIUtils.infoInteractive.text = "select verse!";
                     Player.getInstance().coffinBuriedAction();
-                    Debug.LogWarning("MOVE CAMERA UPWARD!!!");
+                    Debug.LogWarning("MOVE CAMERA UPWARDS!!!");
                     Player.getInstance().behaviour = new PoemBehaviour(character, tombstone);
                 }
             }

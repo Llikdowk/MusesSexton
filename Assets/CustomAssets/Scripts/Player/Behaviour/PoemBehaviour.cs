@@ -80,6 +80,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                 //Debug.Log("hit tag: " + hit.transform.tag);
 
                 if (!versesDeployed && hit.collider.gameObject.tag == "landmark") {
+                    UIUtils.landmarkFound();
                     /*
                     Vector3 v = hit.point;
                     Vector3 center = hit.transform.parent.position;
@@ -123,6 +124,8 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                         }
                         return;
                     }
+                } else {
+                    UIUtils.forceClear();
                 }
 
 
@@ -187,6 +190,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     fovChanged = false;
                     textSetComponent.setNormalColor();
                 }
+                UIUtils.forceClear();
             }
         }
 

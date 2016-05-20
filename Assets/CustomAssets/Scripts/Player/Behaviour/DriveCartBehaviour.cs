@@ -39,6 +39,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             mouseLook.YSensitivity = 1f;
             mouseLook.smooth = true;
             shovelCamera.enabled = false;
+            UIUtils.forceClear();
         }
 
         private void configureController() {
