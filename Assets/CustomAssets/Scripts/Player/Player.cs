@@ -28,6 +28,7 @@ namespace Assets.CustomAssets.Scripts.Player {
         private CharacterBehaviour _behaviour;
         public readonly AnimationCameraComponent cameraAnimation = GameObject.Find("AnimatorEntity").GetComponent<AnimationCameraComponent>();
         private readonly TextMesh[] verses = new TextMesh[6];
+        private readonly Vector3[] originalVersesLocalPos = new Vector3[6];
         private readonly TextMesh[] shadowVerses = new TextMesh[6];
 
         private open_gates giantDoorControl;
@@ -35,12 +36,18 @@ namespace Assets.CustomAssets.Scripts.Player {
         //private DigBehaviour digBehaviourSaved;
 
         public void addVerse(string value) {
-            versesSelected[versesSelectedNext] = value;
+            versesSelected[versesSelectedNext++] = value;
             Debug.Log("first person verse: " + value);
         }
 
         public void coffinBuriedAction() {
             ++coffinsBuried;
+            Debug.Log("coffins buried: " + coffinsBuried);
+            switch(coffinsBuried) {
+                case 1: AudioUtils.controller.enter_music_1(); break;
+                case 2: AudioUtils.controller.enter_music_2(); break;
+                case 3: AudioUtils.controller.enter_music_3(); break;
+            }
         }
 
         public static Player getInstance() {
@@ -61,6 +68,7 @@ namespace Assets.CustomAssets.Scripts.Player {
 
             for (int i = 0; i < verses.Length; ++i) {
                 verses[i] = eyeSight.GetChild(i).GetComponent<TextMesh>();
+                originalVersesLocalPos[i] = verses[i].transform.localPosition;
 
                 GameObject shadow = new GameObject("shadow");
                 shadow.transform.parent = verses[i].transform;
@@ -78,6 +86,16 @@ namespace Assets.CustomAssets.Scripts.Player {
             }
             textOriginalColor = verses[0].color;
             textOverColor = new Color(122f/256f, 0, 0);
+
+            versesSelected[0] = "A";
+            versesSelected[1] = "B";
+            versesSelected[2] = "C";
+            versesSelected[3] = "D";
+            versesSelected[4] = "E";
+            versesSelected[5] = "F";
+            versesSelected[6] = "G";
+            versesSelected[7] = "H";
+            versesSelected[8] = "I";
         }
 
         public CharacterBehaviour behaviour {
@@ -93,7 +111,7 @@ namespace Assets.CustomAssets.Scripts.Player {
         public void checkBuriedAllCoffins() {
             if (coffinsBuried == 3) {
                 AudioUtils.giantDoorOpeningSound();
-                cameraAnimation.applyShake(10.0f, 2.5f);
+                cameraAnimation.applyShake(10.0f, 2.5f, 0.7f);
                 giantDoorControl.active = true;
             }
         }
@@ -102,12 +120,26 @@ namespace Assets.CustomAssets.Scripts.Player {
             eyeSight.gameObject.SetActive(true);
         }
 
+        public void setFinaleEyeSight() {
+            eyeSight.gameObject.SetActive(true);
+            eyeSight.GetChild(1).gameObject.SetActive(false);
+            eyeSight.GetChild(3).gameObject.SetActive(false);
+            eyeSight.GetChild(5).gameObject.SetActive(false);
+        }
+
+        private void resetEyeSightTransform() {
+            for (int i = 0; i < verses.Length; ++i) {
+                verses[i].transform.localPosition = originalVersesLocalPos[i];
+            }
+        }
+
         public void disableEyeSight() {
+            resetEyeSightTransform();
             eyeSight.gameObject.SetActive(false);
         }
 
-        public void doMovementDisplacement(Transform destination, params endAnimationCallback[] f) {
-            cameraAnimation.moveTo(destination, f);
+        public void doMovementDisplacement(Transform destination, float velocity, params endAnimationCallback[] f) {
+            cameraAnimation.moveTo(destination, velocity, f);
         }
 
         public void unattachSight(Transform newParent = null) {
@@ -118,9 +150,10 @@ namespace Assets.CustomAssets.Scripts.Player {
             eyeSight.transform.parent = eyeSightParent;
         }
 
-        public void drawVerse(string verse, int slotPosition) {
+        public Transform drawVerse(string verse, int slotPosition) {
             verses[slotPosition].text = verse;
             shadowVerses[slotPosition].text = verse;
+            return verses[slotPosition].transform;
         }
 
         public void cleanVerses() {

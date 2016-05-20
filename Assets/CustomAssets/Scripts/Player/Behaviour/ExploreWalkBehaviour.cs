@@ -1,4 +1,5 @@
 ﻿
+using Assets.CustomAssets.Scripts.Audio;
 using Assets.CustomAssets.Scripts.CustomInput;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
@@ -38,6 +39,13 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
         public override void run() {
             checkStateChange();
+            if (GameActions.checkAction(Action.LEFT, Input.GetKey)
+                || GameActions.checkAction(Action.RIGHT, Input.GetKey)
+                || GameActions.checkAction(Action.FORWARD, Input.GetKey)
+                || GameActions.checkAction(Action.BACK, Input.GetKey)
+                ) {
+                AudioUtils.controller.playFootsteps();
+            }
         }
 
         private void checkStateChange() {
@@ -48,7 +56,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                 p.behaviour = new DriveCartBehaviour(character);
             }
             if (GameActions.checkAction(Action.DEBUG, Input.GetKeyDown)) {
-                p.behaviour = new PoemBehaviour(character, Player.getInstance().gameObject.transform, GameObject.Find("tombstoneAsset"));
+                p.behaviour = new PoemBehaviour(character, GameObject.Find("tombstoneAsset"));
             }
         }
     }

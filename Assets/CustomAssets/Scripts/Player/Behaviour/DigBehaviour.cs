@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Assets.CustomAssets.Scripts.Anmation;
+using Assets.CustomAssets.Scripts.Audio;
 using Assets.CustomAssets.Scripts.CustomInput;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private GameObject heap;
         private GameObject tombstone;
         private const int limitHits = 3;
-        private const float delay = .25f;
+        private const float delay = .1f;
         private Vector3 p0, p1;
         private int hits = 0;
         private DigType type;
@@ -32,6 +33,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             Cursor.lockState = CursorLockMode.None;
             time_created = Time.time;
             this.type = type;
+            AudioUtils.controller.enter_music_perc();
         }
 
         public void init(GameObject groundFloor, GameObject heap, GameObject tombstone) {
@@ -45,6 +47,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             //Camera.main.transform.eulerAngles = originalCameraRotation;
             Cursor.lockState = cursorStateBackup;
             Cursor.visible = false;
+            AudioUtils.controller.exit_music_perc();
         }
 
         public override void run() {
@@ -54,8 +57,11 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && Time.time - time_created > delay) {
                 if (type == DigType.NORMAL) {
                     AnimationUtils.launchDig(); // will launch digActionEvent
-                } else if (type == DigType.INVERSE) {
+                    AudioUtils.controller.playDig();
+                }
+                else if (type == DigType.INVERSE) {
                     AnimationUtils.launchUndig();
+                    AudioUtils.controller.playDig();
                 }
             } else {
                 doMouseMovement();
@@ -65,6 +71,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
         public void launchActionEvent() {
             if (type == DigType.NORMAL) {
+                AudioUtils.controller.playDig();
                 groundFloor.transform.position -= Vector3.up * 1f;
                 //groundFloor.transform.parent.GetChild(1).transform.localScale += Vector3.one * .25f;
                 heap.transform.localScale += Vector3.up * .25f;
@@ -96,7 +103,8 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     groundFloor.transform.parent.GetComponent<BoxCollider>().enabled = false;
                     UIUtils.infoInteractive.text = "select verse!";
                     Player.getInstance().coffinBuriedAction();
-                    Player.getInstance().behaviour = new PoemBehaviour(character, groundFloor.transform, tombstone);
+                    Debug.LogWarning("MOVE CAMERA UPWARD!!!");
+                    Player.getInstance().behaviour = new PoemBehaviour(character, tombstone);
                 }
             }
         }

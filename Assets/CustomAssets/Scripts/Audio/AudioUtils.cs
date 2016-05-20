@@ -3,12 +3,16 @@ using UnityEngine;
 
 namespace Assets.CustomAssets.Scripts.Audio {
     public static class AudioUtils {
+        public static AudioController controller = GameObject.Find("AudioSystem").GetComponent<AudioController>();
+
         public static void digSound() {
             Debug.LogWarning("now playing: digging sound");
+            //AudioUtils.controller.playDig();
         }
 
         public static void undigSound() {
             Debug.LogWarning("now playing: undigging sound");
+            //AudioUtils.controller.playDig();
         }
 
         public static void playTombstoneShake() {
@@ -24,6 +28,7 @@ namespace Assets.CustomAssets.Scripts.Audio {
         }
 
         public static void giantDoorOpeningSound() {
+            AudioUtils.controller.ending_door.Play();
             Debug.LogWarning("now playing: giant door opening sound");
         }
     }

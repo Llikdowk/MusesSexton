@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.CustomAssets.Scripts.CustomInput;
 
 public class open_gates : MonoBehaviour {
 
@@ -14,6 +15,11 @@ public class open_gates : MonoBehaviour {
     }
 	
 	internal void Update () {
+
+        if (GameActions.checkAction(Action.DEBUG2, Input.GetKeyDown)) {
+            active = true;
+        }
+
 	    if (active) {
             openGates();
             active = false;

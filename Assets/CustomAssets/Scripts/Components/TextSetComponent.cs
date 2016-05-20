@@ -106,5 +106,24 @@ namespace Assets.CustomAssets.Scripts.Components {
             //Player.Player.getInstance().cinematic = false;
         }
 
+        public void moveSubjectTo(Transform subject, Vector3 destination, float waitForStart_s, params endAnimationCallback[] f) {
+            //Player.Player.getInstance().cinematic = true;
+            StartCoroutine(doMoveTo(subject, destination, waitForStart_s, f));
+        }
+
+        private IEnumerator doMoveTo(Transform subject, Vector3 destination, float waitForStart_s, params endAnimationCallback[] f) {
+            Transform origin = subject.transform;
+            float t = 0.0f;
+            yield return new WaitForSeconds(waitForStart_s);
+            while (t < 1.0f) {
+                t += movementSpeed;
+                subject.position = Vector3.Slerp(origin.position, destination, t);
+                yield return new WaitForEndOfFrame();
+            }
+
+            foreach (var x in f) x();
+            //Player.Player.getInstance().cinematic = false;
+        }
+
     }
 }
