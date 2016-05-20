@@ -18,7 +18,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private GameObject heap;
         private GameObject tombstone;
         private const int limitHits = 3;
-        private const float delay = .25f;
+        private const float delay = .1f;
         private Vector3 p0, p1;
         private int hits = 0;
         private DigType type;

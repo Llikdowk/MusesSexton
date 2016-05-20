@@ -28,6 +28,7 @@ namespace Assets.CustomAssets.Scripts.Player {
         private CharacterBehaviour _behaviour;
         public readonly AnimationCameraComponent cameraAnimation = GameObject.Find("AnimatorEntity").GetComponent<AnimationCameraComponent>();
         private readonly TextMesh[] verses = new TextMesh[6];
+        private readonly Vector3[] originalVersesLocalPos = new Vector3[6];
         private readonly TextMesh[] shadowVerses = new TextMesh[6];
 
         private open_gates giantDoorControl;
@@ -61,6 +62,7 @@ namespace Assets.CustomAssets.Scripts.Player {
 
             for (int i = 0; i < verses.Length; ++i) {
                 verses[i] = eyeSight.GetChild(i).GetComponent<TextMesh>();
+                originalVersesLocalPos[i] = verses[i].transform.localPosition;
 
                 GameObject shadow = new GameObject("shadow");
                 shadow.transform.parent = verses[i].transform;
@@ -103,7 +105,7 @@ namespace Assets.CustomAssets.Scripts.Player {
         public void checkBuriedAllCoffins() {
             if (coffinsBuried == 3) {
                 AudioUtils.giantDoorOpeningSound();
-                cameraAnimation.applyShake(10.0f, 2.5f);
+                cameraAnimation.applyShake(10.0f, 2.5f, 0.7f);
                 giantDoorControl.active = true;
             }
         }
@@ -119,12 +121,19 @@ namespace Assets.CustomAssets.Scripts.Player {
             eyeSight.GetChild(5).gameObject.SetActive(false);
         }
 
+        private void resetEyeSightTransform() {
+            for (int i = 0; i < verses.Length; ++i) {
+                verses[i].transform.localPosition = originalVersesLocalPos[i];
+            }
+        }
+
         public void disableEyeSight() {
+            resetEyeSightTransform();
             eyeSight.gameObject.SetActive(false);
         }
 
-        public void doMovementDisplacement(Transform destination, params endAnimationCallback[] f) {
-            cameraAnimation.moveTo(destination, f);
+        public void doMovementDisplacement(Transform destination, float velocity, params endAnimationCallback[] f) {
+            cameraAnimation.moveTo(destination, velocity, f);
         }
 
         public void unattachSight(Transform newParent = null) {
@@ -135,9 +144,10 @@ namespace Assets.CustomAssets.Scripts.Player {
             eyeSight.transform.parent = eyeSightParent;
         }
 
-        public void drawVerse(string verse, int slotPosition) {
+        public Transform drawVerse(string verse, int slotPosition) {
             verses[slotPosition].text = verse;
             shadowVerses[slotPosition].text = verse;
+            return verses[slotPosition].transform;
         }
 
         public void cleanVerses() {

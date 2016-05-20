@@ -70,7 +70,7 @@ public class trigger_hollow_behaviours : MonoBehaviour {
             coffin.position = Vector3.Slerp(original.position, node.position, t) + new Vector3(0, c, 0);
             coffin.rotation = Quaternion.Slerp(original.rotation, node.rotation, t);
             t += .1f;
-            yield return new WaitForSeconds(.016f);
+            yield return new WaitForSeconds(0.016f);
         }
         doFinalAction();
     }
@@ -81,7 +81,7 @@ public class trigger_hollow_behaviours : MonoBehaviour {
         DigBehaviour d = new DigBehaviour(Player.getInstance().gameObject, DigType.INVERSE);
         Player.getInstance().behaviour = d;
         d.init(groundFloor, heap, tombstone);
-        Player.getInstance().doMovementDisplacement(playerPosition.transform);
+        Player.getInstance().doMovementDisplacement(playerPosition.transform, 0.01f);
 
     }
 

@@ -130,15 +130,15 @@ namespace Assets.CustomAssets.Scripts {
             DigBehaviour playerDigBehaviour = new DigBehaviour(player.gameObject);
 
             endAnimationCallback lfun = () => {
-                player.behaviour = playerDigBehaviour;
                 AnimationUtils.launchDig();
                 clickToCarve.doAction(ray);
+                player.behaviour = playerDigBehaviour;
                 trigger_hollow_behaviours t = deployTombAssets(playerPosition.transform, parent, sizeX, sizeY, sizeZ, out plane, out heap, out tombstone);
                 playerDigBehaviour.init(plane, heap, tombstone);
                 t.fullHollow = true;
             };
 
-            Player.Player.getInstance().doMovementDisplacement(playerPosition.transform, lfun);
+            Player.Player.getInstance().doMovementDisplacement(playerPosition.transform, 0.1f, lfun);
 
         }
 

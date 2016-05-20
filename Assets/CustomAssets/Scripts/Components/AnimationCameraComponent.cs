@@ -36,7 +36,8 @@ namespace Assets.CustomAssets.Scripts.Components {
         }
 	
         public void setFov(float fov) {
-            cameraMain.fieldOfView = fov;
+            //cameraMain.fieldOfView = fov;
+            StartCoroutine(modifyFov());
             //cameraPoem.fieldOfView = fov - 5;
         }
 
@@ -52,6 +53,18 @@ namespace Assets.CustomAssets.Scripts.Components {
             float t = 0.0f;
             while (t < 1.0f) {
                 cameraMain.fieldOfView = Mathf.Lerp(mainFov, defaultMainFov, t);
+                //cameraPoem.fieldOfView = Mathf.Lerp(poemFov, defaultPoemFov, t);
+                t += 0.1f;
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
+        private IEnumerator modifyFov() {
+            float mainFov = cameraMain.fieldOfView;
+            //float poemFov = cameraPoem.fieldOfView;
+            float t = 0.0f;
+            while (t < 1.0f) {
+                cameraMain.fieldOfView = Mathf.Lerp(defaultMainFov, mainFov, t);
                 //cameraPoem.fieldOfView = Mathf.Lerp(poemFov, defaultPoemFov, t);
                 t += 0.1f;
                 yield return new WaitForFixedUpdate();
@@ -83,14 +96,13 @@ namespace Assets.CustomAssets.Scripts.Components {
             }
         }
 
-        public void applyShake(float shake, float decreaseFactor = 10.0f) {
-            StartCoroutine(doShake(shake, decreaseFactor));
+        public void applyShake(float shake, float decreaseFactor, float shakeAmount) {
+            StartCoroutine(doShake(shake, decreaseFactor, shakeAmount));
             AudioUtils.playTombstoneShake();
         }
 
-        private IEnumerator doShake(float shake, float decreaseFactor) {
+        private IEnumerator doShake(float shake, float decreaseFactor, float shakeAmount) {
             Vector3 originalPos = cameraMain.transform.localPosition;
-            float shakeAmount = 0.7f;
             while (shake > 0) {
                 cameraMain.transform.localPosition = Random.insideUnitSphere * shakeAmount;
                 shake -= Time.deltaTime * decreaseFactor;
@@ -100,24 +112,24 @@ namespace Assets.CustomAssets.Scripts.Components {
             cameraMain.transform.localPosition = originalPos;
         }
 
-        public void moveTo(Transform destination, params endAnimationCallback[] f) {
+        public void moveTo(Transform destination, float velocity, params endAnimationCallback[] f) {
             Player.Player.getInstance().cinematic = true;
-            StartCoroutine(doMoveTo(destination, f));
+            StartCoroutine(doMoveTo(destination, velocity, f));
         }
 
-        private IEnumerator doMoveTo(Transform destination, params endAnimationCallback[] f) {
+        private IEnumerator doMoveTo(Transform destination, float velocity, params endAnimationCallback[] f) {
             Transform origin = player.transform;
             float t = 0.0f;
             while (t < 1.0f) {
-                t += 0.032f;
-                player.position = Vector3.Slerp(origin.position, new Vector3(destination.position.x, player.position.y, destination.position.z), t);
+                t += velocity; //0.032f;
+                player.position = Vector3.Lerp(origin.position, new Vector3(destination.position.x, player.position.y, destination.position.z), t);
                 //player.eulerAngles = Vector3.Slerp(origin.eulerAngles, destination.eulerAngles, t);
-                player.rotation = Quaternion.Slerp(origin.rotation, destination.rotation, t);
+                player.rotation = Quaternion.Lerp(origin.rotation, destination.rotation, t);
                 yield return new WaitForFixedUpdate();
             }
-
             foreach (var x in f) x();
             Player.Player.getInstance().cinematic = false;
+
         }
     }
 }
