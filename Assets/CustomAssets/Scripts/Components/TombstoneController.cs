@@ -17,7 +17,6 @@ public class TombstoneController : MonoBehaviour {
         //transform.position += Vector3.up;
         AudioUtils.playTombstoneUp();
         StartCoroutine(doActionUp());
-        ++count;
     }
 
     private IEnumerator doActionUp() {
@@ -26,7 +25,7 @@ public class TombstoneController : MonoBehaviour {
         if (count == 0) {
             destination = transform.position + Vector3.up * 1.5f;
         } else {
-            destination = transform.position + Vector3.up * 1.25f;
+            destination = transform.position + Vector3.up * 0.75f;
         }
         float t = 0.0f;
         while (t < 1.0f) {
@@ -34,6 +33,7 @@ public class TombstoneController : MonoBehaviour {
             t += 0.0036f;
             yield return new WaitForFixedUpdate();
         }
+        ++count;
     }
 
     private static string split(string text, int index) {

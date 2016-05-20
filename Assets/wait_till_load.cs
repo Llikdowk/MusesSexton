@@ -15,7 +15,7 @@ public class wait_till_load : MonoBehaviour {
     private bool alreadyClicked = false;
 
     internal void Awake() {
-        //Application.targetFrameRate = 120;
+        //Appli/*cation.targetFrameRate = 120;
         /*
         foreach (var obj in physicsObjects) {
             obj.SetActive(false);
@@ -36,6 +36,7 @@ public class wait_till_load : MonoBehaviour {
             if (alreadyLoaded) {
                 controller.enabled = true;
             }
+            return;
         }
 
 	    if (!alreadyLoaded && terrain.isMeshSyncronized) {
@@ -43,8 +44,8 @@ public class wait_till_load : MonoBehaviour {
             /*
             foreach(var obj in physicsObjects) {
                 obj.SetActive(true);
-            }
-            */
+            }*/
+            
             UICurtain.fadeOut();
             if (alreadyClicked) {
                 controller.enabled = true;

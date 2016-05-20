@@ -140,8 +140,8 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                         Transform temp = new GameObject("temp").transform;
                         temp.position = character.transform.position;
                         temp.LookAt(tombstone.transform.position + Vector3.up);
-                        cameraAnimationComponent.moveTo(temp, 0.01f, () => { UnityEngine.Object.Destroy(temp.gameObject); });
                         cameraAnimationComponent.applyShake(.5f, .1f, 0.05f);
+                        cameraAnimationComponent.moveTo(temp, 0.01f/*, () => { UnityEngine.Object.Destroy(temp.gameObject); }*/);
                         tombstone.goUp(textSetComponent.getTextOf(n), currentVerseSelected);
                         ++currentVerseSelected;
 
