@@ -35,7 +35,7 @@ namespace Assets.CustomAssets.Scripts.Player {
         //private DigBehaviour digBehaviourSaved;
 
         public void addVerse(string value) {
-            versesSelected[versesSelectedNext] = value;
+            versesSelected[versesSelectedNext++] = value;
             Debug.Log("first person verse: " + value);
         }
 
@@ -78,6 +78,16 @@ namespace Assets.CustomAssets.Scripts.Player {
             }
             textOriginalColor = verses[0].color;
             textOverColor = new Color(122f/256f, 0, 0);
+
+            versesSelected[0] = "A";
+            versesSelected[1] = "B";
+            versesSelected[2] = "C";
+            versesSelected[3] = "D";
+            versesSelected[4] = "E";
+            versesSelected[5] = "F";
+            versesSelected[6] = "G";
+            versesSelected[7] = "H";
+            versesSelected[8] = "I";
         }
 
         public CharacterBehaviour behaviour {
@@ -100,6 +110,13 @@ namespace Assets.CustomAssets.Scripts.Player {
 
         public void enableEyeSight() {
             eyeSight.gameObject.SetActive(true);
+        }
+
+        public void setFinaleEyeSight() {
+            eyeSight.gameObject.SetActive(true);
+            eyeSight.GetChild(1).gameObject.SetActive(false);
+            eyeSight.GetChild(3).gameObject.SetActive(false);
+            eyeSight.GetChild(5).gameObject.SetActive(false);
         }
 
         public void disableEyeSight() {

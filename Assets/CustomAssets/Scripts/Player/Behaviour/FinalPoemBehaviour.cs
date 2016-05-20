@@ -74,72 +74,48 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             checkStateChange();
             doMouseMovement();
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, maxDistance, mask)) {
+
+            if (!versesDeployed) {
+                deployTexts();
+                return;
+            }
+            if (versesDeployed && Physics.Raycast(ray, out hit, maxDistance, mask)) {
                 Debug.DrawRay(Player.getInstance().eyeSight.position, hit.point - Player.getInstance().eyeSight.position, Color.magenta);
-                //Debug.Log("hit tag: " + hit.transform.tag);
-
-                if (!versesDeployed && hit.collider.gameObject.tag == "landmark") {
-                    Vector3 v = hit.point;
-                    Vector3 center = hit.transform.parent.position;
-                    v = Vector3.ProjectOnPlane(v, Camera.main.transform.forward);
-                    center = Vector3.ProjectOnPlane(center, Camera.main.transform.forward);
-                    float distance = Vector3.Distance(v, center);
-                    float x = 50f / (distance);
-                    x = Mathf.Min(12.5f, x);
-                    cameraAnimationComponent.setRelativeFov(-x);
-                    fovChanged = true;
-
-                    //Debug.Log("text set hit: " + hit.collider.gameObject.name + " of: " + hit.collider.gameObject.transform.parent.name);
-                    GameObject textSet = hit.collider.gameObject.transform.parent.GetChild(0).gameObject;
-                    textSetComponent = textSet.GetComponent<TextSetComponent>();
-                    float t = Mathf.Clamp(0, x / distance, 1);
-                    textSetComponent.setOverColor(t);
-
-                    if (!versesDeployed && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
-                        float wait = 0.0f;
-                        float waitStep = 0.15f;
-                        Transform playerOrbSlot = Player.getInstance().orbSlotPosition;
-                        Player.getInstance().unattachSight();
-                        foreach (VerseTextComponent orb in textSetComponent.allOrbs) {
-                            var orbAux = orb;
-                            endAnimationCallback lambda =
-                                () => {
-                                    //cameraAnimationComponent.colorCorrection(2f);
-                                    Player.getInstance().drawVerse(orbAux.getVerse(), orbAux.index);
-                                };
-                            textSetComponent.moveSubjectTo(orb.transform, playerOrbSlot, wait, lambda);
-                            wait += waitStep;
-                            versesDeployed = true;
-                            Player.getInstance().enableEyeSight();
-                        }
-                        return;
-                    }
-                }
-
 
                 if (versesDeployed && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
-                    
+
                     if (hit.collider.gameObject.tag == "poemLetters") {
+                        GameObject textSet = hit.collider.gameObject.transform.parent.GetChild(0).gameObject;
+                        textSetComponent = textSet.GetComponent<TextSetComponent>();
+
                         Debug.Log("TEXT SELECTED is " + hit.collider.gameObject.name);
                         GameObject aux = hit.collider.gameObject;
                         int n = (int)Char.GetNumericValue(aux.name[aux.name.Length - 1]);
                         //textSetComponent.doGoToOrigin(n, graveHollow);
-                        textSetComponent.moveAllOrbsToOrigin();
-                        textSetComponent.updatePlayerState(n);
+                        //textSetComponent.moveAllOrbsToOrigin();
+                        //textSetComponent.updatePlayerState(n);
                         //superTextSet.updateTextSetGenders();
                         textDisplayed = false;
                         //textTombstone[currentVerseSelected].text = textSetComponent.getTextOf(n);
+                        /*
                         Transform temp = new GameObject("temp").transform;
                         temp.position = character.transform.position;
                         temp.LookAt(tombstone.transform.position + Vector3.up);
                         cameraAnimationComponent.moveTo(temp, () => { new WaitForSeconds(0.5f); UnityEngine.Object.Destroy(temp.gameObject); });
                         cameraAnimationComponent.applyShake(5.0f);
-                        tombstone.goUp(textSetComponent.getTextOf(n), currentVerseSelected);
-                        ++currentVerseSelected;
+                        */
+                        if (n == 0)
+                            tombstone.goUp(Player.getInstance().versesSelected[0+3*currentVerseSelected], currentVerseSelected);
+                        else if (n == 2)
+                            tombstone.goUp(Player.getInstance().versesSelected[1+3* currentVerseSelected], currentVerseSelected);
+                        else if (n == 4)
+                            tombstone.goUp(Player.getInstance().versesSelected[2+3* currentVerseSelected], currentVerseSelected);
 
+                        ++currentVerseSelected;
+                        Player.getInstance().versesSelectedCount++;
                         exitDisplayVerseMode();
                     } else {
-                        exitDisplayVerseMode();
+                        //exitDisplayVerseMode();
                     }
                 }
 
@@ -169,12 +145,22 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             }
         }
 
+        private void deployTexts() {
+            if (Player.getInstance().versesSelectedCount == 3) { checkStateChange(); return;}
+            Player.getInstance().unattachSight();
+            Player.getInstance().setFinaleEyeSight();
+            Debug.Log(Player.getInstance().versesSelected[0]);
+            Player.getInstance().drawVerse(Player.getInstance().versesSelected[0+3* currentVerseSelected], 0);
+            Player.getInstance().drawVerse(Player.getInstance().versesSelected[1+3* currentVerseSelected], 2);
+            Player.getInstance().drawVerse(Player.getInstance().versesSelected[2+3* currentVerseSelected], 4);
+            versesDeployed = true;
+        }
+
         private void exitDisplayVerseMode() {
-            textSetComponent.moveAllOrbsToOrigin();
             Player.getInstance().cleanVerses();
             Player.getInstance().reatachSight();
-            versesDeployed = false;
             Player.getInstance().disableEyeSight();
+            versesDeployed = false;
         }
 
         private void cleanTextColor() {
@@ -190,14 +176,16 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
         private void checkStateChange() {
             if (Player.getInstance().versesSelectedCount == 3) {
-                Debug.LogWarning("CAMERA CHANGES TO BE DONE");
-
+                Debug.LogWarning("END FINALE");
+                /*
                 currentVerseSelected = 0;
                 Player.getInstance().versesSelectedCount = 0;
                 Player.getInstance().genderChosen = Gender.UNDECIDED;
                 Player.getInstance().behaviour = new ExploreWalkBehaviour(character);
                 hasEnded = true;
                 Player.getInstance().checkBuriedAllCoffins();
+                */
+                Player.getInstance().behaviour = new ExploreWalkBehaviour(character);
             }
 
             if (GameActions.checkAction(Action.DEBUG, Input.GetKeyDown)) {
