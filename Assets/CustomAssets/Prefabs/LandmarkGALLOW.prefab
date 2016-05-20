@@ -317,7 +317,7 @@ GameObject:
   - 4: {fileID: 487646}
   - 65: {fileID: 6575686}
   m_Layer: 10
-  m_Name: poemLandmarkCollider
+  m_Name: poemLandmarkCollider (1)
   m_TagString: landmark
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -374,6 +374,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &195722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 485454}
+  - 65: {fileID: 6545934}
+  m_Layer: 10
+  m_Name: poemLandmarkCollider
+  m_TagString: landmark
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &402406
 Transform:
   m_ObjectHideFlags: 1
@@ -394,7 +410,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 152238}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1300001, y: -1.5499992, z: -7.550003}
+  m_LocalPosition: {x: -1.1300001, y: 6.93, z: -2.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 470056}
@@ -407,7 +423,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190550}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.367, z: 0}
+  m_LocalPosition: {x: 6.44, y: 4.4, z: 5.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 464124}
@@ -432,7 +448,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.12, y: -1.6, z: 2.36}
+  m_LocalPosition: {x: -7.07, y: -1.6, z: -2.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 461886}
@@ -444,13 +460,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 147768}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.122223, y: -3.6348047, z: -2.164856}
+  m_LocalRotation: {x: 0, y: -0.5755466, z: 0, w: 0.81776893}
+  m_LocalPosition: {x: 27.028008, y: -4.4300003, z: -0.17741394}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 489194}
-  - {fileID: 487646}
+  - {fileID: 485454}
   - {fileID: 437768}
+  - {fileID: 487646}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &437768
@@ -486,7 +503,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 148604}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.367, z: 0}
+  m_LocalPosition: {x: -9.72, y: 3.74, z: -4.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 412068}
@@ -498,7 +515,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 114140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.367, z: 0}
+  m_LocalPosition: {x: 0, y: -2.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 470056}
@@ -510,7 +527,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 126670}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.367, z: 0}
+  m_LocalPosition: {x: 4.04, y: 1.43, z: 4.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 476532}
@@ -629,6 +646,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 461886}
   m_RootOrder: 0
+--- !u!4 &485454
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195722}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.7, y: 4.73, z: 0.17}
+  m_LocalScale: {x: 0.5581019, y: 0.2600845, z: 0.48884383}
+  m_Children: []
+  m_Father: {fileID: 436510}
+  m_RootOrder: 1
 --- !u!4 &487646
 Transform:
   m_ObjectHideFlags: 1
@@ -636,11 +665,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 189882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 2.1163, y: 11.159, z: 2.12}
+  m_LocalScale: {x: 0.4278843, y: 0.340579, z: 0.21341263}
   m_Children: []
   m_Father: {fileID: 436510}
-  m_RootOrder: 1
+  m_RootOrder: 3
 --- !u!4 &489194
 Transform:
   m_ObjectHideFlags: 1
@@ -648,7 +677,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109450}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.58, y: 9.8, z: 1.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 407748}
@@ -919,6 +948,18 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: 64100d181d5ddf94aa5640b3f96c7cbe, type: 3}
+--- !u!65 &6545934
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195722}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 18.965315, y: 21.996054, z: 20.966248}
+  m_Center: {x: -4.4826474, y: -1.4750867, z: 0.4370002}
 --- !u!65 &6575686
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -929,8 +970,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 18.965315, y: 21.977203, z: 20.966248}
-  m_Center: {x: -4.4826555, y: -1.4845123, z: 0.43699646}
+  m_Size: {x: 18.965315, y: 21.996054, z: 20.966248}
+  m_Center: {x: -4.4826474, y: -1.4750867, z: 0.4370002}
 --- !u!114 &11400626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -943,10 +984,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - Immortal trees to witness this ritual
-  - Immortal trees to witness this ritual
-  - Immortal trees to witness this ritual
-  - Immortal trees to witness this ritual
+  - His hanging corpse kept looking at me.
+  - Her hanging corpse kept looking at me.
+  - Their hanging corpses kept looking at me.
+  - My hanging corpse kept looking at them.
   initGenderDisplayed: 2
 --- !u!114 &11411784
 MonoBehaviour:
@@ -960,10 +1001,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - Snow covered pines judge his crimes
-  - Snow covered pines judge her crimes
-  - Snow covered pines judge their crimes
-  - Snow covered pines judge my crimes
+  - I wish I was the hangman myself.
+  - I wish I was the hangman myself.
+  - I wish I was the hangman myself.
+  - I wish I was the hangman myself.
   initGenderDisplayed: 1
 --- !u!114 &11440338
 MonoBehaviour:
@@ -992,7 +1033,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   material: {fileID: 2100000, guid: 77fc5c3df8b094c4880cd32571a784f3, type: 2}
-  overMaterialColor: {r: 1, g: 0, b: 0, a: 0}
+  overMaterialColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!114 &11448494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1005,10 +1046,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - All but food for the pine roots
-  - All but food for the pine roots
-  - All but food for the pine roots
-  - All but food for the pine roots
+  - His neck snapped and hushed the town.
+  - Her neck snapped and hushed the town.
+  - Their neck snapped and hushed the town.
+  - My neck snapped and hushed the town.
   initGenderDisplayed: 0
 --- !u!114 &11456198
 MonoBehaviour:
@@ -1022,10 +1063,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - Return to nature, my beloved one
-  - Return to nature, my beloved one
-  - Return to nature, my beloved ones
-  - I return to nature, loved by noone
+  - I may hang myself after I'm done.
+  - I may hang myself after I'm done.
+  - I may hang myself after I'm done.
+  - I hanged myself after all.
   initGenderDisplayed: 2
 --- !u!114 &11468722
 MonoBehaviour:
@@ -1039,10 +1080,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - Green needles to pierce his heart
-  - Green needles to pierce her heart
-  - Green needles to pierce their hearts
-  - Green needles to pierce my heart
+  - Daddy took the blame for him.
+  - Daddy took the blame for her.
+  - Daddy took the blame for them.
+  - Daddy took the blame for me.
   initGenderDisplayed: 0
 --- !u!114 &11473814
 MonoBehaviour:
@@ -1056,10 +1097,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - I hid from him in the forest
-  - I hid from her in the forest
-  - I hid from them in the forest
-  - I hid from myself in the forest
+  - My life started when they put an end to his.
+  - My life started when they put an end to hers.
+  - My life started when they put an end to theirs.
+  - All life began when they put mine to an end.
   initGenderDisplayed: 1
 --- !u!135 &13500024
 SphereCollider:

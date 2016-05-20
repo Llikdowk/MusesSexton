@@ -444,7 +444,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 125948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.12, y: -1.6, z: 2.36}
+  m_LocalPosition: {x: -10.46, y: -1.6, z: 2.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 462402}
@@ -457,7 +457,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 184146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1300001, y: -1.5499992, z: -7.550003}
+  m_LocalPosition: {x: -1.13, y: -1.5499992, z: 17.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 492388}
@@ -482,7 +482,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 133774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.53, y: -6.66, z: -4.16}
+  m_LocalPosition: {x: 2.41, y: -9.37, z: 10.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 420096}
@@ -520,9 +520,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180490}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.18, y: 5.723133, z: -78.24}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: -0.9962962, z: 0, w: -0.085987605}
+  m_LocalPosition: {x: 111.899994, y: 9.67, z: 15.699997}
+  m_LocalScale: {x: 1.6385032, y: 1.6385028, z: 1.6385028}
   m_Children:
   - {fileID: 457186}
   - {fileID: 452650}
@@ -561,8 +561,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 174474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.75, y: -3.7, z: 8.83}
+  m_LocalScale: {x: 0.14793114, y: 0.39401144, z: 1.0969927}
   m_Children: []
   m_Father: {fileID: 430016}
   m_RootOrder: 1
@@ -598,7 +598,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154554}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.39, y: -6.66, z: -8.8}
+  m_LocalPosition: {x: -7.71, y: -6.66, z: -7.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 440136}
@@ -629,7 +629,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.367, z: 0}
+  m_LocalPosition: {x: -7.82, y: 1.367, z: 1.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 414646}
@@ -706,7 +706,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 197150}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.367, z: 0}
+  m_LocalPosition: {x: 10.1, y: 1.367, z: 24.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 440136}
@@ -718,7 +718,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.367, z: 0}
+  m_LocalPosition: {x: 13.33, y: 1.367, z: 9.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 462402}
@@ -1126,10 +1126,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - I hid from him in the forest
-  - I hid from her in the forest
-  - I hid from them in the forest
-  - I hid from myself in the forest
+  - Blood rained from his chest atop the door.
+  - Blood rained from her chest atop the door.
+  - Blood rained from their chests atop the door.
+  - Blood rained from my chest atop the door.
   initGenderDisplayed: 1
 --- !u!114 &11403814
 MonoBehaviour:
@@ -1171,10 +1171,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - All but food for the pine roots
-  - All but food for the pine roots
-  - All but food for the pine roots
-  - All but food for the pine roots
+  - He never dared to leave the town.
+  - She never dared to leave the town.
+  - They never dared to leave the town.
+  - I never dared to leave the town.
   initGenderDisplayed: 0
 --- !u!114 &11451842
 MonoBehaviour:
@@ -1188,10 +1188,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - Green needles to pierce his heart
-  - Green needles to pierce her heart
-  - Green needles to pierce their hearts
-  - Green needles to pierce my heart
+  - When the horsemen came, he cried.
+  - When the horsemen came, she cried.
+  - When the horsemen came, they cried.
+  - When the horsemen came, I cried.
   initGenderDisplayed: 0
 --- !u!114 &11454678
 MonoBehaviour:
@@ -1205,10 +1205,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - Return to nature, my beloved one
-  - Return to nature, my beloved one
-  - Return to nature, my beloved ones
-  - I return to nature, loved by noone
+  - He was left behind, trapped in the valley.
+  - She was left behind, trapped in the valley.
+  - They were left behind, trapped in the valley.
+  - I was left behind, trapped in the valley.
   initGenderDisplayed: 2
 --- !u!114 &11486452
 MonoBehaviour:
@@ -1222,10 +1222,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - Snow covered pines judge his crimes
-  - Snow covered pines judge her crimes
-  - Snow covered pines judge their crimes
-  - Snow covered pines judge my crimes
+  - Tales of distant cities drove him mad.
+  - Tales of distant cities drove her mad.
+  - Tales of distant cities drove them mad.
+  - Tales of distant cities drove me mad.
   initGenderDisplayed: 1
 --- !u!114 &11496340
 MonoBehaviour:
@@ -1239,10 +1239,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - Immortal trees to witness this ritual
-  - Immortal trees to witness this ritual
-  - Immortal trees to witness this ritual
-  - Immortal trees to witness this ritual
+  - His eyes still watch through the keyhole.
+  - Her eyes still watch through the keyhole.
+  - Their eyes still watch through the keyhole.
+  - My eyes still watch through the keyhole.
   initGenderDisplayed: 2
 --- !u!135 &13505766
 SphereCollider:

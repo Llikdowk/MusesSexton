@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: GreenBright.1
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: bf044478c23c46d40bde6df51267dade, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -78,6 +78,34 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DetailTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _GlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _TranslucencyMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ShadowOffset
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -91,6 +119,14 @@ Material:
         first:
           name: _Cutoff
         second: 0.5
+      data:
+        first:
+          name: _Shininess
+        second: 0.1
+      data:
+        first:
+          name: _WindQuality
+        second: 0
       data:
         first:
           name: _Parallax
@@ -127,6 +163,42 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _Cull
+        second: 2
+      data:
+        first:
+          name: _albedo
+        second: 1
+      data:
+        first:
+          name: _ke
+        second: 0.81
+      data:
+        first:
+          name: _kd
+        second: -0.12
+      data:
+        first:
+          name: _ks
+        second: 0.48
+      data:
+        first:
+          name: _gloss
+        second: 0.46
+      data:
+        first:
+          name: _fresnelIntensity
+        second: 0.2
+      data:
+        first:
+          name: _fresnelConvexity
+        second: 0
+      data:
+        first:
+          name: _SquashAmount
+        second: 1
     m_Colors:
       data:
         first:
@@ -136,3 +208,35 @@ Material:
         first:
           name: _Color
         second: {r: 1, g: 0.9906667, b: 0.96, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _emissiveColor
+        second: {r: 1, g: 0.89019614, b: 0.85098046, a: 1}
+      data:
+        first:
+          name: _diffuseColor
+        second: {r: 0.8470589, g: 0.8470589, b: 0.8470589, a: 1}
+      data:
+        first:
+          name: _specularColor
+        second: {r: 0.89019614, g: 0.9058824, b: 0.90196085, a: 1}
+      data:
+        first:
+          name: _fresnelColor
+        second: {r: 0.78823537, g: 1, b: 0.9803922, a: 1}
+      data:
+        first:
+          name: _HueVariation
+        second: {r: 1, g: 0.5, b: 0, a: 0.1}
+      data:
+        first:
+          name: _TreeInstanceColor
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _TreeInstanceScale
+        second: {r: 1, g: 1, b: 1, a: 1}

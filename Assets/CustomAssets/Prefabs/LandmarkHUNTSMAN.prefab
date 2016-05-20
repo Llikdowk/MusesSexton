@@ -688,7 +688,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 126084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.94, y: -5.7, z: 0.71}
+  m_LocalPosition: {x: -2.45, y: -5.7, z: 4.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 411546}
@@ -701,7 +701,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154280}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.12, y: -1.6, z: 2.36}
+  m_LocalPosition: {x: -3.6, y: 3.34, z: 4.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 412552}
@@ -714,7 +714,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.39, y: -6.66, z: -8.8}
+  m_LocalPosition: {x: -2.72, y: -6.66, z: -3.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 485266}
@@ -727,7 +727,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.53, y: -6.66, z: -4.16}
+  m_LocalPosition: {x: -6.09, y: -6.66, z: -1.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 433178}
@@ -763,8 +763,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 160254}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.25, y: 5.723133, z: -66.2}
+  m_LocalRotation: {x: 0, y: 0.19779481, z: 0, w: 0.98024344}
+  m_LocalPosition: {x: 175.94199, y: 15.09, z: 69.52205}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 441218}
@@ -792,8 +792,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.81, y: 0, z: 0}
+  m_LocalScale: {x: 0.48696056, y: 0.5787811, z: 0.5787811}
   m_Children: []
   m_Father: {fileID: 483422}
   m_RootOrder: 1
@@ -1423,10 +1423,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - I hid from him in the forest
-  - I hid from her in the forest
-  - I hid from them in the forest
-  - I hid from myself in the forest
+  - I spent half a life hunting him down.
+  - I spent half a life hunting her down.
+  - I spent half a life hunting them down.
+  - Half my life I've been hunted down.
   initGenderDisplayed: 1
 --- !u!114 &11425980
 MonoBehaviour:
@@ -1440,10 +1440,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - Immortal trees to witness this ritual
-  - Immortal trees to witness this ritual
-  - Immortal trees to witness this ritual
-  - Immortal trees to witness this ritual
+  - He made love to me on a bear skin.
+  - She made love to me on a bear skin.
+  - They used to make love on a bear skin.
+  - I made love on a bear skin.
   initGenderDisplayed: 2
 --- !u!114 &11434282
 MonoBehaviour:
@@ -1457,10 +1457,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - Return to nature, my beloved one
-  - Return to nature, my beloved one
-  - Return to nature, my beloved ones
-  - I return to nature, loved by noone
+  - I wrapped his body with the fur of a wolf.
+  - I wrapped her body with the fur of a wolf.
+  - I wrapped their body with the fur of a wolf.
+  - My body wrapped with the fur of a wolf.
   initGenderDisplayed: 2
 --- !u!114 &11453606
 MonoBehaviour:
@@ -1474,10 +1474,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - All but food for the pine roots
-  - All but food for the pine roots
-  - All but food for the pine roots
-  - All but food for the pine roots
+  - I skinned him like a deer.
+  - I skinned her like a deer.
+  - I skinned them like a deer.
+  - I got skinned like a deer.
   initGenderDisplayed: 0
 --- !u!114 &11467726
 MonoBehaviour:
@@ -1519,10 +1519,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - Snow covered pines judge his crimes
-  - Snow covered pines judge her crimes
-  - Snow covered pines judge their crimes
-  - Snow covered pines judge my crimes
+  - We ate deer stew under a blue moon.
+  - We ate deer stew under a blue moon.
+  - We ate deer stew under a blue moon.
+  - Feed me deer stew under a blue moon.
   initGenderDisplayed: 1
 --- !u!114 &11491238
 MonoBehaviour:
@@ -1536,10 +1536,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - Green needles to pierce his heart
-  - Green needles to pierce her heart
-  - Green needles to pierce their hearts
-  - Green needles to pierce my heart
+  - He had the strength of a bear.
+  - She had the strength of a bear.
+  - They had the strength of a bear.
+  - I had the strength of a bear.
   initGenderDisplayed: 0
 --- !u!135 &13521894
 SphereCollider:

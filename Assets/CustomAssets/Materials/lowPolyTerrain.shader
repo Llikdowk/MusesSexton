@@ -35,10 +35,10 @@
             };
 
             struct v2f {
-                nointerpolation float4 pos : POSITION;
-                nointerpolation float3 normal: NORMAL;
+                /*nointerpolation*/ float4 pos : POSITION;
+                /*nointerpolation*/ float3 normal: NORMAL;
                 UNITY_FOG_COORDS(1)
-                nointerpolation float4 worldPos : TEXCOORD2;
+                /*nointerpolation*/ float4 worldPos : TEXCOORD2;
                 LIGHTING_COORDS(3, 4)
             };
 

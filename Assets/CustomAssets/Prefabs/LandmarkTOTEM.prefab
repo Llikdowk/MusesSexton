@@ -448,8 +448,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 144496}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.27, y: 5.723133, z: -40.88}
+  m_LocalRotation: {x: 0, y: 0.7952367, z: 0, w: 0.60629916}
+  m_LocalPosition: {x: 69.87332, y: 5.8999996, z: 26.25969}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 454056}
@@ -556,7 +556,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110496}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5.13, y: 2.06, z: -1.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 438494}
@@ -619,7 +619,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100198}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1300001, y: -1.5499992, z: -7.550003}
+  m_LocalPosition: {x: 1.26, y: -1.5499992, z: -7.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 422458}
@@ -632,8 +632,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 108032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.75, y: -1.37, z: -3.93}
+  m_LocalScale: {x: 0.34336358, y: 0.71071094, z: 0.40877524}
   m_Children: []
   m_Father: {fileID: 402064}
   m_RootOrder: 1
@@ -656,7 +656,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 104590}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.10734496, z: 0, w: 0.99422187}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -675,7 +675,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 136366}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.94, y: -5.7, z: 0.71}
+  m_LocalPosition: {x: -0.95, y: -10.32, z: -4.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 428086}
@@ -688,7 +688,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 128132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.367, z: 0}
+  m_LocalPosition: {x: 8.15, y: 1.367, z: 1.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 404086}
@@ -725,7 +725,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 178282}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.966771, y: -10.153133, z: -15.608566}
+  m_LocalPosition: {x: -1.37, y: -10.153133, z: -16.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 403488}
@@ -761,7 +761,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 186676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.53, y: -6.66, z: -4.16}
+  m_LocalPosition: {x: -12.43, y: -6.66, z: -1.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 404086}
@@ -774,7 +774,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 169256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.367, z: 0}
+  m_LocalPosition: {x: 2.4, y: 1.367, z: 2.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 469942}
@@ -786,7 +786,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 170832}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.12, y: -1.6, z: 2.36}
+  m_LocalPosition: {x: -0.77, y: 2.84, z: -5.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 451972}
@@ -1195,10 +1195,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - Return to nature, my beloved one
-  - Return to nature, my beloved one
-  - Return to nature, my beloved ones
-  - I return to nature, loved by noone
+  - I'm burying him naked, his body painted.
+  - I'm burying her naked, her body painted.
+  - I'm burying them naked, their body painted.
+  - I'm buried naked, my body painted.
   initGenderDisplayed: 2
 --- !u!114 &11410940
 MonoBehaviour:
@@ -1212,10 +1212,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - Snow covered pines judge his crimes
-  - Snow covered pines judge her crimes
-  - Snow covered pines judge their crimes
-  - Snow covered pines judge my crimes
+  - They scalped him and his men.
+  - They scalped her and her children.
+  - They scalped them all.
+  - They scalped me and my men.
   initGenderDisplayed: 1
 --- !u!114 &11417374
 MonoBehaviour:
@@ -1229,10 +1229,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - All but food for the pine roots
-  - All but food for the pine roots
-  - All but food for the pine roots
-  - All but food for the pine roots
+  - Mescal warned him about the storm.
+  - Mescal warned her about the storm.
+  - Mescal warned them about the storm.
+  - Mescal warned me about the storm.
   initGenderDisplayed: 0
 --- !u!114 &11421104
 MonoBehaviour:
@@ -1246,10 +1246,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - Immortal trees to witness this ritual
-  - Immortal trees to witness this ritual
-  - Immortal trees to witness this ritual
-  - Immortal trees to witness this ritual
+  - I carved a knife out of his bones.
+  - I carved a knife out of her bones.
+  - I carved three knives out of their bones.
+  - Three knives carved out of my bones.
   initGenderDisplayed: 2
 --- !u!114 &11435776
 MonoBehaviour:
@@ -1291,10 +1291,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - I hid from him in the forest
-  - I hid from her in the forest
-  - I hid from them in the forest
-  - I hid from myself in the forest
+  - He refused to believe in the chief's omen.
+  - She refused to believe in the chief's omen.
+  - They refused to believe in the chief's omen.
+  - I refused to believe in the chief's omen.
   initGenderDisplayed: 1
 --- !u!114 &11480608
 MonoBehaviour:
@@ -1308,10 +1308,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - Green needles to pierce his heart
-  - Green needles to pierce her heart
-  - Green needles to pierce their hearts
-  - Green needles to pierce my heart
+  - He spent eight nights yelling my name.
+  - She spent eight nights yelling my name.
+  - They spent eight nights yelling my name.
+  - I spent eight nights yelling their names.
   initGenderDisplayed: 0
 --- !u!135 &13505206
 SphereCollider:
