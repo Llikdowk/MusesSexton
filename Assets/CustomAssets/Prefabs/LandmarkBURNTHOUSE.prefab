@@ -1160,7 +1160,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  material: {fileID: 2100000, guid: 44b34c5a089184a438f67928d9076951, type: 2}
+  material: {fileID: 2100000, guid: 925481cdd1b5ca44ea3e37795e639577, type: 2}
   overMaterialColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!135 &13507446
 SphereCollider:

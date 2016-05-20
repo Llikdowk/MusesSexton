@@ -1157,7 +1157,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  material: {fileID: 2100000, guid: 44b34c5a089184a438f67928d9076951, type: 2}
+  material: {fileID: 2100000, guid: 8cc1302cf56d09c4eaf498d4a6c8e81b, type: 2}
   overMaterialColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!114 &11441168
 MonoBehaviour:

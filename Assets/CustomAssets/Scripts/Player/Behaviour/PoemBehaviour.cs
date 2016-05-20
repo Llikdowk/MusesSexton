@@ -92,6 +92,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     cameraAnimationComponent.setRelativeFov(-x);
                     fovChanged = true;
 
+                    Debug.Log("text set hit: " + hit.collider.gameObject.name + " of: " + hit.collider.gameObject.transform.parent.name);
                     GameObject textSet = hit.collider.gameObject.transform.parent.GetChild(0).gameObject;
                     textSetComponent = textSet.GetComponent<TextSetComponent>();
                     float t = Mathf.Clamp(0, x / distance, 1);
