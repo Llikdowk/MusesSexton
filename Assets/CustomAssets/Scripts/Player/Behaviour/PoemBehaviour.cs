@@ -87,12 +87,12 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     v = Vector3.ProjectOnPlane(v, Camera.main.transform.forward);
                     center = Vector3.ProjectOnPlane(center, Camera.main.transform.forward);
                     float distance = Vector3.Distance(v, center);
-                    float x = 20f / (distance);
+                    float x = 50f / (distance);
                     x = Mathf.Min(12.5f, x);
                     cameraAnimationComponent.setRelativeFov(-x);
                     fovChanged = true;
 
-                    Debug.Log("text set hit: " + hit.collider.gameObject.name + " of: " + hit.collider.gameObject.transform.parent.name);
+                    //Debug.Log("text set hit: " + hit.collider.gameObject.name + " of: " + hit.collider.gameObject.transform.parent.name);
                     GameObject textSet = hit.collider.gameObject.transform.parent.GetChild(0).gameObject;
                     textSetComponent = textSet.GetComponent<TextSetComponent>();
                     float t = Mathf.Clamp(0, x / distance, 1);
@@ -172,6 +172,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         }
 
         private void exitDisplayVerseMode() {
+            textSetComponent.moveAllOrbsToOrigin();
             Player.getInstance().cleanVerses();
             Player.getInstance().reatachSight();
             versesDeployed = false;
