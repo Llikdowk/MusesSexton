@@ -164,6 +164,7 @@ namespace Assets.CustomAssets.Scripts {
             SphereCollider sc = triggerDisableDigging.AddComponent<SphereCollider>();
             sc.radius = Mathf.Max(sizeX, sizeZ) * 3f;
             sc.isTrigger = true;
+            sc.gameObject.layer = 9;
             triggerDisableDigging.transform.parent = parent.transform;
             triggerDisableDigging.transform.localPosition = Vector3.zero;
             triggerDisableDigging.AddComponent<trigger_disable_digging>();
@@ -172,6 +173,7 @@ namespace Assets.CustomAssets.Scripts {
             bc = triggerThrowCoffin.AddComponent<BoxCollider>();
             bc.isTrigger = true;
             bc.size = v * 2.5f;
+            bc.gameObject.layer = 9;
             triggerThrowCoffin.transform.parent = parent.transform;
             triggerThrowCoffin.transform.localPosition = Vector3.zero;
 

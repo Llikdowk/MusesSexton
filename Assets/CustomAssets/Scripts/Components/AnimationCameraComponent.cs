@@ -1,6 +1,7 @@
 ﻿using Assets.CustomAssets.Scripts.Audio;
 using System.Collections;
 using UnityEngine;
+using UnityStandardAssets.ImageEffects;
 
 namespace Assets.CustomAssets.Scripts.Components {
 
@@ -17,6 +18,9 @@ namespace Assets.CustomAssets.Scripts.Components {
 
         private float defaultMainFov;
         private float defaultPoemFov;
+
+        private DepthOfField dop;
+        private ColorCorrectionCurves cc;
         
         internal void Start () {
             player = transform.parent;
@@ -26,6 +30,8 @@ namespace Assets.CustomAssets.Scripts.Components {
 
             defaultMainFov = cameraMain.fieldOfView;
             //defaultPoemFov = cameraPoem.fieldOfView;
+            dop = Camera.main.GetComponent<DepthOfField>();
+            cc = Camera.main.GetComponent<ColorCorrectionCurves>();
 
         }
 	
@@ -55,6 +61,26 @@ namespace Assets.CustomAssets.Scripts.Components {
         public void setRelativeFov(float offsetfov) {
             cameraMain.fieldOfView = defaultMainFov + offsetfov;
             //cameraPoem.fieldOfView = defaultPoemFov + offsetfov;
+        }
+
+
+        public void activateDOF() {
+            dop.enabled = true;
+        }
+        public void deactivateDOF() {
+            dop.enabled = false;
+        }
+
+        public void colorCorrection(float t) {
+            cc.saturation = t;
+        }
+
+        private IEnumerator doColorCorrection(float t) {
+            while (t > 1f) {
+                cc.saturation = t;
+                t -= 0.05f;
+                yield return new WaitForEndOfFrame();
+            }
         }
 
         public void applyShake(float shake, float decreaseFactor = 10.0f) {

@@ -32,7 +32,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private bool fovChanged = false;
         private bool versesDeployed = false;
         private int originalMainCulling;
-
+        private int mask = ~(1 << 9);
         public PoemBehaviour(GameObject character, Transform graveHollow, GameObject tombstone) : base(character) {
             originalCameraPos = Camera.main.transform.position;
             originalCameraRotation = Camera.main.transform.rotation;
@@ -77,7 +77,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             checkStateChange();
             doMouseMovement();
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, maxDistance)) {
+            if (Physics.Raycast(ray, out hit, maxDistance, mask)) {
                 Debug.DrawRay(Player.getInstance().eyeSight.position, hit.point - Player.getInstance().eyeSight.position, Color.magenta);
                 //Debug.Log("hit tag: " + hit.transform.tag);
 
@@ -107,6 +107,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                             var orbAux = orb;
                             endAnimationCallback lambda =
                                 () => {
+                                    //cameraAnimationComponent.colorCorrection(2f);
                                     Player.getInstance().drawVerse(orbAux.getVerse(), orbAux.index);
                                 };
                             textSetComponent.moveSubjectTo(orb.transform, playerOrbSlot, wait, lambda);
