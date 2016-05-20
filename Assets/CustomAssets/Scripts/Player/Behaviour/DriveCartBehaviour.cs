@@ -54,6 +54,9 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         }
 
         public override void destroy() {
+            currentSpeed = 0f;
+            AudioUtils.controller.cart_loop.volume = 0f;
+            AudioUtils.controller.exit_cart();
             shovelCamera.enabled = true;
             UnityEngine.Object.Destroy(fps);
             cart.transform.parent = null;

@@ -94,7 +94,7 @@ namespace Assets {
 
             throw_coffin = gameObject.AddComponent<AudioSource>();
             throw_coffin.clip = Resources.Load<AudioClip>("Audio/throw coffin");
-            throw_coffin.volume = .50f;
+            throw_coffin.volume = .2f;
 
             tone[0] = gameObject.AddComponent<AudioSource>();
             tone[0].clip = Resources.Load<AudioClip>("Audio/tone1");
