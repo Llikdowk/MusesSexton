@@ -133,6 +133,12 @@ namespace Assets.CustomAssets.Scripts.Player {
             }
         }
 
+        public void offsetEyeSight(Vector3 offset) {
+            for (int i = 0; i < verses.Length; ++i) {
+                verses[i].transform.localPosition += offset;
+            }
+        }
+
         public void disableEyeSight() {
             resetEyeSightTransform();
             eyeSight.gameObject.SetActive(false);

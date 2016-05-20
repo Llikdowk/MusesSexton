@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Assets.CustomAssets.Scripts.Audio;
 using Assets.CustomAssets.Scripts.Components;
 using Assets.CustomAssets.Scripts.CustomInput;
 using UnityEngine;
@@ -25,7 +26,10 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private bool versesDeployed = false;
         private readonly int originalMainCulling;
         private int mask = ~(1 << 9);
+        private string[] versesChosen = new string[3];
+
         public FinalPoemBehaviour(GameObject character, GameObject tombstone) : base(character) {
+            UIUtils.forceClear();
             originalCameraPos = Camera.main.transform.position;
             originalCameraRotation = Camera.main.transform.rotation;
             originalMainCulling = Camera.main.cullingMask;
@@ -42,6 +46,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             this.tombstone = tombstone.GetComponent<TombstoneController>();
             this.cameraAnimationComponent = Player.getInstance().gameObject.transform.GetChild(0).GetComponent<AnimationCameraComponent>();
             shovelCamera.enabled = false;
+            //Player.getInstance().offsetEyeSight(new Vector3(0, -1f, 0));
             Player.getInstance().disableEyeSight();
         }
 
@@ -69,18 +74,32 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                 if (versesDeployed && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
 
                     if (hit.collider.gameObject.tag == "poemLetters") {
+                        AudioUtils.controller.playTone();
+                        AudioUtils.controller.crumbling.Play();
+
                         GameObject textSet = hit.collider.gameObject.transform.parent.GetChild(0).gameObject;
                         textSetComponent = textSet.GetComponent<TextSetComponent>();
 
                         Debug.Log("TEXT SELECTED is " + hit.collider.gameObject.name);
+
+                        cameraAnimationComponent.applyShake(.5f, .1f, 0.05f);
+
                         GameObject aux = hit.collider.gameObject;
                         int n = (int)Char.GetNumericValue(aux.name[aux.name.Length - 1]);
-                        if (n == 0)
-                            tombstone.goUp(Player.getInstance().versesSelected[0+3*currentVerseSelected], currentVerseSelected);
-                        else if (n == 2)
-                            tombstone.goUp(Player.getInstance().versesSelected[1+3* currentVerseSelected], currentVerseSelected);
-                        else if (n == 4)
-                            tombstone.goUp(Player.getInstance().versesSelected[2+3* currentVerseSelected], currentVerseSelected);
+                        string verse = null;
+                        if (n == 0) {
+                            verse = Player.getInstance().versesSelected[0 + 3 * currentVerseSelected];
+                            tombstone.goUp(verse, currentVerseSelected);
+                        }
+                        else if (n == 2) {
+                            verse = Player.getInstance().versesSelected[1 + 3 * currentVerseSelected];
+                            tombstone.goUp(verse, currentVerseSelected);
+                        }
+                        else if (n == 4) {
+                            verse = Player.getInstance().versesSelected[2 + 3 * currentVerseSelected];
+                            tombstone.goUp(verse, currentVerseSelected);
+                        }
+                        versesChosen[Player.getInstance().versesSelectedCount] = verse;
 
                         ++currentVerseSelected;
                         Player.getInstance().versesSelectedCount++;
@@ -120,7 +139,6 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             if (Player.getInstance().versesSelectedCount == 3) { checkStateChange(); return;}
             Player.getInstance().unattachSight();
             Player.getInstance().setFinaleEyeSight();
-            Debug.Log(Player.getInstance().versesSelected[0]);
             Player.getInstance().drawVerse(Player.getInstance().versesSelected[0+3* currentVerseSelected], 0);
             Player.getInstance().drawVerse(Player.getInstance().versesSelected[1+3* currentVerseSelected], 2);
             Player.getInstance().drawVerse(Player.getInstance().versesSelected[2+3* currentVerseSelected], 4);
@@ -149,6 +167,15 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             if (Player.getInstance().versesSelectedCount == 3) {
                 //Debug.LogWarning("END FINALE");
                 //Player.getInstance().behaviour = new ExploreWalkBehaviour(character);
+
+                if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
+                    Application.OpenURL("https://twitter.com/intent/tweet?button_hashtag=MusesSexton&text=" 
+                        + versesChosen[0] 
+                        + "%0D" + versesChosen[1] + "%0D" + versesChosen[2] + "%0D");
+
+                    Application.Quit();
+                }
+
             }
 
             if (GameActions.checkAction(Action.DEBUG, Input.GetKeyDown)) {

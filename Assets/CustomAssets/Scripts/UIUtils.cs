@@ -5,6 +5,7 @@ namespace Assets.CustomAssets.Scripts {
     public static class UIUtils {
         //private static readonly Text infoInteractive = GameObject.Find("InfoText").GetComponent<Text>();
         private static readonly Image infoInteractive = GameObject.Find("InfoIcon").GetComponent<Image>();
+        private static readonly Image pointOfView = GameObject.Find("PointOfView").GetComponent<Image>();
 
         private static readonly Sprite burySprite = Resources.Load<Sprite>("Sprites/bury");
         private static readonly Sprite catchSprite = Resources.Load<Sprite>("Sprites/catch");
@@ -18,6 +19,7 @@ namespace Assets.CustomAssets.Scripts {
 
         public static void forceClear() {
             infoInteractive.sprite = emptySprite;
+            pointOfView.enabled = true;
         }
 
         public static void markToClear() {
@@ -32,6 +34,7 @@ namespace Assets.CustomAssets.Scripts {
         public static void checkForClearAction() {
             if (setForClear && !hasPainted) {
                 infoInteractive.sprite = emptySprite;
+                pointOfView.enabled = true;
             }
             setForClear = false;
             hasPainted = false;
@@ -40,26 +43,31 @@ namespace Assets.CustomAssets.Scripts {
         public static void drive() {
             infoInteractive.sprite = driveSprite;
             hasPainted = true;
+            pointOfView.enabled = false;
         }
 
         public static void landmarkFound() {
             infoInteractive.sprite = landmarkSprite;
             hasPainted = true;
+            pointOfView.enabled = false;
         }
 
         public static void catchCoffin() {
             infoInteractive.sprite = catchSprite;
             hasPainted = true;
+            pointOfView.enabled = false;
         }
 
         public static void dig() {
             infoInteractive.sprite = digSprite;
             hasPainted = true;
+            pointOfView.enabled = false;
         }
 
         public static void buryCoffin() {
             infoInteractive.sprite = burySprite;
             hasPainted = true;
+            pointOfView.enabled = false;
         }
 
     }
