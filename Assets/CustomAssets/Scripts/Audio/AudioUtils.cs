@@ -22,5 +22,9 @@ namespace Assets.CustomAssets.Scripts.Audio {
         public static void throwCoffinInsideHollow() {
             Debug.LogWarning("now playing: throwing coffin inside hollow");
         }
+
+        public static void giantDoorOpeningSound() {
+            Debug.LogWarning("now playing: giant door opening sound");
+        }
     }
 }

@@ -21,6 +21,8 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private bool timeSpeedUpRegistered = false;
         private bool timeSpeedDownRegistered = false;
         private readonly FirstPersonController fps;
+        private readonly Camera shovelCamera = GameObject.Find("3DUICamera").GetComponent<Camera>();
+
 
         public DriveCartBehaviour(GameObject character) : base(character) {
             Debug.Log("DRIVING!");
@@ -35,6 +37,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             mouseLook.XSensitivity = 1f;
             mouseLook.YSensitivity = 1f;
             mouseLook.smooth = true;
+            shovelCamera.enabled = false;
         }
 
         private void configureController() {
@@ -50,6 +53,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         }
 
         public override void destroy() {
+            shovelCamera.enabled = true;
             UnityEngine.Object.Destroy(fps);
             cart.transform.parent = null;
         }

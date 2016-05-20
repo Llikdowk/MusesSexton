@@ -18,6 +18,8 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private readonly Rigidbody coffinRb;
         private readonly MeshRenderer coffinMeshRenderer;
         private const float startDelay = .25f;
+        private readonly Camera shovelCamera = GameObject.Find("3DUICamera").GetComponent<Camera>();
+
 
         public CoffinDragBehaviour(GameObject character, GameObject coffin) : base(character) {
             time_created = Time.time;
@@ -32,6 +34,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             coffinMeshRenderer.shadowCastingMode = ShadowCastingMode.Off;
             this.coffinRb = coffin.GetComponent<Rigidbody>();
             coffinRb.isKinematic = true;
+            shovelCamera.enabled = false;
         }
 
         private void configureController() {
@@ -55,6 +58,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         }
 
         public override void destroy() {
+            shovelCamera.enabled = true;
             //coffinRb.isKinematic = false;
             coffin.GetComponent<MeshRenderer>().shadowCastingMode = ShadowCastingMode.On;
             UnityEngine.Object.Destroy(fps);

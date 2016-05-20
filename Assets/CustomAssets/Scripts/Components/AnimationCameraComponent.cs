@@ -57,15 +57,14 @@ namespace Assets.CustomAssets.Scripts.Components {
             cameraPoem.fieldOfView = defaultPoemFov + offsetfov;
         }
 
-        public void applyShake(float shake) {
-            StartCoroutine(doShake(shake));
+        public void applyShake(float shake, float decreaseFactor = 10.0f) {
+            StartCoroutine(doShake(shake, decreaseFactor));
             AudioUtils.playTombstoneShake();
         }
 
-        private IEnumerator doShake(float shake) {
+        private IEnumerator doShake(float shake, float decreaseFactor) {
             Vector3 originalPos = cameraMain.transform.localPosition;
             float shakeAmount = 0.7f;
-            const float decreaseFactor = 10.0f;
             while (shake > 0) {
                 cameraMain.transform.localPosition = Random.insideUnitSphere * shakeAmount;
                 shake -= Time.deltaTime * decreaseFactor;

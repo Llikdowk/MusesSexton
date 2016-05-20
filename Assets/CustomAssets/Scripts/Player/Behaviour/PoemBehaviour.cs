@@ -30,7 +30,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private SuperTestSet superTextSet = GameObject.Find("LandmarkSet").GetComponent<SuperTestSet>();
         private int currentVerseSelected = 0;
         private AnimationCameraComponent cameraAnimationComponent;
-
+        private readonly Camera shovelCamera = GameObject.Find("3DUICamera").GetComponent<Camera>();
         private readonly TombstoneController tombstone;
         private bool fovChanged = false;
 
@@ -55,6 +55,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             //superTextSet.updateTextSetGenders();
             this.tombstone = tombstone.GetComponent<TombstoneController>();
             this.cameraAnimationComponent = Player.getInstance().gameObject.transform.GetChild(0).GetComponent<AnimationCameraComponent>();
+            shovelCamera.enabled = false;
         }
 
 
@@ -63,6 +64,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             //Camera.main.transform.rotation = originalCameraRotation;
             //poemCamera.transform.position = originalPoemCameraPos;
             //poemCamera.transform.rotation = originalPoemCameraRotation;
+            shovelCamera.enabled = true;
             poemCamera.enabled = false;
             Cursor.lockState = cursorStateBackup;
             Cursor.visible = false;
@@ -182,6 +184,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                 Player.getInstance().genderChosen = Gender.UNDECIDED;
                 Player.getInstance().behaviour = new ExploreWalkBehaviour(character);
                 hasEnded = true;
+                Player.getInstance().checkBuriedAllCoffins();
             }
 
             if (GameActions.checkAction(Action.DEBUG, Input.GetKeyDown)) {

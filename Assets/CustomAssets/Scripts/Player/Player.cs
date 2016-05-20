@@ -1,5 +1,6 @@
 ﻿
 using Assets.CustomAssets.Scripts.Anmation;
+using Assets.CustomAssets.Scripts.Audio;
 using Assets.CustomAssets.Scripts.Components;
 using Assets.CustomAssets.Scripts.Player.Behaviour;
 using UnityEngine;
@@ -87,6 +88,14 @@ namespace Assets.CustomAssets.Scripts.Player {
         public bool cinematic {
             get { return CharacterBehaviour.cinematic; }
             set { _behaviour.cinematicMode(value); }
+        }
+
+        public void checkBuriedAllCoffins() {
+            if (coffinsBuried == 3) {
+                AudioUtils.giantDoorOpeningSound();
+                cameraAnimation.applyShake(10.0f, 2.5f);
+                giantDoorControl.active = true;
+            }
         }
 
         public void doMovementDisplacement(Transform destination, params endAnimationCallback[] f) {
