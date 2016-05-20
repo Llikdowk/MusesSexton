@@ -42,6 +42,12 @@ namespace Assets.CustomAssets.Scripts.Player {
 
         public void coffinBuriedAction() {
             ++coffinsBuried;
+            Debug.Log("coffins buried: " + coffinsBuried);
+            switch(coffinsBuried) {
+                case 1: AudioUtils.controller.enter_music_1(); break;
+                case 2: AudioUtils.controller.enter_music_2(); break;
+                case 3: AudioUtils.controller.enter_music_3(); break;
+            }
         }
 
         public static Player getInstance() {

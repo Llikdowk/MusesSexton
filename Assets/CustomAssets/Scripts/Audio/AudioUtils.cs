@@ -3,12 +3,16 @@ using UnityEngine;
 
 namespace Assets.CustomAssets.Scripts.Audio {
     public static class AudioUtils {
+        public static AudioController controller = GameObject.Find("AudioSystem").GetComponent<AudioController>();
+
         public static void digSound() {
-            Debug.LogWarning("now playing: digging sound");
+            //Debug.LogWarning("now playing: digging sound");
+            AudioUtils.controller.playDig();
         }
 
         public static void undigSound() {
-            Debug.LogWarning("now playing: undigging sound");
+            //Debug.LogWarning("now playing: undigging sound");
+            AudioUtils.controller.playDig();
         }
 
         public static void playTombstoneShake() {

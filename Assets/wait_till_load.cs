@@ -1,4 +1,5 @@
 ﻿using Assets;
+using Assets.CustomAssets.Scripts.Audio;
 using Assets.CustomAssets.Scripts.CustomInput;
 using Assets.CustomAssets.Scripts.Player;
 using Cubiquity;
@@ -32,6 +33,7 @@ public class wait_till_load : MonoBehaviour {
 	public void Update () {
         if (!alreadyClicked && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
             UItitle.fadeOut();
+            AudioUtils.controller.bellDing();
             alreadyClicked = true;
             if (alreadyLoaded) {
                 controller.enabled = true;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Assets.CustomAssets.Scripts.Audio;
 using Assets.CustomAssets.Scripts.Components;
 using Assets.CustomAssets.Scripts.CustomInput;
 using UnityEngine;
@@ -111,6 +112,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                                     //cameraAnimationComponent.colorCorrection(2f);
                                     Transform text = Player.getInstance().drawVerse(orbAux.getVerse(), orbAux.index);
                                     Transform shadow = text.GetChild(0);
+                                    AudioUtils.controller.playTone();
                                     textSetComponent.moveSubjectTo(text, text.position - character.transform.up * .25f, 0f);
                                     textSetComponent.moveSubjectTo(shadow, shadow.position - character.transform.up * .25f, 0f);
                                 };
@@ -127,6 +129,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                 if (versesDeployed && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
                     
                     if (hit.collider.gameObject.tag == "poemLetters") {
+                        AudioUtils.controller.bellDing();
                         Debug.Log("TEXT SELECTED is " + hit.collider.gameObject.name);
                         GameObject aux = hit.collider.gameObject;
                         int n = (int)Char.GetNumericValue(aux.name[aux.name.Length - 1]);
