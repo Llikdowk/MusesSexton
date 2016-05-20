@@ -96,7 +96,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     groundFloor.transform.parent.GetComponent<BoxCollider>().enabled = false;
                     UIUtils.infoInteractive.text = "select verse!";
                     Player.getInstance().coffinBuriedAction();
-                    Player.getInstance().behaviour = new PoemBehaviour(character, groundFloor.transform, tombstone);
+                    Player.getInstance().behaviour = new PoemBehaviour(character, tombstone);
                 }
             }
         }

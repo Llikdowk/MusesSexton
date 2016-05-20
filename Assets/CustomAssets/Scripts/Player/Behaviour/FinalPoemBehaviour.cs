@@ -6,7 +6,7 @@ using UnityEngine;
 using MouseLook = Assets.CustomAssets.Scripts.Components.MouseLook;
 
 namespace Assets.CustomAssets.Scripts.Player.Behaviour {
-    public class PoemBehaviour : CharacterBehaviour {
+    public class FinalPoemBehaviour : CharacterBehaviour {
         private readonly Vector3 originalCameraPos;
         private readonly Quaternion originalCameraRotation;
         private readonly Vector3 originalPoemCameraPos;
@@ -31,7 +31,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private bool versesDeployed = false;
         private readonly int originalMainCulling;
         private int mask = ~(1 << 9);
-        public PoemBehaviour(GameObject character, GameObject tombstone) : base(character) {
+        public FinalPoemBehaviour(GameObject character, GameObject tombstone) : base(character) {
             originalCameraPos = Camera.main.transform.position;
             originalCameraRotation = Camera.main.transform.rotation;
             //poemCamera = Camera.main.transform.GetChild(0).GetComponent<Camera>();
