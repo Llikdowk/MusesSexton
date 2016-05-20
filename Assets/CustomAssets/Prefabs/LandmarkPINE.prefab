@@ -496,7 +496,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.13, y: -5.24, z: 1.35}
+  m_LocalPosition: {x: 1.13, y: -6.28, z: 1.35}
   m_LocalScale: {x: 0.75118804, y: 0.7511879, z: 0.7511879}
   m_Children: []
   m_Father: {fileID: 493566}
@@ -1393,7 +1393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verse:
-  - All but food for tCVVVVVVVV
+  - All but food for the pine roots
   - All but food for the pine roots
   - All but food for the pine roots
   - All but food for the pine roots
