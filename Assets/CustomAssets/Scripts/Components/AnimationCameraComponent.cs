@@ -103,6 +103,7 @@ namespace Assets.CustomAssets.Scripts.Components {
 
         private IEnumerator doShake(float shake, float decreaseFactor, float shakeAmount) {
             Vector3 originalPos = cameraMain.transform.localPosition;
+            Quaternion originalRotation = cameraMain.transform.localRotation;
             while (shake > 0) {
                 cameraMain.transform.localPosition = Random.insideUnitSphere * shakeAmount;
                 shake -= Time.deltaTime * decreaseFactor;
@@ -110,6 +111,7 @@ namespace Assets.CustomAssets.Scripts.Components {
             }
             shake = 0;
             cameraMain.transform.localPosition = originalPos;
+            cameraMain.transform.localRotation = originalRotation;
         }
 
         public void moveTo(Transform destination, float velocity, params endAnimationCallback[] f) {

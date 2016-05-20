@@ -269,19 +269,17 @@ namespace Assets.CustomAssets.Scripts {
         }
 
         private void showInfoMsg() {
-            if (impacted == null) { UIUtils.infoInteractive.text = ""; return; }
+            if (impacted == null) { UIUtils.markToClear(); return; }
 
             if (impacted.tag == "coffin")
-                UIUtils.infoInteractive.text = "drag coffin!";
+                UIUtils.catchCoffin();
             else if (restrictionsPassed) {
-                UIUtils.infoInteractive.text = "dig terrain!";
+                UIUtils.dig();
                 restrictionsPassed = false;
             }
             else {
-                UIUtils.infoInteractive.text = "";
+                UIUtils.markToClear();
             }
-                        
         }
-
     }
 }

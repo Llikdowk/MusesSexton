@@ -36,19 +36,22 @@ public class trigger_hollow_behaviours : MonoBehaviour {
     public void OnTriggerExit(Collider c) {
         Player.getInstance().insideThrowCoffinTrigger = false;
         Debug.Log("throw coffin disabled!");
+        UIUtils.forceClear();
     }
 
     public void OnTriggerStay (Collider c) {
         if (c.tag != "Player") return;
         if (Player.getInstance().behaviour.GetType() == typeof(CoffinDragBehaviour)) {
-            UIUtils.infoInteractive.text = "click to throw!";
             if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && fullHollow) {
+                UIUtils.markToClear();
                 setup();
                 if (!hasCoffinInside && coffin != null) {
                     coffin.GetComponent<Rigidbody>().isKinematic = true;
                     AudioUtils.throwCoffinInsideHollow();
                     StartCoroutine(doThrowCoffin());
                 }
+            } else {
+                UIUtils.buryCoffin();
             }
         }
     }
