@@ -57,8 +57,8 @@ namespace Assets.CustomAssets.Scripts.Components {
             cameraPoem.fieldOfView = defaultPoemFov + offsetfov;
         }
 
-        public void applyShake() {
-            StartCoroutine(doShake(1.0f));
+        public void applyShake(float shake) {
+            StartCoroutine(doShake(shake));
             AudioUtils.playTombstoneShake();
         }
 
@@ -84,11 +84,11 @@ namespace Assets.CustomAssets.Scripts.Components {
             Transform origin = player.transform;
             float t = 0.0f;
             while (t < 1.0f) {
-                t += 0.05f;
+                t += 0.032f;
                 player.position = Vector3.Slerp(origin.position, new Vector3(destination.position.x, player.position.y, destination.position.z), t);
                 //player.eulerAngles = Vector3.Slerp(origin.eulerAngles, destination.eulerAngles, t);
                 player.rotation = Quaternion.Slerp(origin.rotation, destination.rotation, t);
-                yield return new WaitForSeconds(0.016f);
+                yield return new WaitForFixedUpdate();
             }
 
             foreach (var x in f) x();

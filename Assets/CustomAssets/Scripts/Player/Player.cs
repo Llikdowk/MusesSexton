@@ -93,7 +93,7 @@ namespace Assets.CustomAssets.Scripts.Player {
             cameraAnimation.moveTo(destination, f);
         }
 
-        public void unattachSight() {
+        public void unattachSight(Transform newParent = null) {
             eyeSight.transform.parent = null;
         }
 

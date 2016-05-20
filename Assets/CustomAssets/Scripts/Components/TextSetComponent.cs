@@ -98,7 +98,8 @@ namespace Assets.CustomAssets.Scripts.Components {
                 t += movementSpeed;
                 subject.position = Vector3.Slerp(origin.position, new Vector3(destination.position.x, subject.position.y, destination.position.z), t);
                 subject.rotation = Quaternion.Slerp(origin.rotation, destination.rotation, t);
-                yield return new WaitForSeconds(0.016f);
+                subject.localScale = Vector3.Lerp(origin.localScale, destination.localScale, t);
+                yield return new WaitForEndOfFrame();
             }
 
             foreach (var x in f) x();

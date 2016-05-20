@@ -20,7 +20,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         }
 
         private void configureController() {
-            fps.m_WalkSpeed = 4;
+            fps.m_WalkSpeed = 6;
             fps.m_RunSpeed = 8;
             fps.m_JumpSpeed = 0;
             fps.m_GravityMultiplier = 1;

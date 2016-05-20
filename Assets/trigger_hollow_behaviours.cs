@@ -5,6 +5,7 @@ using Assets.CustomAssets.Scripts.Player;
 using Assets.CustomAssets.Scripts.Player.Behaviour;
 using Assets.CustomAssets.Scripts;
 using Assets.CustomAssets.Scripts.Components;
+using Assets.CustomAssets.Scripts.Audio;
 
 public class trigger_hollow_behaviours : MonoBehaviour {
     public AnimationCurve curve;
@@ -44,9 +45,9 @@ public class trigger_hollow_behaviours : MonoBehaviour {
             if (GameActions.checkAction(Action.USE, Input.GetKeyDown) && fullHollow) {
                 setup();
                 if (!hasCoffinInside && coffin != null) {
-                    Player.getInstance().doMovementDisplacement(playerPosition.transform);
                     coffin.GetComponent<Rigidbody>().isKinematic = true;
-                    StartCoroutine(doAction());
+                    AudioUtils.throwCoffinInsideHollow();
+                    StartCoroutine(doThrowCoffin());
                 }
             }
         }
@@ -62,7 +63,7 @@ public class trigger_hollow_behaviours : MonoBehaviour {
         }
     }
 
-    private IEnumerator doAction() {
+    private IEnumerator doThrowCoffin() {
         float t = 0;
         while (t < 1f) {
             float c = curve.Evaluate(t);
@@ -80,6 +81,8 @@ public class trigger_hollow_behaviours : MonoBehaviour {
         DigBehaviour d = new DigBehaviour(Player.getInstance().gameObject, DigType.INVERSE);
         Player.getInstance().behaviour = d;
         d.init(groundFloor, heap, tombstone);
+        Player.getInstance().doMovementDisplacement(playerPosition.transform);
+
     }
-    
+
 }

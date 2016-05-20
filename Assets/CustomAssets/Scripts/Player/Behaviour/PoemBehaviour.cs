@@ -93,7 +93,6 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     textSetComponent.setOverColor(t);
 
                     if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
-                        cameraAnimationComponent.applyShake();
                         float wait = 0.0f;
                         float waitStep = 0.15f;
                         Transform playerOrbSlot = Player.getInstance().orbSlotPosition;
@@ -123,6 +122,11 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                         //superTextSet.updateTextSetGenders();
                         textDisplayed = false;
                         //textTombstone[currentVerseSelected].text = textSetComponent.getTextOf(n);
+                        Transform temp = new GameObject("temp").transform;
+                        temp.position = character.transform.position;
+                        temp.LookAt(tombstone.transform.position + Vector3.up);
+                        cameraAnimationComponent.moveTo(temp, () => { new WaitForSeconds(0.5f); UnityEngine.Object.Destroy(temp.gameObject); });
+                        cameraAnimationComponent.applyShake(5.0f);
                         tombstone.goUp(textSetComponent.getTextOf(n), currentVerseSelected);
                         ++currentVerseSelected;
                         Player.getInstance().cleanVerses();

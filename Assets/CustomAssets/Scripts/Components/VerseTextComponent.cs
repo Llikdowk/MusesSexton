@@ -16,6 +16,10 @@ namespace Assets.CustomAssets.Scripts.Components {
         public Vector3 originalScale { get; private set; }
         public int index { get; private set; }
 
+        public void setVisible(bool flag) {
+            gameObject.SetActive(flag);
+        }
+
         public string getVerse() {
             if (Player.Player.getInstance().genderChosen != Gender.UNDECIDED) {
                 return verse[(int)Player.Player.getInstance().genderChosen];
