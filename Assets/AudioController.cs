@@ -14,6 +14,7 @@ namespace Assets {
         private IEnumerator coroutine_music_2;
         private IEnumerator coroutine_music_3;
         private IEnumerator coroutine_music_perc;
+        private IEnumerator coroutine_cart_loop;
 
         public AudioSource bell { get; private set; }
         public AudioSource cart_loop { get; private set; }
@@ -50,11 +51,12 @@ namespace Assets {
             fsteps[3].clip = Resources.Load<AudioClip>("Audio/fsteps4");
             fsteps[4] = gameObject.AddComponent<AudioSource>();
             fsteps[4].clip = Resources.Load<AudioClip>("Audio/fsteps5");
-            foreach (var x in fsteps) x.volume = 0f;
+            foreach (var x in fsteps) x.volume = .1f;
 
             burnt_house = gameObject.AddComponent<AudioSource>();
             burnt_house.clip = Resources.Load<AudioClip>("Audio/LOOP burning house");
             burnt_house.volume = 0f;
+            burnt_house.loop = true;
 
             wind_loop = gameObject.AddComponent<AudioSource>();
             wind_loop.clip = Resources.Load<AudioClip>("Audio/loop wind");
@@ -88,11 +90,11 @@ namespace Assets {
             shovel[1].clip = Resources.Load<AudioClip>("Audio/shovel2");
             shovel[2] = gameObject.AddComponent<AudioSource>();
             shovel[2].clip = Resources.Load<AudioClip>("Audio/shovel3");
-            foreach (var x in shovel) x.volume = 1f;
+            foreach (var x in shovel) x.volume = .50f;
 
             throw_coffin = gameObject.AddComponent<AudioSource>();
             throw_coffin.clip = Resources.Load<AudioClip>("Audio/throw coffin");
-            throw_coffin.volume = 1f;
+            throw_coffin.volume = .50f;
 
             tone[0] = gameObject.AddComponent<AudioSource>();
             tone[0].clip = Resources.Load<AudioClip>("Audio/tone1");
@@ -118,6 +120,8 @@ namespace Assets {
             music_2.Play();
             music_3.Play();
             music_perc.Play();
+            cart_loop.Play();
+            burnt_house.Play();
 
             wind_loop.volume = 1f;
         }
@@ -171,19 +175,25 @@ namespace Assets {
                 fsteps[i].Play();
         }
 
-        private void addChannel(IEnumerator coroutine, AudioSource channel) {
+        public void enter_cart() {
+            addChannel(coroutine_cart_loop, cart_loop, .08f);
+        }
+        public void exit_cart() {
+            removeChannel(coroutine_cart_loop, cart_loop, .08f);
+        }
+
+        private void addChannel(IEnumerator coroutine, AudioSource channel, float step = 0.016f) {
             if (coroutine != null) StopCoroutine(coroutine);
-            coroutine = addChannelCo(channel);
+            coroutine = addChannelCo(channel, step);
             StartCoroutine(coroutine);
         }
-        private void removeChannel(IEnumerator coroutine, AudioSource channel) {
+        private void removeChannel(IEnumerator coroutine, AudioSource channel, float step = 0.016f) {
             if (coroutine != null) StopCoroutine(coroutine);
-            coroutine = removeChannelCo(channel);
+            coroutine = removeChannelCo(channel, step);
             StartCoroutine(coroutine);
         }
 
-        private IEnumerator addChannelCo(AudioSource channel) {
-            const float step = 0.016f;
+        private IEnumerator addChannelCo(AudioSource channel, float step = 0.016f) {
             while (channel.volume < 1.0f) {
                 channel.volume += step;
                 yield return new WaitForSeconds(.25f);
@@ -191,8 +201,7 @@ namespace Assets {
             channel.volume = 1.0f;
         }
 
-        private IEnumerator removeChannelCo(AudioSource channel) {
-            const float step = 0.016f;
+        private IEnumerator removeChannelCo(AudioSource channel, float step = 0.016f) {
             while (channel.volume > 0.0f) {
                 channel.volume -= step;
                 yield return new WaitForSeconds(.25f);

@@ -100,7 +100,6 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     groundFloor.transform.parent.GetComponent<BoxCollider>().enabled = true;
                     Player.getInstance().behaviour = new ExploreWalkBehaviour(character);
                 } else if (type == DigType.INVERSE) {
-                    AudioUtils.controller.throw_coffin.Play();
                     groundFloor.transform.parent.GetComponent<BoxCollider>().enabled = false;
                     UIUtils.infoInteractive.text = "select verse!";
                     Player.getInstance().coffinBuriedAction();

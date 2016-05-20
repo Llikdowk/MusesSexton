@@ -1,4 +1,5 @@
 ﻿
+using Assets.CustomAssets.Scripts.Audio;
 using Assets.CustomAssets.Scripts.CustomInput;
 using UnityEngine;
 using Assets.CustomAssets.Scripts.Components;
@@ -73,6 +74,13 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             }
             */
             //fps.speed = currentSpeed;
+
+            if (currentSpeed > .01f) {
+                AudioUtils.controller.enter_cart();
+            } else {
+                AudioUtils.controller.exit_cart();
+            }
+
             movementUpdate();
         }
 

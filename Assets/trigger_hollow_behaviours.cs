@@ -79,6 +79,7 @@ public class trigger_hollow_behaviours : MonoBehaviour {
         coffin = null;
         Player.getInstance().cinematic = false;
         Player.getInstance().doMovementDisplacement(playerPosition.transform, 0.01f);
+        AudioUtils.controller.throw_coffin.Play();
         DigBehaviour d = new DigBehaviour(Player.getInstance().gameObject, DigType.INVERSE);
         Player.getInstance().behaviour = d;
         d.init(groundFloor, heap, tombstone);

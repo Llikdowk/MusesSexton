@@ -39,7 +39,13 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
 
         public override void run() {
             checkStateChange();
-            AudioUtils.controller.playFootsteps();
+            if (GameActions.checkAction(Action.LEFT, Input.GetKey)
+                || GameActions.checkAction(Action.RIGHT, Input.GetKey)
+                || GameActions.checkAction(Action.FORWARD, Input.GetKey)
+                || GameActions.checkAction(Action.BACK, Input.GetKey)
+                ) {
+                AudioUtils.controller.playFootsteps();
+            }
         }
 
         private void checkStateChange() {
