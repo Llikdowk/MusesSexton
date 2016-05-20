@@ -11,7 +11,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private readonly Quaternion originalCameraRotation;
         private readonly Vector3 originalPoemCameraPos;
         private readonly Quaternion originalPoemCameraRotation;
-        private readonly Camera poemCamera;
+        //private readonly Camera poemCamera;
         private readonly CursorLockMode cursorStateBackup;
         private Vector3 p0, p1;
         private readonly MouseLook mouseLook;
@@ -23,9 +23,6 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private readonly Stack<TextMesh> lastTextColorChanged = new Stack<TextMesh>(6);
         private bool textColored = false;
         private readonly Transform graveHollow;
-        private int currentMask = landmarkMask;
-        private const int landmarkMask = 1 << 10;
-        private const int verseMask = 1 << 8;
         private bool hasEnded = false;
         private SuperTestSet superTextSet = GameObject.Find("LandmarkSet").GetComponent<SuperTestSet>();
         private int currentVerseSelected = 0;
@@ -33,15 +30,18 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
         private readonly Camera shovelCamera = GameObject.Find("3DUICamera").GetComponent<Camera>();
         private readonly TombstoneController tombstone;
         private bool fovChanged = false;
-
+        private bool versesDeployed = false;
+        private int originalMainCulling;
 
         public PoemBehaviour(GameObject character, Transform graveHollow, GameObject tombstone) : base(character) {
             originalCameraPos = Camera.main.transform.position;
             originalCameraRotation = Camera.main.transform.rotation;
-            poemCamera = Camera.main.transform.GetChild(0).GetComponent<Camera>();
-            originalPoemCameraPos = poemCamera.transform.position;
-            originalPoemCameraRotation = poemCamera.transform.rotation;
-            poemCamera.enabled = true;
+            //poemCamera = Camera.main.transform.GetChild(0).GetComponent<Camera>();
+            //originalPoemCameraPos = poemCamera.transform.position;
+            //originalPoemCameraRotation = poemCamera.transform.rotation;
+            //poemCamera.enabled = true;
+            originalMainCulling = Camera.main.cullingMask;
+            Camera.main.cullingMask = Camera.main.cullingMask | 1<<8;
             Debug.Log("POEM");
             Cursor.visible = true;
             cursorStateBackup = Cursor.lockState;
@@ -56,6 +56,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             this.tombstone = tombstone.GetComponent<TombstoneController>();
             this.cameraAnimationComponent = Player.getInstance().gameObject.transform.GetChild(0).GetComponent<AnimationCameraComponent>();
             shovelCamera.enabled = false;
+            Player.getInstance().disableEyeSight();
         }
 
 
@@ -65,7 +66,8 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             //poemCamera.transform.position = originalPoemCameraPos;
             //poemCamera.transform.rotation = originalPoemCameraRotation;
             shovelCamera.enabled = true;
-            poemCamera.enabled = false;
+            //poemCamera.enabled = false;
+            Camera.main.cullingMask = originalMainCulling;
             Cursor.lockState = cursorStateBackup;
             Cursor.visible = false;
         }
@@ -75,26 +77,27 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
             checkStateChange();
             doMouseMovement();
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, maxDistance, currentMask)) {
+            if (Physics.Raycast(ray, out hit, maxDistance)) {
                 Debug.DrawRay(Player.getInstance().eyeSight.position, hit.point - Player.getInstance().eyeSight.position, Color.magenta);
+                //Debug.Log("hit tag: " + hit.transform.tag);
 
-                if (hit.collider.gameObject.tag == "landmark") {
+                if (!versesDeployed && hit.collider.gameObject.tag == "landmark") {
                     Vector3 v = hit.point;
                     Vector3 center = hit.transform.parent.position;
                     v = Vector3.ProjectOnPlane(v, Camera.main.transform.forward);
                     center = Vector3.ProjectOnPlane(center, Camera.main.transform.forward);
                     float distance = Vector3.Distance(v, center);
-                    float x = 20f/(distance);
+                    float x = 20f / (distance);
                     x = Mathf.Min(12.5f, x);
                     cameraAnimationComponent.setRelativeFov(-x);
                     fovChanged = true;
 
                     GameObject textSet = hit.collider.gameObject.transform.parent.GetChild(0).gameObject;
                     textSetComponent = textSet.GetComponent<TextSetComponent>();
-                    float t = Mathf.Clamp(0, x/distance, 1);
+                    float t = Mathf.Clamp(0, x / distance, 1);
                     textSetComponent.setOverColor(t);
 
-                    if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
+                    if (!versesDeployed && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
                         float wait = 0.0f;
                         float waitStep = 0.15f;
                         Transform playerOrbSlot = Player.getInstance().orbSlotPosition;
@@ -107,12 +110,15 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                                 };
                             textSetComponent.moveSubjectTo(orb.transform, playerOrbSlot, wait, lambda);
                             wait += waitStep;
+                            versesDeployed = true;
+                            Player.getInstance().enableEyeSight();
                         }
-                        currentMask = verseMask;
+                        return;
                     }
                 }
 
-                if (GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
+
+                if (versesDeployed && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
                     
                     if (hit.collider.gameObject.tag == "poemLetters") {
                         Debug.Log("TEXT SELECTED is " + hit.collider.gameObject.name);
@@ -131,9 +137,10 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                         cameraAnimationComponent.applyShake(5.0f);
                         tombstone.goUp(textSetComponent.getTextOf(n), currentVerseSelected);
                         ++currentVerseSelected;
-                        Player.getInstance().cleanVerses();
-                        Player.getInstance().reatachSight();
-                        currentMask = landmarkMask;
+
+                        exitDisplayVerseMode();
+                    } else {
+                        exitDisplayVerseMode();
                     }
                 }
 
@@ -143,6 +150,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     t.color = Player.getInstance().textOverColor;
                     textColored = true;
                 }
+
                 else if (textColored) {
                     cleanTextColor();
                 }
@@ -151,10 +159,8 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                 if (lastTextColorChanged.Count > 0) {
                     cleanTextColor();
                 }
-                if (textDisplayed && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
-                    //textSetComponent.doGoToOrigin(-1, graveHollow);
-                    textSetComponent.moveAllOrbsToOrigin();
-                    textDisplayed = false;
+                if (versesDeployed && GameActions.checkAction(Action.USE, Input.GetKeyDown)) {
+                    exitDisplayVerseMode();
                 }
                 if (fovChanged) {
                     cameraAnimationComponent.setDefaultFov();
@@ -162,6 +168,13 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                     textSetComponent.setNormalColor();
                 }
             }
+        }
+
+        private void exitDisplayVerseMode() {
+            Player.getInstance().cleanVerses();
+            Player.getInstance().reatachSight();
+            versesDeployed = false;
+            Player.getInstance().disableEyeSight();
         }
 
         private void cleanTextColor() {

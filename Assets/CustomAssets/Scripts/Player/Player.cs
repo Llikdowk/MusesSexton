@@ -98,6 +98,14 @@ namespace Assets.CustomAssets.Scripts.Player {
             }
         }
 
+        public void enableEyeSight() {
+            eyeSight.gameObject.SetActive(true);
+        }
+
+        public void disableEyeSight() {
+            eyeSight.gameObject.SetActive(false);
+        }
+
         public void doMovementDisplacement(Transform destination, params endAnimationCallback[] f) {
             cameraAnimation.moveTo(destination, f);
         }

@@ -13,7 +13,7 @@ namespace Assets.CustomAssets.Scripts.Components {
 
         private Camera cameraMain;
         private Camera camera3d;
-        private Camera cameraPoem;
+        //private Camera cameraPoem;
 
         private float defaultMainFov;
         private float defaultPoemFov;
@@ -22,16 +22,16 @@ namespace Assets.CustomAssets.Scripts.Components {
             player = transform.parent;
             cameraMain = Camera.main;
             camera3d = GameObject.Find("3DUICamera").GetComponent<Camera>();
-            cameraPoem = GameObject.Find("Poem Camera").GetComponent<Camera>();
+            //cameraPoem = GameObject.Find("Poem Camera").GetComponent<Camera>();
 
             defaultMainFov = cameraMain.fieldOfView;
-            defaultPoemFov = cameraPoem.fieldOfView;
+            //defaultPoemFov = cameraPoem.fieldOfView;
 
         }
 	
         public void setFov(float fov) {
             cameraMain.fieldOfView = fov;
-            cameraPoem.fieldOfView = fov - 5;
+            //cameraPoem.fieldOfView = fov - 5;
         }
 
         public void setDefaultFov() {
@@ -42,11 +42,11 @@ namespace Assets.CustomAssets.Scripts.Components {
 
         private IEnumerator resetFov() {
             float mainFov = cameraMain.fieldOfView;
-            float poemFov = cameraPoem.fieldOfView;
+            //float poemFov = cameraPoem.fieldOfView;
             float t = 0.0f;
             while (t < 1.0f) {
                 cameraMain.fieldOfView = Mathf.Lerp(mainFov, defaultMainFov, t);
-                cameraPoem.fieldOfView = Mathf.Lerp(poemFov, defaultPoemFov, t);
+                //cameraPoem.fieldOfView = Mathf.Lerp(poemFov, defaultPoemFov, t);
                 t += 0.1f;
                 yield return new WaitForFixedUpdate();
             }
@@ -54,7 +54,7 @@ namespace Assets.CustomAssets.Scripts.Components {
 
         public void setRelativeFov(float offsetfov) {
             cameraMain.fieldOfView = defaultMainFov + offsetfov;
-            cameraPoem.fieldOfView = defaultPoemFov + offsetfov;
+            //cameraPoem.fieldOfView = defaultPoemFov + offsetfov;
         }
 
         public void applyShake(float shake, float decreaseFactor = 10.0f) {
