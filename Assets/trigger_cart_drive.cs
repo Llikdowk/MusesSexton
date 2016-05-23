@@ -6,15 +6,20 @@ using Assets.CustomAssets.Scripts.Player.Behaviour;
 
 public class trigger_cart_drive : MonoBehaviour {
 
-	public void OnTriggerEnter(Collider c) {
+    public void OnTriggerEnter(Collider c) {
         if (c.gameObject.tag != "Player") return;
         Player.getInstance().insideCartDrive = true;
+        UIUtils.drive();
     }
 
+    
     public void OnTriggerStay(Collider c) {
         if (c.gameObject.tag != "Player") return;
-        if (Player.getInstance().behaviour.GetType() != typeof(DriveCartBehaviour)) { UIUtils.drive(); }
+        //if (Player.getInstance().behaviour.GetType() == typeof(DriveCartBehaviour)) { UIUtils.drive(); }
+        UIUtils.drive();
+
     }
+
 
     public void OnTriggerExit(Collider c) {
         if (c.gameObject.tag != "Player") return;

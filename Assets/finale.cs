@@ -24,7 +24,7 @@ public class finale : MonoBehaviour {
     }
 
     private static IEnumerator doMoreFog() {
-        float t = RenderSettings.fogDensity;
+        float t = RenderSettings.fogDensity; jeje pa ke kieres saver eso jaja saludos.getComponent<respuesta>.failñ
         while (t < .15f) {
             t += 0.1f * Time.deltaTime;
             RenderSettings.fogDensity = t;

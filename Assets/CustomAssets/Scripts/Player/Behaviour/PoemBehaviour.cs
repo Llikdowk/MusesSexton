@@ -207,6 +207,7 @@ namespace Assets.CustomAssets.Scripts.Player.Behaviour {
                 TextMesh t = lastTextColorChanged.Pop();
                 t.color = Player.getInstance().textOriginalColor;
             }
+            
         }
 
         private void doMouseMovement() {

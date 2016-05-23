@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: lowPolyTerrain
   m_Shader: {fileID: 4800000, guid: bf044478c23c46d40bde6df51267dade, type: 3}
-  m_ShaderKeywords: BRUSH_MARKER_ON
+  m_ShaderKeywords: BRUSH_MARKER_OFF
   m_LightmapFlags: 5
   m_CustomRenderQueue: 2000
   stringTagMap: {}
@@ -58,10 +58,6 @@ Material:
         second: 0
       data:
         first:
-          name: _Cull
-        second: 2
-      data:
-        first:
           name: _albedo
         second: 1
       data:
@@ -88,6 +84,10 @@ Material:
         first:
           name: _fresnelConvexity
         second: 0
+      data:
+        first:
+          name: _Cull
+        second: 2
       data:
         first:
           name: _Amount

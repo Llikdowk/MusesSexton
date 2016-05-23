@@ -65,6 +65,7 @@ namespace Assets.CustomAssets.Scripts.Player {
             orbSlotPosition = GameObject.Find("OrbPosition").transform;
             giantDoorControl = GameObject.Find("GatesAsset").GetComponent<open_gates>();
             _behaviour = new EmptyBehaviour(gameObject);
+            Material fontMaterial = Resources.Load<Material>("Fonts/HammerHeadRegular");
 
             for (int i = 0; i < verses.Length; ++i) {
                 verses[i] = eyeSight.GetChild(i).GetComponent<TextMesh>();
@@ -83,9 +84,11 @@ namespace Assets.CustomAssets.Scripts.Player {
                 shadowText.anchor = verses[i].anchor;
                 shadowText.color = shadowColor;
                 shadowVerses[i] = shadowText;
+                shadow.GetComponent<MeshRenderer>().material = fontMaterial;
+
             }
             textOriginalColor = verses[0].color;
-            textOverColor = new Color(122f/256f, 0, 0);
+            textOverColor = new Color(1, 0, 0);
 
             versesSelected[0] = "A";
             versesSelected[1] = "B";
